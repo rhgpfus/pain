@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd"> 
+
+<mapper namespace="imc" >
+
+<select id="SELECT_IMCLIST" parameterType="imc" resultType="imc">
+
+		select * from 
+		item_middle_client where 1=1
+		
+<if test="imcNo!=0">
+		
+	and imcNo = #{imcNo}
+</if>
+
+</select>
+
+
+</mapper>
+
+

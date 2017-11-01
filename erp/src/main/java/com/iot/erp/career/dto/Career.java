@@ -1,7 +1,8 @@
 package com.iot.erp.career.dto;
 
+import org.springframework.stereotype.Component;
 
-
+@Component
 public class Career {
 	
 	private int careerNo; //int auto_increment primary key, #입사구분 번호

@@ -1,5 +1,8 @@
 package com.iot.erp.item.dto;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Item {
 
 	private int itemNo; //int auto_increment primary key comment '품목기본키',

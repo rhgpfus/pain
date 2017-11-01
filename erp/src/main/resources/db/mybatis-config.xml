@@ -45,7 +45,8 @@
 		<typeAlias alias="project" type="com.iot.erp.project.dto.Project"/>
 	<!-- 부서코드 관련 alias -->		
 		<typeAlias alias="departmentcode" type="com.iot.erp.departmentcode.dto.DepartmentCode"/>
-		
+	<!-- 품목&회사 관련 alias -->		
+		<typeAlias alias="imc" type="com.iot.erp.imc.dto.IMC"/>	
 		
 		
 		<!-- alias : hrm_sql.xml에서 resultType 혹은 parameterType을 적을때 간편하게 적기위해 쓰입니다. -->
@@ -66,6 +67,7 @@
 		<mapper resource="sql/sale_sql.xml" />
 		<mapper resource="sql/career_sql.xml" />
 		<mapper resource="sql/departmentcode_sql.xml" />
+		<mapper resource="sql/imc_sql.xml" />
 	</mappers>
 </configuration>
 

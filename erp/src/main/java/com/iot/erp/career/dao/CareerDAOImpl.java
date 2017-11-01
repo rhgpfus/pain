@@ -13,12 +13,12 @@ public class CareerDAOImpl extends SqlSessionDaoSupport implements CareerDAO {
 	//입사구분----------------------------------------------------------------------------------------------------------------
 			@Override
 			public List<Career> selectCareerList(Career h_career) {
-				return this.getSqlSession().selectList("career.SELECT_CAREERLIST", h_career);
+				return this.getSqlSession().selectList("car.SELECT_CAREERLIST", h_career);
 				//입사구분 리스트.
 			}
 			@Override
 			public Career selectCareer(Career h_career) {
-				return this.getSqlSession().selectOne("career.SELECT_CAREERLIST", h_career);
+				return this.getSqlSession().selectOne("car.SELECT_CAREERLIST", h_career);
 				//입사구분 단일.
 			}
 			@Override
