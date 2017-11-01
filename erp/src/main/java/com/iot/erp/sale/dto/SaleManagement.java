@@ -1,5 +1,8 @@
 package com.iot.erp.sale.dto;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class SaleManagement {
 
 	private int saleNo; //int auto_increment primary key comment '판매번호기본키',
