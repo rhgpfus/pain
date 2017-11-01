@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd"> 
+
+<mapper namespace="dc" >
+
+<!-- 부서코드 리스트 -->
+	<select id="SELECT_DCLIST" parameterType="departmentcode" resultType="departmentcode">
+		select 
+			departmentcodeno,departmentcode,departmentname 
+		from human_department_code where 1=1
+		<if test="departmentCode!=null">
+			<!-- 부서코드 검색기능 -->
+			and departmentcode = #{departmentCode}
+		</if>
+		<if test="departmentName!=null">
+			<!-- 부서코드 명 검색기능 -->
+			and departmentname = #{departmentName}
+		</if>	
+	</select>
+
+</mapper>
+
+

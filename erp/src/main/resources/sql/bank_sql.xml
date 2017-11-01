@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="bank">
+	<!-- 급여통장(은행) 리스트 -->
+	<select id="SELECT_HUMANBANK" parameterType="h_bank" resultType="h_bank">
+		select 
+			bankno,bankcode,bankname 
+		from human_bank where 1=1
+		<if test="bankCode!=null  and bankCode!=''">
+			<!-- 급여통장(은행) 코드 검색기능 -->
+			and bankcode = #{bankCode}
+		</if>
+		<if test="bankName!=null and bankName!=''">
+			<!-- 급여통장(은행) 명 검색기능 -->
+			and bankname = #{bankName}
+		</if>	
+	</select>
+
+</mapper>

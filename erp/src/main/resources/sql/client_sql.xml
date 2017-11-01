@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd"> 
+
+<mapper namespace="client" >
+
+<select id="SELECT_CLIENT" parameterType="ci" resultType="ci">
+
+
+		select 
+	clientno,
+	clientcode,
+	homepage,
+	bank,
+	clientname,
+	representatives,
+	sectors,
+	phonenumber,
+	cellphonenumber,
+	address,
+	managerno,
+	email,
+	createuser,
+	createdate,
+	modifieduser,
+	modifieddata
+		from client_information where 1=1
+<if test="clientNo!=null and clientNo!=''">
+			<!-- 거래처명검색 -->
+and clientname = #{clientname}
+</if>
+
+</select>
+
+
+</mapper>
+
+

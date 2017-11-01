@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd"> 
+
+<mapper namespace="hrm">
+
+	<!-- 로그인 -->
+	<select id = "LOGIN_HUMANRESOURCEMANAGEMENT" parameterType="h_resourceManagement" resultType="h_resourceManagement">
+		select humanno,humanid,humanpwd ,humanauthority
+		from human_resource_management where 1=1
+		<if test = "humanId!= null and humanId!=''">
+			and humanid = #{humanId}
+		</if>
+		<if test ="humanNo != 0">
+			and humanno = #{humanNo} 
+		</if>
+	</select>
+
+	<!-- 인사관리 단일 -->
+	<select id="SELECT_HRM" parameterType="h_resourceManagement" resultType="h_resourceManagement">
+		select * from human_resource_management
+		where humanno = #{humanNo}
+		
+	</select>
+
+	<!-- 인사관리 리스트  -->
+	<select id="SELECT_HRMLIST" parameterType="h_resourceManagement" resultType="h_resourceManagement">
+		select hrm.humanno,
+			hrm.humankorname,
+			hrm.humanresidentnumber,
+			hdc.departmentcodeno,
+			hr.rankno,
+			hrm.humanenteringdate,
+			hrm.humanaccountnumber,
+			hrm.humanemail
+		from human_resource_management as hrm,
+			human_department_code as hdc,
+			human_rank as hr
+		where
+			hrm.departmentcodeno = hdc.departmentcodeno and
+			hrm.rankno = hr.rankno
+		<if test="humanNo!=0">
+			<!-- 사번검색기능 -->
+			and hrm.humanno = #{humanNo}
+		</if>
+		
+		<if test="humanKorName!=null and humanKorName!=''">
+			<!-- 성명검색기능 -->
+			and hrm.humankorname = #{humanKorName}
+		</if>
+		order by humanno desc
+	</select>
+	
+	
+	<insert id="INSERT_HUMANRESOURCEMANAGEMENT" parameterType="h_resourceManagement">
+		insert into human_resource_management(humankorname,humanid,humanpwd,humanengname,humanresidentnumber,humangenerative,humangender,humanenteringdate,
+		careerno,rankno,positionno,humanleavedate,humanleavereason,humanhomenum,humanphonenum,humanpassportnumber,humanemail,
+		departmentcodeno,projectno,humansecondlanguage,bankno,humanaccountnumber,humanaccountname,humanaddress,humanhobbit,humanspacialty,
+		humanEtc,humanauthority)
+		values(#{humanKorName},#{humanId},#{humanPwd},#{humanEngName},#{humanResidentNumber},#{humanGenerative},#{humanGender},#{humanEnteringDate},#{careerNo},#{rankNo},#{positionNo},#{humanLeaveDate},#{humanLeaveReason},#{humanHomenum},#{humanPhonenum},#{humanPassportNumber},#{humanEmail},
+		#{departmentCodeNo},#{projectNo},#{humanSecondLanguage},#{bankBookNo},#{humanAccountNumber},#{humanAccountName},#{humanAddress},#{humanPobbit},#{humanSpacialty},#{humanEtc},#{humanAuthority})
+	</insert>
+	
+	<delete id="DELETE_HUMANRESOURCEMANAGEMENT" parameterType="h_resourceManagement">
+		delete from human_resource_management
+		where humanno = #{humanNo}
+	</delete>
+	
+	
+	
+	<!-- 
+	 namespace="hrm" : HrmDAOImpl에 있는 ("hrm.SELECT_HUMANRESOURCEMANAGEMENT", hrm) 앞에 hrm을 말합니다. 키값.
+	 parameterType="h_resourceManagement" : HumanResourceManagement 클래스에 있는 값을 가져와 매칭하겠다는 설정.
+	 #{human_No} : parameterType 에 정의되 있는 클래스를 바라보게됨.(HumanResourceManagement 클래스로 설정되어있습니다.)
+	 즉, HumanResourceManagement 클래스에 있는 human_No을 바인딩.
+	 #{human_Kor_Name} : parameterType 에 정의되 있는 클래스를 바라보게됨.(HumanResourceManagement 클래스로 설정되어있습니다.)
+	 즉, HumanResourceManagement 클래스에 있는 human_Kor_Name을 바인딩.
+	 resultType : 리턴타입이  h_resourceManagement(HumanResourceManagement) mybatis에 있는 alias="h_resourceManagement"를 말합니다.
+	 -->
+	
+	
+		
+</mapper>
+
+
+
+
+
+

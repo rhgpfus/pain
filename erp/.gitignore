@@ -1,0 +1,7 @@
+.classpath
+.project
+.settings/
+target/
+target/m2e-wtp/*
+pom.properties
+MANIFEST.MF

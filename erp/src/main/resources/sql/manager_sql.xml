@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd"> 
+
+<mapper namespace="manager" >
+
+<select id="SELECT_MANAGER" parameterType="mi" resultType="mi">
+
+
+		select 
+			managerNo,
+			managerCode,
+			managerName,
+			codeMenu,
+			etc
+		from manager where 1=1
+<if test="managerNo!=null and managerNo!=''">
+			<!-- 거래처명검색 -->
+and managerName = #{managerName}
+</if>
+
+</select>
+
+
+</mapper>
+
+

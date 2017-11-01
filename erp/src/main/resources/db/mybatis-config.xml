@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "HTTP://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<settings>
+		<setting name="cacheEnabled" value="true" />
+		<setting name="useGeneratedKeys" value="true" />
+		<setting name="defaultExecutorType" value="REUSE" />
+	</settings>
+	
+	<typeAliases>
+	<!-- 인사 관리 관련 alias -->
+  
+    <!-- 경력 관련 alias -->	
+    	<typeAlias alias="career" type="com.iot.erp.career.dto.Career"/>
+    	
+    	
+		<!-- Login 관련 alias -->	
+		<typeAlias alias="h_resourceManagement" type="com.iot.erp.hrm.dto.HumanResourceManagement"/>
+		
+	<!-- 거래처 관련 alias -->
+		<typeAlias alias="ci" type="com.iot.erp.client.dto.ClientInformation"/>
+	<!-- 사원(담당) 관련 alias -->	
+		<typeAlias alias="manager" type="com.iot.erp.manager.dto.Manager"/>
+	<!-- 구매 관련 alias -->	
+		<typeAlias alias="pm" type="com.iot.erp.purchase.dto.PurchaseManagement"/>
+		<typeAlias alias="pmi" type="com.iot.erp.purchase.dto.Pmi"/>
+	<!-- 창고 관련 alias -->	
+		<typeAlias alias="wm" type="com.iot.erp.warehouse.dto.WarehouseManagement"/>
+	<!-- 물품 관련 alias -->	
+		<typeAlias alias="ii" type="com.iot.erp.item.dto.Item"/>
+	<!-- 사원 관련 alias -->	
+		<typeAlias alias="mi" type="com.iot.erp.manager.dto.Manager"/>
+	<!-- 판매 관련 alias -->	
+		<typeAlias alias="sm" type="com.iot.erp.sale.dto.SaleManagement"/>
+		
+	<!-- 은행 관련 alias -->		
+		<typeAlias alias="h_bank" type="com.iot.erp.bank.dto.HumanBank"/>
+		
+	<!-- 직급 관련 alias -->				
+		<typeAlias alias="rank" type="com.iot.erp.rank.dto.Rank"/>
+	<!-- 직책 관련 alias -->	
+		<typeAlias alias="position" type="com.iot.erp.position.dto.Position"/>
+	<!-- 프로젝트 관련 alias -->		
+		<typeAlias alias="project" type="com.iot.erp.project.dto.Project"/>
+	<!-- 부서코드 관련 alias -->		
+		<typeAlias alias="departmentcode" type="com.iot.erp.departmentcode.dto.DepartmentCode"/>
+		
+		
+		
+		<!-- alias : hrm_sql.xml에서 resultType 혹은 parameterType을 적을때 간편하게 적기위해 쓰입니다. -->
+	</typeAliases>
+	<mappers>
+		<mapper resource="sql/project_sql.xml" />
+		<mapper resource="sql/position_sql.xml" />
+		<mapper resource="sql/bank_sql.xml" />
+		<mapper resource="sql/rank_sql.xml" />
+		<mapper resource="sql/hrm_sql.xml" />
+		<mapper resource="sql/client_sql.xml" />
+		<mapper resource="sql/manager_sql.xml" />
+		<mapper resource="sql/purchase_sql.xml" />
+		<mapper resource="sql/warehouse_sql.xml" />
+		<mapper resource="sql/item_sql.xml" />
+		<mapper resource="sql/manager_sql.xml" />
+		<mapper resource="sql/sale_sql.xml" />
+		<mapper resource="sql/sale_sql.xml" />
+		<mapper resource="sql/career_sql.xml" />
+		<mapper resource="sql/departmentcode_sql.xml" />
+	</mappers>
+</configuration>
+

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd"> 
+
+<mapper namespace="purchase" >
+
+<select id="SELECT_PURCHASE" parameterType="pm" resultType="pm">
+	select 
+	purchaseno,
+	orderdate,
+	clientno,
+	itemno,
+	deliverydate,
+	imcno,
+	managerno,
+	warehouseno,
+	projectno,
+	purchasestatus,
+	createuser,
+	createuser,
+	createdate,
+	modifieduser,
+	modifieddata
+	from purchase_management
+	where 1=1
+	<if test="clientNo !=null and clientNo !=''">
+				<!-- 거래처명검색 -->
+		and clientno = #{clientNo}
+	</if>
+	<if test="purchaseNo!=null and purchaseNo !=''">
+				<!-- 구매번호 검색 -->
+		and purchaseno = #{purchaseNo}
+	</if>
+</select>
+
+<select  id="SELECT_PURCHASE_ITEM" parameterType="pmi" resultType="pmi">
+	select 
+		pm.purchaseno,
+		pm.itemno,
+		i.itemname,
+		i.warehousingcost,
+		imc.quantity,
+		imc.amount
+	from purchase_management pm  , item_middle_client imc , item i	
+	where pm.purchaseno = imc.purchaseno and i.itemcode = imc.itemcode 
+	and pm.purchaseno = #{purchaseNo}
+</select>
+
+<select id="SELECT_PURCHASE_MANAGEMENT"  parameterType="pmi" resultType="pmi">
+	select orderDate,clientNo,managerNo,warehouseNo,icmno from purchase_management
+	WHERE 1=1
+	<if test="purchaseNo!=null and purchaseNo!=''">
+	and clientno = #{clientNo}
+	</if>
+</select>
+
+</mapper>
+
+
+
