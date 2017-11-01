@@ -35,7 +35,9 @@ public class BankController {
 		return bs.selectHumanBank(h_bank);
 	}
 	@RequestMapping(value="/bank/insert", method=RequestMethod.POST)
-	public @ResponseBody List<HumanBank> insertBank(@RequestBody HumanBank h_bank){
-		return bs.selectHumanBankList(h_bank);
+	public @ResponseBody HumanBank insertBank(@RequestBody HumanBank h_bank){
+		int cnt = bs.insertHumanBank(h_bank);
+		System.out.println(cnt);
+		return null;
 	}
 }
