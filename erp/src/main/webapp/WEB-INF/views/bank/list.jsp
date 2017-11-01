@@ -30,7 +30,7 @@ function insertBank(){
 		
 		<thead>
 			<tr class="listTr">		
-				<th  class="listTh" data-field="bankNo">사원 번호</th>
+				<th  class="listTh" data-field="bankNo">은행 번호</th>
 				<th  class="listTh" data-field="bankCode">은행 코드</th>
 				<th  class="listTh" data-field="bankName">은행 이름</th>
 			</tr>
@@ -54,11 +54,11 @@ function insertBank(){
 					<table data-height="460" class="table table-bordered table-hover">
 						<tr>
 							<td class="listTh">은행 코드</td>
-							<td><input type="text"  id="bankCode" data-req="bankCode" class="postcodify_extra_info" placeholder="은행코드를 입력하세요" value="12"/></td>
+							<td><input type="text"  id="bankCode" data-req="은행코드를 입력해주세요" class="postcodify_extra_info" placeholder="은행코드를 입력하세요" /></td>
 						</tr>
 						<tr>
 							<td class="listTh">은행 이름</td>
-							<td><input type="text"  id="bankName" data-req="bankName"  class="postcodify_extra_info" placeholder="은행이름을 입력하세요"  value="하나은행"/></td>
+							<td><input type="text"  id="bankName" data-req="은행이름을 입력해주세요"  class="postcodify_extra_info" placeholder="은행이름을 입력하세요" /></td>
 						</tr>
 					</table>
 					<input type="hidden" id="bankCode">

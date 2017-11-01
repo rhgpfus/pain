@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.iot.erp.bank.dto.HumanBank;
 import com.iot.erp.bank.service.BankService;
-import com.iot.erp.hrm.dto.HumanResourceManagement;
 
 
 
@@ -35,9 +35,14 @@ public class BankController {
 		return bs.selectHumanBank(h_bank);
 	}
 	@RequestMapping(value="/bank/insert", method=RequestMethod.POST)
-	public @ResponseBody HumanBank insertBank(@RequestBody HumanBank h_bank){
+	public @ResponseBody ModelMap insertBank(@RequestBody HumanBank h_bank, ModelMap map){
 		int cnt = bs.insertHumanBank(h_bank);
-		System.out.println(cnt);
-		return null;
+		map.put("msg", h_bank.getBankName() + "등록이 실패하였습니다.");
+		map.put("url","no-move");
+		map.put("action", "close,refresh");
+		if(cnt==1){
+			map.put("msg", "은행이 정상적으로 등록 되었습니다.");
+		}
+		return map;
 	}
 }

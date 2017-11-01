@@ -126,8 +126,19 @@
 			if (msg) {
 				alert(msg);
 			}
-			if (url) {
+			if (url && url!="no-move") {
 				pageMove(url);
+				return;
+			}
+			var actions = json.action.split(",");
+			if(actions){
+				for(var i=0, max=actions.length;i<max;i++){
+					if(actions[i]=="close"){
+						$('.modal').modal('hide'); 
+					}else if(actions[i]=="refresh"){
+						location.reload();
+					}
+				}
 			}
 		}
 
