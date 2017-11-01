@@ -23,7 +23,11 @@ public class ItemController {
 		return is.selectItemList(item);
 	}
 	@RequestMapping(value="/item/itemlist",method=RequestMethod.GET)
-	public String login(){
+	public String goItemList(){
 		return "item/itemlist";
+	}
+	@RequestMapping(value="/item/iteminsert",method=RequestMethod.GET)
+	public String goItemInsert(){
+		return "item/iteminsert";
 	}
 }

@@ -180,7 +180,74 @@
 		btnStr += "</div>";
 		return btnStr;
 	}
+	
+	var AjaxUtilInsertList = function(obj){
+		var url = "${rootPath}/" + obj.url;
+		var tableId = obj.tableId;
+		var params = obj.params;
+		var insertUrl = obj.insertUrl;
+		var excelUrl = obj.excelUrl;
+		var updateUrl = obj.updateUrl;
+		var type = obj.type;
+		var dataType = obj.dataType;
+		var initEvent = obj.initEvent;
+		var aul = new AjaxUtilList(url, tableId, params, insertUrl, excelUrl, updateUrl, 
+				type, dataType, initEvent);
+		aul.callbackSuccess = function(json) {
+			var btnStr = makeBtnStr(insertUrl, excelUrl);
+			if (btnStr != "") {
+				var tableObj = document.getElementById(this.tableId);
+				tableObj.insertAdjacentHTML("beforebegin", btnStr);
+			}
 
+			var theadObj = $("#" + this.tableId + " thead");
+			var colInfos = new Array();
+
+			theadObj.find('tr').each(function(key, val) {
+				$(this).find('th').each(function(key, val) {
+					colInfos[colInfos.length] = val.getAttribute("data-field");
+				});
+			});
+			if (colInfos.length == 0) {
+				alert("너 이샠히들 컬럼 정보 잘못짰어!!")
+				return;
+			}
+
+			var tbodyStr = "";
+			for (var i = 0, max = json.length; i < max; i++) {
+
+				var row = json[i];
+				var clickStr ="";
+				if(updateUrl!=null && updateUrl=="hrm/update"){
+					clickStr = "onclick='pageMove(\"" + updateUrl +  "\",\"" + colInfos[1] + "\",\"" + row[colInfos[1]] + "\")'";
+				}else if(updateUrl!=null){
+					
+					clickStr = "onclick='modalOpen(\"" + colInfos[0] + "\",\"" + row[colInfos[0]] +"\")'";
+				}
+				tbodyStr += "<tr " + clickStr + " style='cursor:pointer'>";
+				for (var j = 0, jMax = colInfos.length; j < jMax; j++) {
+					tbodyStr += "<td class ='listTd'>";
+					var colName = colInfos[j];
+					if (colName == "checkbox") {
+						tbodyStr += "<input type='checkbox'>";
+					}else if (colName == "button") {
+						tbodyStr += "<input type='button'>";
+					} else {
+						tbodyStr += row[colName];
+					}
+					tbodyStr += "</td>";
+				}
+				tbodyStr += "</tr>";
+			}
+
+			var tbodyObj = $("#" + this.tableId + " tbody");
+			tbodyObj.html(tbodyStr);
+			if(initEvent){
+				initEvent();
+			}
+		}
+		return aul;
+	}
 	//리스트 Ajax
 	var AjaxUtilList = function(url, tableId, params, insertUrl, excelUrl, updateUrl, 
 			type, dataType, initEvent) {
@@ -222,7 +289,6 @@
 			theadObj.find('tr').each(function(key, val) {
 				$(this).find('th').each(function(key, val) {
 					colInfos[colInfos.length] = val.getAttribute("data-field");
-
 				});
 			});
 			if (colInfos.length == 0) {
