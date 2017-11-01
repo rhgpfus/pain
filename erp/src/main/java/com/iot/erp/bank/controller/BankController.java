@@ -22,7 +22,7 @@ public class BankController {
 
 	@RequestMapping(value="/bank/list", method=RequestMethod.GET)
 	public String BankList(){
-		return "bank/list";
+		return "bank/list"; 
 	}
 	@RequestMapping(value="/bank/list", method=RequestMethod.POST)
 	public @ResponseBody List<HumanBank> getBankList(@RequestBody HumanBank h_bank){
