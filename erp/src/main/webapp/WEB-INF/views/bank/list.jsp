@@ -8,13 +8,15 @@
 <script>
 $(document).ready(function(){
 
-	var aul = new AjaxUtilList("bank/list","bankTable","bankName",null, null);
+	var aul = new AjaxUtilList("bank/list","bankTable","bankNo",null, null);
 	aul.send();
 	
-	var humanNo = $("#bankNo").value;
-	alert(bankNo);
 })
-
+function insertBank(){
+	var params = "bankCode,bankName";
+	var aui = new AjaxUtil("bank/insert",params);
+	aui.send();
+}
 </script>
 
 <title>은행 리스트</title>
@@ -36,7 +38,7 @@ $(document).ready(function(){
 		<tbody>
 		</tbody>
 	</table>
-	<input type="hidden" id="bankName">
+	<input type="hidden" id="bankNo">
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
 		<div class="modal-dialog">
 		
@@ -49,21 +51,22 @@ $(document).ready(function(){
 				</div>
 				
 				<div class="modal-body">
-					<table id="table" data-height="460" class="table table-bordered table-hover">
+					<table data-height="460" class="table table-bordered table-hover">
 						<tr>
 							<td class="listTh">은행 코드</td>
-							<td><input type="text" id="bankCode" class="postcodify_extra_info"/></td>
+							<td><input type="text"  id="bankCode" data-req="bankCode" class="postcodify_extra_info" placeholder="은행코드를 입력하세요" value="12"/></td>
 						</tr>
 						<tr>
 							<td class="listTh">은행 이름</td>
-							<td><input type="text" id="bankName" class="postcodify_extra_info"/></td>
+							<td><input type="text"  id="bankName" data-req="bankName"  class="postcodify_extra_info" placeholder="은행이름을 입력하세요"  value="하나은행"/></td>
 						</tr>
 					</table>
+					<input type="hidden" id="bankCode">
 				</div>
 				
 				<div class="modal-footer"> 
 					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button> 
-					<button type="button" class="btn btn-primary">저장</button> 
+					<button type="button" class="btn btn-primary" onclick="insertBank()">저장</button> 
 				</div>
 
 
@@ -81,3 +84,5 @@ $(document).ready(function(){
 </div>
 </body>
 </html>
+
+

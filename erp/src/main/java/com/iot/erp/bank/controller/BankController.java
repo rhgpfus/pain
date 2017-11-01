@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.iot.erp.bank.dto.HumanBank;
 import com.iot.erp.bank.service.BankService;
+import com.iot.erp.hrm.dto.HumanResourceManagement;
 
 
 
@@ -32,5 +33,9 @@ public class BankController {
 	@RequestMapping(value="/bank/search", method=RequestMethod.POST)
 	public @ResponseBody HumanBank getBank(@RequestBody HumanBank h_bank){
 		return bs.selectHumanBank(h_bank);
+	}
+	@RequestMapping(value="/bank/insert", method=RequestMethod.POST)
+	public @ResponseBody List<HumanBank> insertBank(@RequestBody HumanBank h_bank){
+		return bs.selectHumanBankList(h_bank);
 	}
 }

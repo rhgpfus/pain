@@ -26,8 +26,7 @@ public class BankServiceIpml implements BankService{
 
 	@Override
 	public int insertHumanBank(HumanBank h_bank) {
-		// TODO Auto-generated method stub
-		return 0;
+		return bDao.insertHumanBank(h_bank);
 	}
 
 	@Override

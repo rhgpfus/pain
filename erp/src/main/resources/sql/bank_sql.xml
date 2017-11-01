@@ -16,5 +16,15 @@
 			and bankname = #{bankName}
 		</if>	
 	</select>
+	
+	<!-- 급여통장(은행) insert -->
+	
+	<select id="INSERT_HUMANBANK" parameterType="h_bank" resultType="h_bank">
+		insert 
+		into human_bank(bankCode,bankName)
+		values(#{bankCode},#{bankName}) 
+		where 1=1
+		
+	</select>
 
 </mapper>
