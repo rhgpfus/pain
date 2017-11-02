@@ -8,11 +8,15 @@
 <script>
 $(document).ready(function(){
 
-	var aul = new AjaxUtilList("career/list","careerTable","careerName","", "" , "");
+	var aul = new AjaxUtilList("career/list","careerTable","careerNo","", "" , "");
 	aul.send();
 	
 })
-
+function insertCareer(){
+	var params = "careerCode,careerName";
+	var aui = new AjaxUtil("career/insert",params);
+	aui.send();
+}
 
 </script>
 
@@ -27,7 +31,6 @@ $(document).ready(function(){
 	<table class="tableList" id=careerTable>
 		<thead>
 			<tr class="listTr">
-				<th class="listTh" data-field="checkbox"></th>
 				<th class="listTh" data-field="careerNo">입사구분번호</th>
 				<th class="listTh" data-field="careerCode">입사구분코드</th>
 				<th class="listTh" data-field="careerName">입사구분명</th>
@@ -36,7 +39,7 @@ $(document).ready(function(){
 		<tbody>
 		</tbody>
 	</table>
-	<input type="hidden" id="careerName">
+	<input type="hidden" id="careerNo">
 	
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
 		<div class="modal-dialog">
@@ -53,18 +56,18 @@ $(document).ready(function(){
 					<table id="table" data-height="460" class="table table-bordered table-hover">
 						<tr>
 							<td class="listTh">입사구분코드</td>
-							<td><input type="text" id="careerCode" class="postcodify_extra_info"/></td>
+							<td><input type="text" id="careerCode" class="postcodify_extra_info" data-req="입사구분코드를 입력해주세요" placeholder="입사구분코드를 입력하세요"/></td>
 						</tr>
 						<tr>
-							<td class="listTh">입사구분 명</td>
-							<td><input type="text" id="careerName" class="postcodify_extra_info"/></td>
+							<td class="listTh">입사구분</td>
+							<td><input type="text" id="careerName" class="postcodify_extra_info" data-req="입사구분명을 입력해주세요" placeholder="입사구분명을 입력하세요"/></td>
 						</tr>
 					</table>
 				</div>
 				
 				<div class="modal-footer"> 
 					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button> 
-					<button type="button" class="btn btn-primary">저장</button> 
+					<button type="button" class="btn btn-primary" onclick="insertCareer()">저장</button> 
 				</div>
 
 

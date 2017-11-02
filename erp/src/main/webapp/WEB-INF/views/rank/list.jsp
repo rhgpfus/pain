@@ -8,11 +8,16 @@
 <script>
 $(document).ready(function(){
 
-	var aul = new AjaxUtilList("rank/list","rankTable","rankName","", "");
+	var aul = new AjaxUtilList("rank/list","rankTable","rankNo","", "");
 	aul.send();
 	
 
 })
+function insertRank(){
+	var params = "rankCode,rankName";
+	var aui = new AjaxUtil("rank/insert",params);
+	aui.send();
+}
 
 </script>
 
@@ -27,7 +32,7 @@ $(document).ready(function(){
 		
 		<thead>
 			<tr class="listTr">
-				<th class="listTh" data-field="checkbox"></th>
+				<th class="listTh" data-field="rankNo">직급 코드</th>
 				<th class="listTh" data-field="rankCode">직급 코드</th>
 				<th class="listTh" data-field="rankName">직급 이름</th>
 			</tr>
@@ -35,7 +40,7 @@ $(document).ready(function(){
 		<tbody>
 		</tbody>
 	</table>
-	<input type="hidden" id="rankName">
+	<input type="hidden" id="rankNo">
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
 		<div class="modal-dialog">
 		
@@ -44,25 +49,25 @@ $(document).ready(function(){
 					<button type="button" class="close" data-dismiss="modal">
 						<span aria-hidden="true">×</span>
 					</button>
-					<h4 class="modal-title" id="myModalLabel">직급</h4>
+					<h4 class="modal-title" id="myModalLabel">직급입력</h4>
 				</div>
 				
 				<div class="modal-body">
 					<table id="table" data-height="460" class="table table-bordered table-hover">
 						<tr>
 							<td class="listTh">직급 코드</td>
-							<td><input type="text" id="rankCode" class="postcodify_extra_info"/></td>
+							<td><input type="text" id="rankCode" class="postcodify_extra_info" data-req="직급코드를 입력해주세요" placeholder="직급코드를 입력하세요" /></td>
 						</tr>
 						<tr>
 							<td class="listTh">직급 이름</td>
-							<td><input type="text" id="rankName" class="postcodify_extra_info"/></td>
+							<td><input type="text" id="rankName" class="postcodify_extra_info" data-req="직급이름을 입력해주세요" placeholder="직급이름을 입력하세요" /></td>
 						</tr>
 					</table>
 				</div>
 				
 				<div class="modal-footer"> 
 					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>  
-					<button type="button" class="btn btn-primary">저장</button> 
+					<button type="button" class="btn btn-primary" onclick="insertRank()">저장</button> 
 				</div>
 
 

@@ -23,7 +23,7 @@ public class ProjectDAOImpl extends SqlSessionDaoSupport implements ProjectDAO {
 		}
 		@Override
 		public int insertHumanProject(Project h_project) {
-			return 0;
+			return this.getSqlSession().insert("project.INSERT_PROJECT", h_project);
 			//프로젝트 등록.
 		}
 		@Override

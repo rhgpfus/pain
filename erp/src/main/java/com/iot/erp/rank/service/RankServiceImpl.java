@@ -28,7 +28,7 @@ public class RankServiceImpl implements RankService {
 		}
 		@Override
 		public int insertHumanRank(Rank h_rank) {
-			return 0;
+			return rDao.insertHumanRank(h_rank);
 			//직급 등록.
 		}
 		@Override

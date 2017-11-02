@@ -18,7 +18,12 @@
 		</if>	
 	</select>
 
-
+	<insert id="INSERT_RANK" parameterType="rank">
+		insert 
+		into human_rank(rankCode,rankName)
+		values(#{rankCode},#{rankName})
+		
+	</insert>
 
 	
 		

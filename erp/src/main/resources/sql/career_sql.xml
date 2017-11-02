@@ -17,4 +17,11 @@
 			and careername = #{careerName}
 		</if>
 	</select>
+	
+	<insert id="INSERT_CAREER" parameterType="career">
+		insert 
+		into human_career(careerCode,careerName)
+		values(#{careerCode},#{careerName})
+		
+	</insert>
 </mapper>

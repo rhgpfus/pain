@@ -24,7 +24,7 @@ public class RankDAOImpl extends SqlSessionDaoSupport implements RankDAO {
 		}
 		@Override
 		public int insertHumanRank(Rank h_rank) {
-			return 0;
+			return this.getSqlSession().insert("rank.INSERT_RANK", h_rank);
 			//직급 등록.
 		}
 		@Override

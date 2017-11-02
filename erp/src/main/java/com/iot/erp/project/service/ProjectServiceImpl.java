@@ -28,7 +28,7 @@ public class ProjectServiceImpl implements ProjectService {
 		}
 		@Override
 		public int insertHumanProject(Project h_project) {
-			return 0;
+			return pDao.insertHumanProject(h_project);
 			//프로젝트 등록.
 		}
 		@Override

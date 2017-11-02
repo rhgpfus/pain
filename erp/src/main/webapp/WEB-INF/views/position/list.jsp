@@ -8,11 +8,15 @@
 <script>
 $(document).ready(function(){
 
-	var aul = new AjaxUtilList("position/list","positionTable","positionName","", "");
+	var aul = new AjaxUtilList("position/list","positionTable","positionNo","", "");
 	aul.send();
 	
 })
-
+function insertPosition(){
+	var params = "positionCode,positionName";
+	var aui = new AjaxUtil("position/insert",params);
+	aui.send();
+}
 </script>
 
 <title>직책 리스트</title>
@@ -26,7 +30,6 @@ $(document).ready(function(){
 	<table class="tableList" id="positionTable">
 		<thead>
 			<tr class="listTr">
-				<th class="listTh" data-field="checkbox"></th>		
 				<th class="listTh" data-field="positionNo">직책 번호</th>
 				<th class="listTh" data-field="positionCode">직책 코드</th>
 				<th class="listTh" data-field="positionName">직책 이름</th>
@@ -35,7 +38,7 @@ $(document).ready(function(){
 		<tbody>
 		</tbody>
 	</table>
-	<input type="hidden" id="positionName">
+	<input type="hidden" id="positionNo">
 	
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
 		<div class="modal-dialog">
@@ -52,18 +55,18 @@ $(document).ready(function(){
 					<table id="table" data-height="460" class="table table-bordered table-hover">
 						<tr>
 							<td class="listTh">직책 코드</td>
-							<td><input type="text" id="positionCode" class="postcodify_extra_info"/></td>
+							<td><input type="text" id="positionCode" class="postcodify_extra_info" data-req="직책코드를 입력해주세요" placeholder="직책코드를 입력하세요"/></td>
 						</tr>
 						<tr>
 							<td class="listTh">직책 이름</td>
-							<td><input type="text" id="positionName" class="postcodify_extra_info"/></td>
+							<td><input type="text" id="positionName" class="postcodify_extra_info" data-req="직책이름을 입력해주세요" placeholder="직책이름을 입력하세요"/></td>
 						</tr>
 					</table>
 				</div>
 				
 				<div class="modal-footer"> 
 					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button> 
-					<button type="button" class="btn btn-primary">저장</button> 
+					<button type="button" class="btn btn-primary" onclick="insertPosition()">저장</button> 
 				</div>
 
 

@@ -54,11 +54,11 @@ function insertBank(){
 					<table data-height="460" class="table table-bordered table-hover">
 						<tr>
 							<td class="listTh">은행 코드</td>
-							<td><input type="text"  id="bankCode" data-req="은행코드를 입력해주세요" class="postcodify_extra_info" placeholder="은행코드를 입력하세요" /></td>
+							<td><input type="text"  id="bankCode"  class="postcodify_extra_info" data-req="은행코드를 입력해주세요" placeholder="은행코드를 입력하세요" /></td>
 						</tr>
 						<tr>
 							<td class="listTh">은행 이름</td>
-							<td><input type="text"  id="bankName" data-req="은행이름을 입력해주세요"  class="postcodify_extra_info" placeholder="은행이름을 입력하세요" /></td>
+							<td><input type="text"  id="bankName"   class="postcodify_extra_info" data-req="은행이름을 입력해주세요" placeholder="은행이름을 입력하세요" /></td>
 						</tr>
 					</table>
 					<input type="hidden" id="bankCode">

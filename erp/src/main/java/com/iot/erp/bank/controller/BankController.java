@@ -34,6 +34,7 @@ public class BankController {
 	public @ResponseBody HumanBank getBank(@RequestBody HumanBank h_bank){
 		return bs.selectHumanBank(h_bank);
 	}
+	
 	@RequestMapping(value="/bank/insert", method=RequestMethod.POST)
 	public @ResponseBody ModelMap insertBank(@RequestBody HumanBank h_bank, ModelMap map){
 		int cnt = bs.insertHumanBank(h_bank);

@@ -23,7 +23,7 @@ public class CareerDAOImpl extends SqlSessionDaoSupport implements CareerDAO {
 			}
 			@Override
 			public int insertCareer(Career h_career) {
-				return 0;
+				return this.getSqlSession().insert("car.INSERT_CAREER", h_career);
 				//입사구분 등록.
 			}
 			@Override

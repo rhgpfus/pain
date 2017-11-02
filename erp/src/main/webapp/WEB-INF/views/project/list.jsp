@@ -8,10 +8,15 @@
 <script>
 $(document).ready(function(){
 
-	var aul = new AjaxUtilList("project/list","projectTable","projectName","", "");
+	var aul = new AjaxUtilList("project/list","projectTable","projectNo","", "");
 	aul.send();
 })
 
+function insertProject(){
+	var params = "ProjectCode,ProjectName";
+	var aui = new AjaxUtil("project/insert",params);
+	aui.send();
+}
 
 
 </script>
@@ -27,7 +32,6 @@ $(document).ready(function(){
 		
 		<thead>
 			<tr class="listTr">
-				<th class="listTh" data-field="checkbox"></th>
 				<th class="listTh" data-field="projectNo">프로젝트 번호</th>
 				<th class="listTh" data-field="projectCode">프로젝트 코드</th>
 				<th class="listTh" data-field="projectName">프로젝트 이름</th>
@@ -37,7 +41,7 @@ $(document).ready(function(){
 		</tbody>
 	</table>
 	
-	<input type="hidden" id="projectName">
+	<input type="hidden" id="projectNo">
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
 		<div class="modal-dialog">
 		
@@ -53,18 +57,18 @@ $(document).ready(function(){
 					<table id="table" data-height="460" class="table table-bordered table-hover">
 						<tr>
 							<td class="listTh">프로젝트 코드</td>
-							<td><input type="text" id="ProjectCode" class="postcodify_extra_info"/></td>
+							<td><input type="text" id="ProjectCode" class="postcodify_extra_info" data-req="프로젝트코드를 입력해주세요" placeholder="프로젝트코드를 입력하세요" value="55"/></td>
 						</tr>
 						<tr>
 							<td class="listTh">프로젝트 이름</td>
-							<td><input type="text" id="ProjectName" class="postcodify_extra_info"/></td>
+							<td><input type="text" id="ProjectName" class="postcodify_extra_info" data-req="프로젝트이름을 입력해주세요" placeholder="프로젝트이름을 입력하세요" value="U상사"/></td>
 						</tr>
 					</table>
 				</div>
 				
 				<div class="modal-footer"> 
 					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button> 
-					<button type="button" class="btn btn-primary">저장</button> 
+					<button type="button" class="btn btn-primary" onclick="insertProject()">저장</button> 
 				</div>
 
 

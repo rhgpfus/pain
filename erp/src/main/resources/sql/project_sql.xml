@@ -16,5 +16,12 @@
 			and projectname = #{projectName}
 		</if>	
 	</select>
+	
+	<insert id="INSERT_PROJECT" parameterType="project">
+		insert 
+		into human_project(projectCode,projectName)
+		values(#{projectCode},#{projectName})
+		
+	</insert>
 </mapper>
 	

@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.iot.erp.bank.dto.HumanBank;
 import com.iot.erp.career.dto.Career;
 import com.iot.erp.career.service.CareerService;
 
@@ -33,6 +35,18 @@ public class CareerController {
 		@RequestMapping(value="/career/search", method=RequestMethod.POST)
 		public @ResponseBody Career getCareer(@RequestBody Career h_career){
 			return cas.selectCareer(h_career);
+		}
+		
+		@RequestMapping(value="/career/insert", method=RequestMethod.POST)
+		public @ResponseBody ModelMap insertCareer(@RequestBody Career h_career, ModelMap map){
+			int cnt = cas.insertCareer(h_career);
+			map.put("msg", h_career.getCareerName() + "등록이 실패하였습니다.");
+			map.put("url","no-move");
+			map.put("action", "close,refresh");
+			if(cnt==1){
+				map.put("msg", "경력사항이 정상적으로 등록 되었습니다.");
+			}
+			return map;
 		}
 
 }

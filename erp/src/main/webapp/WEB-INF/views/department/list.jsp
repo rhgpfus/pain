@@ -7,10 +7,14 @@
 
 <script>
 $(document).ready(function(){
-	var aul = new AjaxUtilList("department/list","departmentTable","departmentName","", "","departmentCodeNo");
+	var aul = new AjaxUtilList("department/list","departmentTable","departmentCodeNo","", "","");
 	aul.send();
 })
-
+function insertdepartment(){
+	var params = "DepartmentCode,DepartmentName";
+	var aui = new AjaxUtil("department/insert",params);
+	aui.send();
+}
 
 
 
@@ -33,7 +37,7 @@ $(document).ready(function(){
 		<tbody>
 		</tbody>
 	</table>
-	<input type="hidden" id="departmentName">
+	<input type="hidden" id="departmentCodeNo">
 	
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
 		<div class="modal-dialog">
@@ -43,25 +47,25 @@ $(document).ready(function(){
 					<button type="button" class="close" data-dismiss="modal">
 						<span aria-hidden="true">×</span>
 					</button>
-					<h4 class="modal-title" id="myModalLabel">프로젝트</h4>
+					<h4 class="modal-title" id="myModalLabel">부서코드</h4>
 				</div>
 				
 				<div class="modal-body">
 					<table id="table" data-height="460" class="table table-bordered table-hover">
 						<tr>
-							<td class="listTh">프로젝트 코드</td>
-							<td><input type="text" id="ProjectCode" class="postcodify_extra_info"/></td>
+							<td class="listTh">부서 코드</td>
+							<td><input type="text" id="DepartmentCode" class="postcodify_extra_info" data-req="부서코드를 입력해주세요" placeholder="부서코드를 입력하세요"/></td>
 						</tr>
 						<tr>
-							<td class="listTh">프로젝트 이름</td>
-							<td><input type="text" id="ProjectName" class="postcodify_extra_info"/></td>
+							<td class="listTh">부서 이름</td>
+							<td><input type="text" id="DepartmentName" class="postcodify_extra_info" data-req="부서이름을 입력해주세요" placeholder="부서이름을 입력하세요"/></td>
 						</tr>
 					</table>
 				</div>
 				
 				<div class="modal-footer"> 
 					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button> 
-					<button type="button" class="btn btn-primary">저장</button> 
+					<button type="button" class="btn btn-primary" onclick="insertdepartment()">저장</button> 
 				</div>
 			</div>
 		</div>

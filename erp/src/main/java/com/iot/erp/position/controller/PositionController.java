@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.iot.erp.bank.dto.HumanBank;
 import com.iot.erp.position.dto.Position;
 import com.iot.erp.position.service.PositionService;
 
@@ -31,5 +33,17 @@ public class PositionController {
 	@RequestMapping(value="/position/search", method=RequestMethod.POST)
 	public @ResponseBody Position selectHumanPosition(@RequestBody Position h_position){
 		return pss.selectHumanPosition(h_position);
+	}
+	
+	@RequestMapping(value="/position/insert", method=RequestMethod.POST)
+	public @ResponseBody ModelMap insertPosition(@RequestBody Position h_position, ModelMap map){
+		int cnt = pss.insertHumanPosition(h_position);
+		map.put("msg", h_position.getPositionName() + "등록이 실패하였습니다.");
+		map.put("url","no-move");
+		map.put("action", "close,refresh");
+		if(cnt==1){
+			map.put("msg", "직책이 정상적으로 등록 되었습니다.");
+		}
+		return map;
 	}
 }

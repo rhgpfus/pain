@@ -17,6 +17,13 @@
 			and departmentname = #{departmentName}
 		</if>	
 	</select>
+	
+	<insert id="INSERT_DC" parameterType="departmentcode">
+		insert 
+		into human_department_code(departmentCode,departmentName)
+		values(#{departmentCode},#{departmentCode})
+		
+	</insert>
 
 </mapper>
 

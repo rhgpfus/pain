@@ -27,7 +27,7 @@ public class CareerServiceImpl implements CareerService {
 		}
 		@Override
 		public int insertCareer(Career h_career) {
-			return 0;
+			return caDAO.insertCareer(h_career);
 			//입사구분 등록.
 		}
 		@Override

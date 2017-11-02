@@ -23,7 +23,7 @@ public class PositionDAOImpl extends SqlSessionDaoSupport implements PositionDAO
 		}
 		@Override
 		public int insertHumanPosition(Position h_position) {
-			return 0;
+			return this.getSqlSession().insert("position.INSERT_POSITION", h_position);
 			//직책 등록.
 		}
 		@Override
