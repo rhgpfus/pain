@@ -11,7 +11,7 @@ $(document).ready(function(){
 	aul.send();
 })
 function insertdepartment(){
-	var params = "DepartmentCode,DepartmentName";
+	var params = "departmentCode,departmentName";
 	var aui = new AjaxUtil("department/insert",params);
 	aui.send();
 }
@@ -54,11 +54,11 @@ function insertdepartment(){
 					<table id="table" data-height="460" class="table table-bordered table-hover">
 						<tr>
 							<td class="listTh">부서 코드</td>
-							<td><input type="text" id="DepartmentCode" class="postcodify_extra_info" data-req="부서코드를 입력해주세요" placeholder="부서코드를 입력하세요"/></td>
+							<td><input type="text" id="departmentCode" class="postcodify_extra_info" data-req="부서코드를 입력해주세요" placeholder="부서코드를 입력하세요" /></td>
 						</tr>
 						<tr>
 							<td class="listTh">부서 이름</td>
-							<td><input type="text" id="DepartmentName" class="postcodify_extra_info" data-req="부서이름을 입력해주세요" placeholder="부서이름을 입력하세요"/></td>
+							<td><input type="text" id="departmentName" class="postcodify_extra_info" data-req="부서이름을 입력해주세요" placeholder="부서이름을 입력하세요" /></td>
 						</tr>
 					</table>
 				</div>

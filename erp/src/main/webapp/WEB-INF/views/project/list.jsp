@@ -13,7 +13,7 @@ $(document).ready(function(){
 })
 
 function insertProject(){
-	var params = "ProjectCode,ProjectName";
+	var params = "projectCode,projectName";
 	var aui = new AjaxUtil("project/insert",params);
 	aui.send();
 }
@@ -57,11 +57,11 @@ function insertProject(){
 					<table id="table" data-height="460" class="table table-bordered table-hover">
 						<tr>
 							<td class="listTh">프로젝트 코드</td>
-							<td><input type="text" id="ProjectCode" class="postcodify_extra_info" data-req="프로젝트코드를 입력해주세요" placeholder="프로젝트코드를 입력하세요" value="55"/></td>
+							<td><input type="text" id="projectCode" class="postcodify_extra_info" data-req="프로젝트코드를 입력해주세요" placeholder="프로젝트코드를 입력하세요" /></td>
 						</tr>
 						<tr>
 							<td class="listTh">프로젝트 이름</td>
-							<td><input type="text" id="ProjectName" class="postcodify_extra_info" data-req="프로젝트이름을 입력해주세요" placeholder="프로젝트이름을 입력하세요" value="U상사"/></td>
+							<td><input type="text" id="projectName" class="postcodify_extra_info" data-req="프로젝트이름을 입력해주세요" placeholder="프로젝트이름을 입력하세요" /></td>
 						</tr>
 					</table>
 				</div>

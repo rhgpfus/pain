@@ -45,6 +45,8 @@ public class DCController {
 		map.put("action", "close,refresh");
 		if(cnt==1){
 			map.put("msg", "부서가 정상적으로 등록 되었습니다.");
+		}else{
+			map.put("msg","부서가 정상적으로 등록되지 않았습니다.");
 		}
 		return map;
 	}

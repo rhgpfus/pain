@@ -21,7 +21,7 @@
 	<insert id="INSERT_DC" parameterType="departmentcode">
 		insert 
 		into human_department_code(departmentCode,departmentName)
-		values(#{departmentCode},#{departmentCode})
+		values(#{departmentCode},#{departmentName})
 		
 	</insert>
 
