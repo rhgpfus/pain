@@ -3,33 +3,22 @@
 
 <mapper namespace="purchase" >
 
-<select id="SELECT_PURCHASE" parameterType="pm" resultType="pm">
-	select 
-	purchaseno,
-	orderdate,
-	clientno,
-	itemno,
-	deliverydate,
-	imcno,
-	managerno,
-	warehouseno,
-	projectno,
-	purchasestatus,
-	createuser,
-	createuser,
-	createdate,
-	modifieduser,
-	modifieddata
-	from purchase_management
-	where 1=1
-	<if test="clientNo !=null and clientNo !=''">
-				<!-- 거래처명검색 -->
-		and clientno = #{clientNo}
+<select id="SELECT_PMLIST" parameterType="pm" resultType="pm">
+	select pm.purchaseno,pm.orderdate,ci.clientname,i.itemname,imc.amount,w.warehousename 
+	from purchase_management as pm 
+	, client_information as ci 
+	, item as i 
+	, item_middle_client as imc 
+	, warehouse as w 
+	where ci.clientno = pm.clientno
+	and i.itemno = pm.itemno
+	and imc.imcno = pm.imcno
+	and w.warehouseno = pm.warehouseno
+	<if test="purchaseNo !=0">
+				<!-- 번호로 검색 -->
+		and pm.purchaseno = #{purchaseNo}
 	</if>
-	<if test="purchaseNo!=null and purchaseNo !=''">
-				<!-- 구매번호 검색 -->
-		and purchaseno = #{purchaseNo}
-	</if>
+	
 </select>
 
 <select  id="SELECT_PURCHASE_ITEM" parameterType="pmi" resultType="pmi">

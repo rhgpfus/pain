@@ -13,12 +13,12 @@ public class PurchaseDAOImpl extends SqlSessionDaoSupport implements PurchaseDAO
 
 	@Override
 	public PurchaseManagement selectPurchaseManagement(PurchaseManagement pm) {
-		return this.getSqlSession().selectOne("purchase.SELECT_PURCHASE",pm);
+		return this.getSqlSession().selectOne("purchase.SELECT_PM",pm);
 	}
 
 	@Override
 	public List<PurchaseManagement> selectPurchaseManagementList(PurchaseManagement pm) {
-		return this.getSqlSession().selectList("purchase.SELECT_PURCHASE",pm);
+		return this.getSqlSession().selectList("purchase.SELECT_PMLIST",pm);
 	}
 	
 	@Override
