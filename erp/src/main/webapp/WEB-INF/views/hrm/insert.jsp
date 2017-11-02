@@ -104,15 +104,14 @@
 
 		<tr>
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">입사일자</td>
-			<td class="col-md-2"><input type="date" class="form-control" id="humanenteringdate" name="humanenteringdate"/></td>
+			<td class="col-md-2"><input type="date" class="form-control" id="humanEnteringDate" name="humanEnteringDate"/></td>
 
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">입사구분</td>
 			<td class="col-md-4" style="vertical-align: middle"><div
 					id="outTd1" data-tableName="careerTable" data-url="career/list"
 					data-search="careerName">
 
-					<input class="form-control form-min3" type="text" id="careerCode"
-						name="careerName" data-url="career/search" size="10"
+					<input class="form-control form-min3" type="text" id="careerCode" data-url="career/search" size="10"
 						onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
 					<script>
 						function searchClass(obj) {
@@ -180,7 +179,7 @@
 										<td>코드 또는 이름을 검색하세요</td>
 									</tr>
 									<tr>
-										<td><input id="searchContent" name="searchContent"><input
+										<td><input id="searchContent" n="searchContent"><input
 											type="button" value="검색"></td>
 									</tr>
 								</table>
@@ -206,8 +205,7 @@
 			<td class="col-md-2" style="vertical-align: middle"><div
 					id="outTd2" data-tableName="rankTable" data-url="rank/list"
 					data-search="rankName">
-					<input class="form-control form-min3" type="text" id="rankCode"
-						name="rankName" data-url="rank/search" size="10"
+					<input class="form-control form-min3" type="text" id="rankCode" data-url="rank/search" size="10"
 						onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
 					<!-- 돋보기 버튼 누르면 팝업창 -->
 					<button type="button" data-toggle="modal" data-target="#myModal2"
@@ -250,8 +248,7 @@
 			<td class="col-md-4" style="vertical-align: middle"><div
 					id="outTd3" data-tableName="positionTable" data-url="position/list"
 					data-search="positionName">
-					<input class="form-control form-min3" type="text" id="positionCode"
-						name="positionName" data-url="position/search" size="10"
+					<input class="form-control form-min3" type="text" id="positionCode" data-url="position/search" size="10"
 						onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
 					<!-- 돋보기 버튼 누르면 팝업창 -->
 					<button type="button" data-toggle="modal" data-target="#myModal3"
@@ -320,8 +317,7 @@
 					id="outTd4" data-tableName="departmentTable"
 					data-url="department/list" data-search="departmentName">
 					<input class="form-control form-min3" type="text"
-						id="departmentCode" name="departmentName"
-						data-url="department/search" size="10"
+						id="departmentCode"	data-url="department/search" size="10"
 						onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
 					<!-- 돋보기 버튼 누르면 팝업창 -->
 					<button type="button" data-toggle="modal" data-target="#myModal4"
@@ -364,8 +360,7 @@
 			<td class="col-md-4" style="vertical-align: middle"><div
 					id="outTd5" data-tableName="projectTable" data-url="project/list"
 					data-search="projectName">
-					<input class="form-control form-min3" type="text" id="projectCode"
-						name="projectName" data-url="project/search" size="10"
+					<input class="form-control form-min3" type="text" id="projectCode" data-url="project/search" size="10"
 						onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
 					<!-- 돋보기 버튼 누르면 팝업창 -->
 					<button type="button" data-toggle="modal" data-target="#myModal5"
@@ -448,7 +443,7 @@
 						</div>
 					</div>
 				</div> 계좌번호 : <input type="text" class="form-control form-min2" id="humanAccountNumber" name="humanAccountNumber" >
-				예금주 : <input type="text" class="form-control form-min">
+				예금주 : <input type="text" class="form-control form-min" id="humanAccountName" name="humanAccountName">
 			</td>
 		</tr>
 
@@ -456,9 +451,9 @@
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">주소</td>
 			<td class="col-md-4" colspan="4" align="left">
 				<!-- 주소와 우편번호를 입력할 <input>들을 생성하고 적당한 name과 class를 부여한다 --> <a
-				id="postcodify_search_button">우편번호검색 <input type="text" name="" class="postcodify_postcode5 form-control form-min3" value="" /><br /></a> 
-					도로명주소 <input type="text" id="humanAddress" class="postcodify_address form-control" value=""  data-multi="humanAddress"/>
-				상세주소 <input type="text" name="" class="postcodify_details form-control" value=""  data-multi="humanAddress"/>
+				id="postcodify_search_button">우편번호검색 <input type="text" n="" class="postcodify_postcode5 form-control form-min3" value="" /><br /></a> 
+					도로명주소 <input type="text" id="humanAddress" name="humanAddress" class="postcodify_address form-control" value=""  data-multi="humanAddress"/>
+				상세주소 <input type="text" n="" class="postcodify_details form-control" value=""  data-multi="humanAddress"/>
 			</td>
 		</tr>
 
@@ -472,7 +467,7 @@
 		<tr>
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">사진</td>
 			<td class="col-md-4" colspan="4"><input id="uploadImage"
-				type="file" name="myPhoto" onchange="PreviewImage()"
+				type="file" n="myPhoto" onchange="PreviewImage()"
 				style="float: left" /><a onclick="deletePic()" style="float: left">사진삭제</a></td>
 		</tr>
 
@@ -493,23 +488,23 @@
 	</table>
 </div>
 <script>
-function getIdsFromInputTags(){
-	var ids = "";
-	$("input[id]").each(function(idx,element){
+function getNamesFromInputTags(){
+	var names = "";
+	$("input[name]").each(function(idx,element){
 		if(element.getAttribute("data-id")){
 			var dataId = element.getAttribute("data-id");
 			if(ids.indexOf(dataId)==-1){
 				
 			}
 		}else{
-			ids += element.id+",";
+			names += element.name+",";
 		}
 	});
-	return ids.substr(0,ids.length-1);
+	return names.substr(0,names.length-1);
 }
 $(document).ready(function(){
 	$("#save").click(function(){
-		var params = getIdsFromInputTags();
+		var params = getNamesFromInputTags();
 		alert(params);
 		var au = new AjaxUtil('hrm/insert',params);
 		au.send();

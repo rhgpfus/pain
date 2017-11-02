@@ -52,11 +52,11 @@
 	
 	
 	<insert id="INSERT_HUMANRESOURCEMANAGEMENT" parameterType="h_resourceManagement">
-		insert into human_resource_management(humankorname,humanid,humanpwd,humanengname,humanresidentnumber,humangenerative,humangender,humanenteringdate,
+		insert into human_resource_management(humankorname,humanid,humanpwd,humanengname,humanresidentnumber,humangenerative,humanenteringdate,
 		careerno,rankno,positionno,humanleavedate,humanleavereason,humanhomenum,humanphonenum,humanpassportnumber,humanemail,
 		departmentcodeno,projectno,humansecondlanguage,bankno,humanaccountnumber,humanaccountname,humanaddress,humanhobbit,humanspacialty,
 		humanEtc,humanauthority)
-		values(#{humanKorName},#{humanId},#{humanPwd},#{humanEngName},#{humanResidentNumber},#{humanGenerative},#{humanGender},#{humanEnteringDate},#{careerNo},#{rankNo},#{positionNo},#{humanLeaveDate},#{humanLeaveReason},#{humanHomenum},#{humanPhonenum},#{humanPassportNumber},#{humanEmail},
+		values(#{humanKorName},#{humanId},#{humanPwd},#{humanEngName},#{humanResidentNumber},#{humanGenerative},#{humanEnteringDate},#{careerNo},#{rankNo},#{positionNo},#{humanLeaveDate},#{humanLeaveReason},#{humanHomeNum},#{humanPhoneNum},#{humanPassportNumber},#{humanEmail},
 		#{departmentCodeNo},#{projectNo},#{humanSecondLanguage},#{bankBookNo},#{humanAccountNumber},#{humanAccountName},#{humanAddress},#{humanPobbit},#{humanSpacialty},#{humanEtc},#{humanAuthority})
 	</insert>
 	
