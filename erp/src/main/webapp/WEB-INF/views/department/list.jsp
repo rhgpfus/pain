@@ -67,6 +67,7 @@ function insertdepartment(){
 					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button> 
 					<button type="button" class="btn btn-primary" onclick="insertdepartment()">저장</button> 
 				</div>
+			
 			</div>
 		</div>
 	</div>
