@@ -1,6 +1,7 @@
 package com.iot.erp.hrm.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -69,9 +70,15 @@ public class HrmController {
 	}
 
 	@RequestMapping(value="/hrm/insert", method=RequestMethod.POST)
-	public @ResponseBody ModelMap insertHRM(@RequestBody HumanResourceManagement hrmList, ModelMap map){
-		int cnt = hs.insertHumanResourceManagement(hrmList);
-		
+	public @ResponseBody ModelMap insertHRM(@RequestBody Map hm, HumanResourceManagement hrm, ModelMap map){
+		System.out.println(hm);
+		int cnt = hs.insertHumanResourceManagement(hrm);
+		map.put("msg", hrm.getHumanKorName() + "등록이 실패하였습니다.");
+		map.put("url","no-move");
+		map.put("action", "close,refresh");
+		if(cnt==1){
+			map.put("msg", "정보가 정상적으로 등록 되었습니다.");
+		}
 		return map;
 	}
 	@RequestMapping(value="/hrm/update", method=RequestMethod.GET)

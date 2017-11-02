@@ -109,9 +109,12 @@
 						}
 					})
 				}
+				if(obj.attr("type")=="radio"){
+					val = $('input[name="' + obj.attr("name") + '"]:checked').val();
+					alert(val);
+				}
 				if(vals!=""){
 					val = vals;
-					alert(vals);
 				}
 				data[key] = val;
 			}

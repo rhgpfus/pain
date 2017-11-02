@@ -70,29 +70,28 @@
 			<td class="col-md-2"><input type="text" class="form-control" disabled/></td>
 
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">성명</td>
-			<td class="col-md-4"><input type="text" class="form-control" id="humanKorName"/></td>
+			<td class="col-md-4"><input type="text" class="form-control" id="humanKorName" name="humanKorName"/></td>
 		</tr>
 
 		<tr>
-			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">영어
-				성명</td>
-			<td class="col-md-2"><input type="text" class="form-control"  id="humanEngName"//></td>
+			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">영어 성명</td>
+			<td class="col-md-2"><input type="text" class="form-control"  id="humanEngName" name="humanEngName"/></td>
 
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">제2외국어</td>
-			<td class="col-md-4"><input type="text" class="form-control" id="humanSecondLanguage"/></td>
+			<td class="col-md-4"><input type="text" class="form-control" id="humanSecondLanguage" name="humanSecondLanguage"/></td>
 		</tr>
 
 		<tr>
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">주민등록번호</td>
 			<td class="col-md-2"><input type="text"
-				class="form-control form-min" size="6" id="humanresidentnumber1"/> - <input type="text"
-				class="form-control form-min" size="7" id="humanresidentnumber2"/></td>
+				class="form-control form-min" size="6" id="humanResidentNumber" name="humanResidentNumber" data-multi="humanResidentNumber"/> - <input type="text"
+				class="form-control form-min" size="7" data-multi="humanResidentNumber"/></td>
 
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">세대주
 				여부</td>
 			<td class="col-md-4" style="vertical-align: middle"><div class="radio-inline">
 		  			<label>
-						<input type="radio" id="humanGenerative1" name="humanGenerative" value="1" />세대주
+						<input type="radio" id="humanGenerative" name="humanGenerative" value="1" />세대주
 					</label>
 				</div>
 				
@@ -105,7 +104,7 @@
 
 		<tr>
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">입사일자</td>
-			<td class="col-md-2"><input type="date" class="form-control" id="humanenteringdate" /></td>
+			<td class="col-md-2"><input type="date" class="form-control" id="humanenteringdate" name="humanenteringdate"/></td>
 
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">입사구분</td>
 			<td class="col-md-4" style="vertical-align: middle"><div
@@ -294,7 +293,7 @@
 
 		<tr>
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">퇴사일자</td>
-			<td class="col-md-2"><input type="date" class="form-control" id="humanLeaveDate"/></td>
+			<td class="col-md-2"><input type="date" class="form-control" id="humanLeaveDate" name="humanLeaveDate"/></td>
 
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">퇴사사유</td>
 			<td class="col-md-4"><input type="text" class="form-control" id="humanLeaveReason"/></td>
@@ -302,17 +301,17 @@
 
 		<tr>
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">전화</td>
-			<td class="col-md-2"><input type="text" class="form-control" id="humanHomeNum"/></td>
+			<td class="col-md-2"><input type="text" class="form-control" id="humanHomeNum" name="humanHomeNum"/></td>
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">휴대폰</td>
-			<td class="col-md-4"><input type="text" class="form-control" id="humanPhoneNum"/></td>
+			<td class="col-md-4"><input type="text" class="form-control" id="humanPhoneNum" name="humanPhoneNum"/></td>
 		</tr>
 
 		<tr>
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">여권번호</td>
-			<td class="col-md-2"><input type="text" class="form-control" id="humanPassportNumber"/></td>
+			<td class="col-md-2"><input type="text" class="form-control" id="humanPassportNumber" name="humanPassportNumber"/></td>
 
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">Email</td>
-			<td class="col-md-4"><input type="email" class="form-control" id="humanEmail"/></td>
+			<td class="col-md-4"><input type="email" class="form-control" id="humanEmail" name="humanEmail"/></td>
 		</tr>
 
 		<tr>
@@ -411,8 +410,7 @@
 			<td class="col-md-4" colspan="4" style="vertical-align: middle">
 				<div id="outTd6" style="display: inline" data-tableName="bankTable"
 					data-url="bank/list" data-search="bankName">
-					<input class="form-control form-min3" type="text" id="bankCode"
-						name="bankName" data-url="bank/search" size="10"
+					<input class="form-control form-min3" type="text" id="bankCode"	data-url="bank/search" size="10"
 						onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
 					<!-- 돋보기 버튼 누르면 팝업창 -->
 					<button type="button" data-toggle="modal" data-target="#myModal6"
@@ -449,7 +447,7 @@
 							</div>
 						</div>
 					</div>
-				</div> 계좌번호 : <input type="text" class="form-control form-min2" id="humanAccountNumber" >
+				</div> 계좌번호 : <input type="text" class="form-control form-min2" id="humanAccountNumber" name="humanAccountNumber" >
 				예금주 : <input type="text" class="form-control form-min">
 			</td>
 		</tr>
