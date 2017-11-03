@@ -17,9 +17,15 @@ function insertCareer(){
 	var aui = new AjaxUtil("career/insert",params);
 	aui.send();
 }
-function updateCareer(){
-	var params = "careerNo,careerCode,careerName";
-	var aui = new AjaxUtil("career/update",params);
+function updateCareer(url){
+	var params = "";
+	$("input[name*='update'][id]").each(function(key,val){
+		if(val.getAttribute("id")){
+			params += val.getAttribute("id") + ",";
+		}
+	}); 
+	params = params.substr(0,params.length-1); // , 없애주기위해
+	var aui = new AjaxUtil(url,params);
 	aui.send();
 }
 
@@ -77,7 +83,7 @@ function updateCareer(){
 				<div class="modal-footer"> 
 					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button> 
 					<button type="button" class="btn btn-primary" onclick="insertCareer()">저장</button>
-					<button type="button" class="btn btn-primary" onclick="updateCareer()">수정</button>  
+					<button type="button" class="btn btn-primary" onclick="updateCareer('career/update')">수정</button>  
 				</div>
 
 
