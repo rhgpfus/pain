@@ -18,13 +18,9 @@ function insertCareer(){
 	aui.send();
 }
 function updateCareer(){
-	$("input[name*='update']").each(function(){
-		var params = "";
-		params += $("input[name*='update']").value+",";
-		alert(params);
-// 		var aui = new AjaxUtil("career/update",params);
-// 		aui.send();
-	});
+	var params = "careerNo,careerCode,careerName";
+	var aui = new AjaxUtil("career/update",params);
+	aui.send();
 }
 
 </script>
