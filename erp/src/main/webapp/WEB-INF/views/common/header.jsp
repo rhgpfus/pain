@@ -52,11 +52,14 @@
 		location.href = "${rootPath}/" + page;
 	}
 	
-	//모달창
-	var modalOpen = function(p_colName , p_param){
+	//모달창(325번째줄에 modalOpen()파라메터를 추가하였고 59,60,61,62번째줄 추가)
+	var modalOpen = function(no, p_colName , p_param){
 		var param = {};
 		param[p_colName] = p_param;
-		
+		$("input[name='update0']").val(no);
+		$("input[name='update1']").val(p_colName);
+		$("input[name='update2']").val(p_param);
+		$("#myModal").modal("show");
 		alert(param[p_colName]);
 		
 	}
@@ -319,7 +322,7 @@
 					clickStr = "onclick='pageMove(\"" + updateUrl +  "\",\"" + colInfos[1] + "\",\"" + row[colInfos[1]] + "\")'";
 				}else if(updateUrl!=null){
 					
-					clickStr = "onclick='modalOpen(\"" + colInfos[0] + "\",\"" + row[colInfos[0]] +"\")'";
+					clickStr = "onclick='modalOpen(\"" + row[colInfos[0]] + "\",\"" +  row[colInfos[1]] + "\",\"" + row[colInfos[2]] +"\")'";
 				}
 				tbodyStr += "<tr " + clickStr + " style='cursor:pointer'>";
 				for (var j = 0, jMax = colInfos.length; j < jMax; j++) {
