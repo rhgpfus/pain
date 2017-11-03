@@ -8,6 +8,7 @@
 <script>
 $(document).ready(function(){
 
+	
 	var aul = new AjaxUtilList("bank/list","bankTable","bankNo",null, null);
 	aul.send();
 	
@@ -16,6 +17,19 @@ function insertBank(){
 	var params = "bankCode,bankName";
 	var aui = new AjaxUtil("bank/insert",params);
 	aui.send();
+}
+
+
+function deleteBank(){
+	
+	
+  if( $(":checkbox[name='chkList']:checked").length==0 ){
+    alert("항목을 하나이상 체크해주세요.");
+  }else if( $(":checkbox[name='chkList']:checked").length!=0 ){
+	var params="bankCode,bankName";
+	var aud = new AjaxUtil("bank/delete",params);
+	aud.send();
+  }
 }
 </script>
 
@@ -27,9 +41,11 @@ function insertBank(){
 	<table class="tableList" id="bankTable">
 	<!-- 버튼 --> 
 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> 신규</button>
-		
+		<button type="button" class="btn btn-primary" onclick="deleteBank()"> 삭제</button>
+	
 		<thead>
-			<tr class="listTr">		
+			<tr class="listTr">	
+				<th class="listTh" data-field="checkbox"></th>	
 				<th  class="listTh" data-field="bankNo">은행 번호</th>
 				<th  class="listTh" data-field="bankCode">은행 코드</th>
 				<th  class="listTh" data-field="bankName">은행 이름</th>
@@ -67,6 +83,7 @@ function insertBank(){
 				<div class="modal-footer"> 
 					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button> 
 					<button type="button" class="btn btn-primary" onclick="insertBank()">저장</button> 
+					
 				</div>
 
 
