@@ -60,8 +60,9 @@
 		$("input[name='update1']").val(p_colName);
 		$("input[name='update2']").val(p_param);
 		$("#myModal").modal("show");
-		alert(param[p_colName]);
 		
+		alert(param[p_colName]);
+		$("#myModal div[class='modal-footer']").valu();
 	}
 	//
 	$(document).ready(

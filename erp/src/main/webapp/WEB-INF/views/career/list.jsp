@@ -28,6 +28,9 @@ function updateCareer(url){
 	var aui = new AjaxUtil(url,params);
 	aui.send();
 }
+function deleteCareer(url){
+	
+}
 
 </script>
 
