@@ -57,7 +57,7 @@
 		departmentcodeno,projectno,humansecondlanguage,bankno,humanaccountnumber,humanaccountname,humanaddress,humanhobbit,humanspacialty,
 		humanEtc,humanauthority)
 		values(#{humanKorName},#{humanId},#{humanPwd},#{humanEngName},#{humanResidentNumber},#{humanGenerative},#{humanEnteringDate},#{careerNo},#{rankNo},#{positionNo},#{humanLeaveDate},#{humanLeaveReason},#{humanHomeNum},#{humanPhoneNum},#{humanPassportNumber},#{humanEmail},
-		#{departmentCodeNo},#{projectNo},#{humanSecondLanguage},#{bankBookNo},#{humanAccountNumber},#{humanAccountName},#{humanAddress},#{humanPobbit},#{humanSpacialty},#{humanEtc},#{humanAuthority})
+		#{departmentCodeNo},#{projectNo},#{humanSecondLanguage},#{bankNo},#{humanAccountNumber},#{humanAccountName},#{humanAddress},#{humanHobbit},#{humanSpacialty},#{humanEtc},#{humanAuthority})
 	</insert>
 	
 	<delete id="DELETE_HUMANRESOURCEMANAGEMENT" parameterType="h_resourceManagement">

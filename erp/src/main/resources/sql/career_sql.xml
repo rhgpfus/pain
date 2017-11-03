@@ -24,4 +24,12 @@
 		values(#{careerCode},#{careerName})
 		
 	</insert>
+	
+	<update id="UPDATE_CAREER" parameterType="career">
+		update 
+		 human_career
+		 set careercode = #{careerCode}, careername = #{careerName}
+		 where careerno = #{careerNo}
+		
+	</update>
 </mapper>

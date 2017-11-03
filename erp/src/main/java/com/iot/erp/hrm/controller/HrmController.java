@@ -71,8 +71,8 @@ public class HrmController {
 
 	@RequestMapping(value="/hrm/insert", method=RequestMethod.POST)
 	public @ResponseBody ModelMap insertHRM(@RequestBody HumanResourceManagement hrm, ModelMap map){
-//		System.out.println(hm);
 		int cnt = hs.insertHumanResourceManagement(hrm);
+		System.out.println(hrm);
 		map.put("msg", hrm.getHumanKorName() + "등록이 실패하였습니다.");
 		map.put("url","no-move");
 		map.put("action", "close,refresh");

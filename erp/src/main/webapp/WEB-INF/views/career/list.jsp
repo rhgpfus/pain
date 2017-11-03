@@ -17,6 +17,11 @@ function insertCareer(){
 	var aui = new AjaxUtil("career/insert",params);
 	aui.send();
 }
+function updateCareer(){
+	var params = "careerNo,careerCode,careerName";
+	var aui = new AjaxUtil("career/update",params);
+	aui.send();
+}
 
 </script>
 
@@ -39,7 +44,7 @@ function insertCareer(){
 		<tbody>
 		</tbody>
 	</table>
-	<input type="hidden" id="careerNo">
+	<!-- <input type="hidden" id="careerNo"> -->
 	
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
 		<div class="modal-dialog">
@@ -54,20 +59,25 @@ function insertCareer(){
 				
 				<div class="modal-body">
 					<table id="table" data-height="460" class="table table-bordered table-hover">
+					<tr>
+							<td class="listTh">입사구분번호</td>
+							<td><input type="text" id="careerNo" name="update0" class="postcodify_extra_info" disabled /></td>
+						</tr>
 						<tr>
 							<td class="listTh">입사구분코드</td>
-							<td><input type="text" id="careerCode" class="postcodify_extra_info" data-req="입사구분코드를 입력해주세요" placeholder="입사구분코드를 입력하세요"/></td>
+							<td><input type="text" id="careerCode" name="update1" class="postcodify_extra_info" data-req="입사구분코드를 입력해주세요" placeholder="입사구분코드를 입력하세요"/></td>
 						</tr>
 						<tr>
 							<td class="listTh">입사구분</td>
-							<td><input type="text" id="careerName" class="postcodify_extra_info" data-req="입사구분명을 입력해주세요" placeholder="입사구분명을 입력하세요"/></td>
+							<td><input type="text" id="careerName" name="update2" class="postcodify_extra_info" data-req="입사구분명을 입력해주세요" placeholder="입사구분명을 입력하세요"/></td>
 						</tr>
 					</table>
 				</div>
 				
 				<div class="modal-footer"> 
 					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button> 
-					<button type="button" class="btn btn-primary" onclick="insertCareer()">저장</button> 
+					<button type="button" class="btn btn-primary" onclick="insertCareer()">저장</button>
+					<button type="button" class="btn btn-primary" onclick="updateCareer()">수정</button>  
 				</div>
 
 

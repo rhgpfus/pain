@@ -49,4 +49,16 @@ public class CareerController {
 			return map;
 		}
 
+		@RequestMapping(value="/career/update", method=RequestMethod.POST)
+		public @ResponseBody ModelMap iupdateCareer(@RequestBody Career h_career, ModelMap map){
+			System.out.println(h_career);
+			int cnt = cas.updateCareer(h_career);
+			map.put("msg", h_career.getCareerName() + "등록이 실패하였습니다.");
+			map.put("url","no-move");
+			map.put("action", "close,refresh");
+			if(cnt==1){
+				map.put("msg", "경력사항이 정상적으로 등록 되었습니다.");
+			}
+			return map;
+		}
 }

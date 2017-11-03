@@ -37,7 +37,7 @@ public class CareerServiceImpl implements CareerService {
 		}
 		@Override
 		public int updateCareer(Career h_career) {
-			return 0;
+			return caDAO.updateCareer(h_career);
 			//입사구분 수정.
 		}
 

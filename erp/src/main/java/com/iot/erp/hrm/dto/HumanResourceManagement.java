@@ -30,7 +30,7 @@ public class HumanResourceManagement {
 	private String humanAccountNumber; // varchar(30), #계좌번호
 	private String humanAccountName; // varchar(30), #예금주
 	private String humanAddress; // varchar(255), #주소
-	private String humanPobbit; // varchar(30), #취미
+	private String humanHobbit; // varchar(30), #취미
 	private String humanSpacialty; // varchar(30), #특기
 	private String humanPicture; // varchar(2), #사진 0:사진없음 1:사진있음
 	private String humanAttachmentFile; // varchar(2), #첨부파일 0: 첨부파일없음 1:첨부파일있음
@@ -49,7 +49,7 @@ public class HumanResourceManagement {
 				+ ", humanEmail=" + humanEmail + ", departmentCodeNo=" + departmentCodeNo + ", projectNo=" + projectNo
 				+ ", humanSecondLanguage=" + humanSecondLanguage + ", bankNo=" + bankNo + ", humanAccountNumber="
 				+ humanAccountNumber + ", humanAccountName=" + humanAccountName + ", humanAddress=" + humanAddress
-				+ ", humanPobbit=" + humanPobbit + ", humanSpacialty=" + humanSpacialty + ", humanPicture="
+				+ ", humanHobbit=" + humanHobbit + ", humanSpacialty=" + humanSpacialty + ", humanPicture="
 				+ humanPicture + ", humanAttachmentFile=" + humanAttachmentFile + ", humanIndividualFile="
 				+ humanIndividualFile + ", humanEtc=" + humanEtc + ", humanAuthority=" + humanAuthority + "]";
 	}
@@ -246,12 +246,12 @@ public class HumanResourceManagement {
 		this.humanAddress = humanAddress;
 	}
 
-	public String getHumanPobbit() {
-		return humanPobbit;
+	public String gethumanHobbit() {
+		return humanHobbit;
 	}
 
-	public void setHumanPobbit(String humanPobbit) {
-		this.humanPobbit = humanPobbit;
+	public void sethumanHobbit(String humanHobbit) {
+		this.humanHobbit = humanHobbit;
 	}
 
 	public String getHumanSpacialty() {

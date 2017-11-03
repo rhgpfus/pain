@@ -33,7 +33,8 @@ public class CareerDAOImpl extends SqlSessionDaoSupport implements CareerDAO {
 			}
 			@Override
 			public int updateCareer(Career h_career) {
-				return 0;
+				System.out.println(h_career);
+				return this.getSqlSession().update("car.UPDATE_CAREER", h_career);
 				//입사구분 수정.
 			}
 
