@@ -8,16 +8,22 @@
 <script>
 $(document).ready(function(){
 
-	var aul = new AjaxUtilList("project/list","projectTable","projectNo","", "");
+	var aul = new AjaxUtilList("project/list","projectTable","projectNo","", "","");
 	aul.send();
 })
 
-function insertProject(){
-	var params = "projectCode,projectName";
-	var aui = new AjaxUtil("project/insert",params);
+
+function iudAjax(url){
+	var params = "";
+	$("input[name*='update'][id]").each(function(key,val){
+		if(val.getAttribute("id")){
+			params += val.getAttribute("id") + ",";
+		}
+	}); 
+	params = params.substr(0,params.length-1); // , 없애주기위해
+	var aui = new AjaxUtil(url,params);
 	aui.send();
 }
-
 
 </script>
 
@@ -26,10 +32,12 @@ function insertProject(){
 <body>
 <div class="container">
 	<h1 class="topName">프로젝트 리스트</h1>
-	<table class="tableList" id="projectTable">
+
 		<!-- 버튼 --> 
 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> 신규</button>
 		
+		
+	<table class="tableList" id="projectTable">	
 		<thead>
 			<tr class="listTr">
 				<th class="listTh" data-field="projectNo">프로젝트 번호</th>
@@ -41,7 +49,7 @@ function insertProject(){
 		</tbody>
 	</table>
 	
-	<input type="hidden" id="projectNo">
+	<!-- <input type="hidden" id="projectNo"> -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
 		<div class="modal-dialog">
 		
@@ -56,19 +64,25 @@ function insertProject(){
 				<div class="modal-body">
 					<table id="table" data-height="460" class="table table-bordered table-hover">
 						<tr>
+							<td class="listTh">프로젝트 번호</td>
+							<td><input type="text" id="projectNo" name="update0" class="postcodify_extra_info" disabled /></td>
+						</tr>
+						<tr>
 							<td class="listTh">프로젝트 코드</td>
-							<td><input type="text" id="projectCode" class="postcodify_extra_info" data-req="프로젝트코드를 입력해주세요" placeholder="프로젝트코드를 입력하세요" /></td>
+							<td><input type="text" id="projectCode" name="update1" class="postcodify_extra_info" data-req="프로젝트코드를 입력해주세요" placeholder="프로젝트코드를 입력하세요" /></td>
 						</tr>
 						<tr>
 							<td class="listTh">프로젝트 이름</td>
-							<td><input type="text" id="projectName" class="postcodify_extra_info" data-req="프로젝트이름을 입력해주세요" placeholder="프로젝트이름을 입력하세요" /></td>
+							<td><input type="text" id="projectName"name="update2" class="postcodify_extra_info" data-req="프로젝트이름을 입력해주세요" placeholder="프로젝트이름을 입력하세요" /></td>
 						</tr>
 					</table>
 				</div>
 				
 				<div class="modal-footer"> 
 					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button> 
-					<button type="button" class="btn btn-primary" onclick="insertProject()">저장</button> 
+					<button type="button" class="btn btn-primary" onclick="iudAjax('project/insert')">저장</button>
+					<button type="button" class="btn btn-primary" onclick="iudAjax('project/delete')">삭제</button>  
+					<button type="button" class="btn btn-primary" onclick="iudAjax('project/update')">수정</button>  
 				</div>
 
 

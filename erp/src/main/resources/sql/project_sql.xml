@@ -23,5 +23,21 @@
 		values(#{projectCode},#{projectName})
 		
 	</insert>
+	
+	<update id="UPDATE_PROJECT" parameterType="project">
+		update 
+		 human_project
+		 set projectcode = #{projectCode}, projectname = #{projectName}
+		 where projectno = #{projectNo}
+		
+	</update>
+	
+	
+	<delete id="DELETE_PROJECT" parameterType="project">
+		delete from human_project
+		where projectno = #{projectNo}
+	</delete>
+	
+	
 </mapper>
 	

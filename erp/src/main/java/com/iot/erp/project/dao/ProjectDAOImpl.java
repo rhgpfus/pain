@@ -21,19 +21,22 @@ public class ProjectDAOImpl extends SqlSessionDaoSupport implements ProjectDAO {
 			return this.getSqlSession().selectOne("project.SELECT_PROJECT", h_project);
 			//프로젝트 단일.
 		}
+		
 		@Override
 		public int insertHumanProject(Project h_project) {
 			return this.getSqlSession().insert("project.INSERT_PROJECT", h_project);
 			//프로젝트 등록.
 		}
+		
 		@Override
 		public int deleteHumanProject(Project h_project) {
-			return 0;
+			return this.getSqlSession().delete("project.DELETE_PROJECT", h_project);
 			//프로젝트 삭제.
 		}
+		
 		@Override
 		public int updateHumanProject(Project h_project) {
-			return 0;
+			return this.getSqlSession().update("project.UPDATE_PROJECT", h_project);
 			//프로젝트 수정.
 		}
 

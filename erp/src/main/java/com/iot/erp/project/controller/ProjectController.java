@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.iot.erp.career.dto.Career;
 import com.iot.erp.project.dto.Project;
 import com.iot.erp.project.service.ProjectService;
 
@@ -45,4 +46,32 @@ public class ProjectController {
 		}
 		return map;
 	}
+	
+	@RequestMapping(value="/project/update", method=RequestMethod.POST)
+	public @ResponseBody ModelMap updateProject(@RequestBody Project h_project, ModelMap map){
+		System.out.println(h_project);
+		int cnt = pss.updateHumanProject(h_project);
+		map.put("msg", h_project.getProjectName() + "수정 실패하였습니다.");
+		map.put("url","no-move");
+		map.put("action", "close,refresh");
+		if(cnt==1){
+			map.put("msg", "프로젝트가 정상적으로 수정 되었습니다.");
+		}
+		return map;
+	}
+	
+	@RequestMapping(value="/project/delete", method=RequestMethod.POST)
+	public @ResponseBody ModelMap deleteProject(@RequestBody Project h_project, ModelMap map){
+		int cnt = pss.deleteHumanProject(h_project);
+		map.put("msg", h_project.getProjectNo()+"번 삭제가 실패하였습니다.");
+		map.put("url", "no-move");
+		map.put("action", "close,refresh");
+		if(cnt==1){
+			map.put("msg", "프로젝트가 정상적으로 삭제 되었습니다.");
+		}
+		return map;
+	}
+	
+	
+	
 }

@@ -33,12 +33,12 @@ public class ProjectServiceImpl implements ProjectService {
 		}
 		@Override
 		public int deleteHumanProject(Project h_project) {
-			return 0;
+			return pDao.deleteHumanProject(h_project);
 			//프로젝트 삭제.
 		}
 		@Override
 		public int updateHumanProject(Project h_project) {
-			return 0;
+			return pDao.updateHumanProject(h_project);
 			//프로젝트 수정.
 		}
 
