@@ -58,8 +58,8 @@
 		departmentcodeno,projectno,humansecondlanguage,bankno,humanaccountnumber,humanaccountname,humanaddress,
 		humanEtc,humanauthority)
 		values(#{humanKorName},#{humanId},#{humanPwd},#{humanEngName},#{humanResidentNumber},#{humanGenerative},#{humanEnteringDate},#{careerNo},
-		(select rankno from human_rank where rankcode=#{rankNo}),#{positionNo},#{humanLeaveDate},#{humanLeaveReason},#{humanHomeNum},#{humanPhoneNum},#{humanPassportNumber},#{humanEmail},
-		(select departmentcodeno from human_department_code where departmentcode=#{departmentCodeNo}),#{projectNo},#{humanSecondLanguage},#{bankNo},#{humanAccountNumber},#{humanAccountName},#{humanAddress},#{humanEtc},#{humanAuthority})
+		#{rankNo},#{positionNo},#{humanLeaveDate},#{humanLeaveReason},#{humanHomeNum},#{humanPhoneNum},#{humanPassportNumber},#{humanEmail},
+		#{departmentCodeNo},#{projectNo},#{humanSecondLanguage},#{bankNo},#{humanAccountNumber},#{humanAccountName},#{humanAddress},#{humanEtc},#{humanAuthority})
 	</insert>
 	
 	<delete id="DELETE_HUMANRESOURCEMANAGEMENT" parameterType="h_resourceManagement">

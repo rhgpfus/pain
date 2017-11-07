@@ -252,8 +252,10 @@
 						tbodyStr += "<input type='checkbox'>";
 					}else if (colName == "button") {
 						tbodyStr += "<input type='button'>";
-					} else {
+					}else if(row[colName] && row[colName]!='undefined'){
 						tbodyStr += row[colName];
+					}else{
+						tbodyStr += '-';
 					}
 					tbodyStr += "</td>";
 				}
@@ -335,8 +337,10 @@
 						tbodyStr += "<input type='checkbox'>";
 					}else if (colName == "button") {
 						tbodyStr += "<input type='button'>";
-					} else {
+					}else if(row[colName] && row[colName]!='undefined'){
 						tbodyStr += row[colName];
+					}else{
+						tbodyStr += '-';
 					}
 					tbodyStr += "</td>";
 				}
