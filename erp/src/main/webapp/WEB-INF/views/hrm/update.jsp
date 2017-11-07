@@ -41,7 +41,6 @@
 				}else if(obj.length==0 && ("string"===typeof(value)) && value.indexOf("#multi#")!=-1){
 					var objs = $("input[id*=" + key +"]");
 					var values = value.split("#multi#");
-					
 					$("input[data-multi=" + key + "]").val(values[1]);
 					objs.val(values[0]);
 					

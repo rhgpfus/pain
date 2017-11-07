@@ -55,8 +55,7 @@
 		$("#postcodify_search_button").postcodifyPopUp();
 	});
 </script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+
 <div class="container">
 
 	<h1 class="topName">인사 등록</h1>
