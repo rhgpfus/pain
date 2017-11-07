@@ -23,16 +23,6 @@
 		window.open('/erp/address', 'winname', 'directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no');
 	}
 
-	function initEvent(){
-		$('div[id*="myModal"] table[id="' + globalTarget.tableId + '"] tbody tr').click(function(){
-			var str = this.firstChild.innerText
-			var str2 = this.lastChild.innerText;
-			globalTarget.obj.value = str;
-			globalTarget.obj2.value = str2;
-			$('.modal').modal('hide');
-		})
-	}
-	
 	function callback(result){
 		if(result){
 			Object.keys(result).forEach((key)=>{
@@ -40,40 +30,38 @@
 				var value = result[key];
 				if(obj && obj.length==1){
 					obj.val(value);
-				}else if(value && value.indexOf("#multi#")!=-1){
+				}else if(obj.length==0 && value && ("string"===typeof(value)) && value.indexOf("#multi#")==-1){
+					var objs = $("input[id*=" + key +"]");
+					//id중에 humanGenerative인 input태그의 모든것을 가져온다. 
+					for(var ele of objs){
+						if(ele.type==="radio" && ele.value===value){
+							ele.checked = true;
+						} 
+					}
+				}else if(obj.length==0 && ("string"===typeof(value)) && value.indexOf("#multi#")!=-1){
+					var objs = $("input[id*=" + key +"]");
+					var values = value.split("#multi#");
+					
+					$("input[data-multi=" + key + "]").val(values[1]);
+					objs.val(values[0]);
 					
 				}
 			})
-			/* $("#humanKorName").val(result.humanKorName); //한국이름
-			$("#humanEngName").val(result.humanEngName); //영어이름
-			$("#humanSecondLanguage").val(result.humanSecondLanguage); //제2외국어
-			if(result.humanResidentNumber){
-				var hrns = result.humanResidentNumber;
-				var hrn = hrns.split("-");
-				$("#humanResidentNumber1").val(hrn[0]);
-				$("#humanResidentNumber2").val(hrn[1]);
-			}
-			if(result.humanGenerative){
-				var hg = result.humanGenerative;
-				if(hg=="1"){
-					$('input[name="humanGenerative"]:radio:input[value="1"]').attr('checked', 'checked'); 
-				}else if(hg=="2"){
-					$('input[name="humanGenerative"]:radio:input[value="2"]').attr('checked', 'checked'); 
-				}
-			}
-			$("#humanEnteringDate").val(result.humanEnteringDate); //입사일자
 			
-			
-				
-			$("#humanKorName").val(result.humanKorName);
-			$("#humanKorName").val(result.humanKorName);
-			$("#humanKorName").val(result.humanKorName);
-			$("#humanKorName").val(result.humanKorName);
-			$("#humanKorName").val(result.humanKorName);
-			$("#humanKorName").val(result.humanKorName); */
 		}
 		
 		
+	}
+	
+	function initEvent() {
+		$('div[id*="myModal"] table[id="' + globalTarget.tableId
+						+ '"] tbody tr').click(function() {
+			var str = this.firstChild.innerText
+			var str2 = this.lastChild.innerText;
+			globalTarget.obj.value = str;
+			globalTarget.obj2.value = str2;
+			globalTarget.btn.click(); 
+		})
 	}
 	
 	var globalTarget = {};
@@ -85,17 +73,18 @@
 		au.setCallbackSuccess(callback);
 		au.send();
 		
-		$('div[id*="outTd"]').click(function(){
-			var url = this.getAttribute("data-url"); 
-			var tableId = this.getAttribute("data-tableName"); 
+		$('div[id*="outTd"]').click(function() {
+			var url = this.getAttribute("data-url");
+			var tableId = this.getAttribute("data-tableName");
 			var searchId = this.getAttribute("data-search");
-			if(url && tableId && searchId){
+			if (url && tableId && searchId) {
 				globalTarget.url = url;
 				globalTarget.tableId = tableId;
 				globalTarget.searchId = searchId;
 				globalTarget.obj = this.firstElementChild;
+				globalTarget.btn = this.getElementsByTagName("button")[0];
 				globalTarget.obj2 = this.lastElementChild;
-				var aul = new AjaxUtilList(url,tableId, searchId,null, null, null, null, null, initEvent);
+				var aul = new AjaxUtilList(url, tableId,searchId, null, null, null, null, null, initEvent);
 				aul.send();
 			}
 		})
@@ -111,31 +100,32 @@
 	<table id="table" data-height="460"
 		class="table table-bordered table-hover">
 		<tr>
-			<td rowspan="9" align="center" style="vertical-align: middle"><img
+			<td rowspan="9" style="vertical-align: middle"><img
 				id="uploadPreview" style="width: 200px; height: 350px;" /></td>
-			<td class="col-md-2" style="vertical-align: middle" bgcolor="cccccc">사원번호</td>
+			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">사원번호</td>
 			<td class="col-md-2"><input type="text" class="form-control" id="humanNo" value="<%=request.getParameter("humanNo")%>" disabled/></td>
 
-			<td class="col-md-2" style="vertical-align: middle" bgcolor="cccccc">성명</td>
-			<td class="col-md-4"><input type="text" class="form-control" id="humanKorName"/></td>
+			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">성명</td>
+			<td class="col-md-4"><input type="text" class="form-control" id="humanKorName" name="humanKorName"/></td>
 		</tr>
 
 		<tr>
-			<td class="col-md-2" style="vertical-align: middle" bgcolor="cccccc">영어성명</td>
-			<td class="col-md-2"><input type="text" class="form-control" id="humanEngName"/></td>
+			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">영어성명</td>
+			<td class="col-md-2"><input type="text" class="form-control" id="humanEngName" name="humanEngName"/></td>
 
-			<td class="col-md-2" style="vertical-align: middle" bgcolor="cccccc">제2외국어</td>
-			<td class="col-md-4"><input type="text" class="form-control" id="humanSecondLanguage"/></td>
+			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">제2외국어</td>
+			<td class="col-md-4"><input type="text" class="form-control" id="humanSecondLanguage" name="humanSecondLanguage"/></td>
 		</tr>
 
 		<tr>
-			<td class="col-md-2" style="vertical-align: middle" bgcolor="cccccc">주민등록번호</td>
-			<td class="col-md-2"><input type="text"
-				class="form-control form-min" size="6" id="humanResidentNumber1"/> - <input type="text"
-				class="form-control form-min" size="7" id="humanResidentNumber2"/></td>
+			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">주민등록번호</td>
+			<td class="col-md-2">
+				<input type="text"
+				class="form-control form-min" size="6" id="humanResidentNumber1" name="humanResidentNumber" data-multi="humanResidentNumber"/> - <input type="text"
+				class="form-control form-min" size="7" data-multi="humanResidentNumber"/></td>
 
-			<td class="col-md-2" style="vertical-align: middle" bgcolor="cccccc">세대주여부</td>
-			<td class="col-md-4">
+			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">세대주여부</td>
+			<td class="col-md-4" style="vertical-align: middle">
 				<div class="radio-inline">
 		  			<label>
 						<input type="radio" id="humanGenerative1" name="humanGenerative" value="1" />세대주
@@ -151,25 +141,23 @@
 		</tr>
 
 		<tr>
-			<td class="col-md-2" style="vertical-align: middle" bgcolor="cccccc">입사일자</td>
-			<td class="col-md-2"><input type="date" class="form-control" id="humanEnteringDate"/></td>
+			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">입사일자</td>
+			<td class="col-md-2"><input type="date" class="form-control" id="humanEnteringDate" name="humanEnteringDate"/></td>
 			
-			<td class="col-md-2" style="vertical-align: middle" bgcolor="cccccc">입사구분</td>
+			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">입사구분</td>
 			<td class="col-md-4" style="vertical-align: middle">
-				<div id="outTd1" data-tableName="careerTable" data-url="hrm/careerList" data-search="careerName" >
-					<input class="form-control form-min3" type="text" id="careerCode" name="test" data-url="hrm/career" size="10"
+				<div id="outTd1" data-tableName="careerTable" data-url="career/list" data-search="careerNo" >
+					<input class="form-control form-min3" type="text" id="careerCode" name="careerCode" data-url="career/search" size="10"
 					 onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
 <script>
 	function searchClass(obj){
 		var param = {};
 		param[obj.id] = obj.value;
-		alert(obj.value);
-		alert(obj.getAttribute("data-url"));
-		var url = "${rootPath}/" + obj.getAttribute("data-url");
+		var url = "${rootPath}/"
+				+ obj.getAttribute("data-url");
 		var tableId = obj.getAttribute("id");
-		var searchValue = obj.value;
 		var param = {};
-		param["careerCode"] = searchValue;
+		param[tableId] = obj.value;
 		//입사구분,직급,직책,부서코드,프로젝트,은행 모두 이 이벤트 적용.
 		//화면에서 엔터만으로도 찾을수있게할것.
 		//나중에 에이작스로 보내서 받아올것.
@@ -183,20 +171,12 @@
 	        xhr.setRequestHeader("Content-Type", "application/json");
 	    }
 	    ,   data     : param
-	    ,   success : function(result){
-// 	    	var resultArr = result[0].split(",");
-	    	var list = result[0];
-	    	console.log(list);
-	    	var listArr = list.split;
-	    	alert(listArr);
-	    	obj.closest("div").firstElementChild.value=result[0].careerCode;
-	    	obj.closest("div").lastElementChild.value=result[0].careerName;
-		       alert(result[0].careerCode);
-	    	if(result.data=="S"){
-	    		location.href="${rootPath}" + result.url;
-	    	}
-	    }
-	    ,   error : function(xhr, status, e) {
+	    ,   success : function(result) {
+			var keyList = Object.keys(result);
+			obj.closest("div").firstElementChild.value = result[keyList[1]];
+			obj.closest("div").lastElementChild.value = result[keyList[2]];
+		},
+	    error : function(xhr, status, e) {
 	          alert("에러 : "+e);
 	   },
 	   done : function(e) {
@@ -210,8 +190,8 @@
   						<span class="glyphicon glyphicon-search" aria-hidden="true" style=""></span>
 					</button>
 					
-					<!-- 입사구분에서 입사구분이름 나오는곳 -->
-					<input class="form-control form-min" type="text" id="careerNameInput" size="10" disabled/>
+					<!-- 입사구분명 나오는곳 -->
+					<input class="form-control form-min" type="text" id="careerName" size="10" disabled/>
 				
 				</div> 
 				<!-- 모달 팝업 -->
@@ -226,32 +206,37 @@
 								<h4 class="modal-title" id="myModalLabel">입사구분</h4>
 							</div>
 							<div class="modal-body">
-								<table class="tableList" id="searchTable" >
-									<tr><td>코드 또는 이름을 검색하세요</td></tr>
-									<tr><td>
-									<input id="searchContent" name="searchContent"><input type="button" value="검색">
-									</td></tr>
+								<table id="searchTable" >
+									<tr class="listTr">
+										<td>코드 또는 이름을 검색하세요</td>
+									</tr>
+									<tr>
+										<td>
+											<input id="searchContent">
+											<input type="button" value="검색">
+										</td>
+									</tr>
 								</table>
 								<table class="tableList" id="careerTable" >
 									<thead>
-										<tr>
-											<th data-field="careerCode">그룹 코드</th>
-											<th data-field="careerName">그룹명</th>
+										<tr class="listTr">
+											<th class="listTh" data-field="careerCode">그룹 코드</th>
+											<th class="listTh" data-field="careerName">그룹명</th>
 										</tr>
 									</thead>
 									<tbody>
 									</tbody>
 								</table>
-								<input type="hidden" id="careerName">
+								<input type="hidden" id="careerNo">
 							</div></div></div>
 				</div></td>
 		</tr>
 
 		<tr>
-			<td class="col-md-2" style="vertical-align: middle" bgcolor="cccccc">직위/직급</td>
+			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">직위/직급</td>
 			<td class="col-md-2" style="vertical-align: middle">
-				<div id="outTd2" data-tableName="rankTable" data-url="hrm/rank" data-search="rankName">
-					<input class="form-control form-min3" type="text" id="careerCode" name="test" size="10"
+				<div id="outTd2" data-tableName="rankTable" data-url="rank/list" data-search="rankNo">
+					<input class="form-control form-min3" type="text" id="rankCode" name="rankCode" data-url="rank/search" size="10"
 					 onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
 					
 					<!-- 돋보기 버튼 누르면 팝업창 -->
@@ -259,8 +244,8 @@
   						<span class="glyphicon glyphicon-search" aria-hidden="true" style=""></span>
 					</button>					
 					
-					<!-- 입사구분에서 입사구분이름 나오는곳 -->
-					<input class="form-control form-min" type="text" id="rankNameInput" size="10" disabled/>
+					<!-- 직위/직급명 나오는곳 -->
+					<input class="form-control form-min" type="text" id="rankName" size="10" disabled/>
 				</div> 
 				
 				<!-- 모달 팝업 -->
@@ -277,27 +262,30 @@
 							<div class="modal-body">
 							<table class="tableList" id="rankTable">
 									<thead>
-										<tr>
-											<th data-field="rankCode">직급 코드</th>
-											<th data-field="rankName">직급명</th>
+										<tr class="listTr">
+											<th class="listTh" data-field="rankCode">직급 코드</th>
+											<th class="listTh" data-field="rankName">직급명</th>
 										</tr>
 									</thead>
 									<tbody>
 									</tbody>
 								</table>
-								<input type="hidden" id="rankName">
+								<input type="hidden" id="rankNo">
 							</div></div></div>
 				</div></td>
 
-			<td class="col-md-2" style="vertical-align: middle" bgcolor="cccccc">직책</td>
-			<td class="col-md-4" style="vertical-align: middle"><div id="outTd3" data-tableName="positionTable" data-url="hrm/position" data-search="positionName" >
-					<input class="form-control form-min3" type="text" id="careerCode" name="test" size="10"
+			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">직책</td>
+			<td class="col-md-4" style="vertical-align: middle">
+				<div id="outTd3" data-tableName="positionTable" data-url="position/list" data-search="positionNo" >
+					<input class="form-control form-min3" type="text" id="positionCode" name="positionCode" data-url="position/search" size="10"
 					 onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
+					
 					<!-- 돋보기 버튼 누르면 팝업창 -->
 					<button type="button" data-toggle="modal" data-target="#myModal3" class="btn btn-default btn-sm">
   						<span class="glyphicon glyphicon-search" aria-hidden="true" style=""></span>
 					</button>					
-					<!-- 입사구분에서 입사구분이름 나오는곳 -->
+					
+					<!-- 직책명 나오는곳 -->
 					<input class="form-control form-min" type="text" id="positionName" size="10" disabled/>
 				</div> 
 				<!-- 모달 팝업 -->
@@ -314,54 +302,57 @@
 							<div class="modal-body">
 							<table class="tableList" id="positionTable">
 									<thead>
-										<tr>
-											<th data-field="positionCode">그룹 코드</th>
-											<th data-field="positionName">그룹명</th>
+										<tr class="listTr">
+											<th class="listTh" data-field="positionCode">그룹 코드</th>
+											<th class="listTh" data-field="positionName">그룹명</th>
 										</tr>
 									</thead>
 									<tbody>
 									</tbody>
 								</table>
-								<input type="hidden" id="positionName">
+								<input type="hidden" id="positionNo">
 							</div></div></div>
 				</div></td>
 		</tr>
 
 		<tr>
-			<td class="col-md-2" style="vertical-align: middle" bgcolor="cccccc">퇴사일자</td>
-			<td class="col-md-2"><input type="date" class="form-control" id="humanLeaveDate"/></td>
+			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">퇴사일자</td>
+			<td class="col-md-2"><input type="date" class="form-control" id="humanLeaveDate" name="humanLeaveDate"/></td>
 
-			<td class="col-md-2" style="vertical-align: middle" bgcolor="cccccc">퇴사사유</td>
+			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">퇴사사유</td>
 			<td class="col-md-4"><input type="text" class="form-control" id="humanLeaveReason"/></td>
 		</tr>
 
 		<tr>
-			<td class="col-md-2" style="vertical-align: middle" bgcolor="cccccc">전화</td>
-			<td class="col-md-2"><input type="text" class="form-control" id="humanHomenum"/></td>
+			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">전화</td>
+			<td class="col-md-2"><input type="text" class="form-control" id="humanHomeNum" name="humanHomeNum"/></td>
 
-			<td class="col-md-2" style="vertical-align: middle" bgcolor="cccccc">휴대폰</td>
-			<td class="col-md-4"><input type="text" class="form-control" id="humanPhonenum"/></td>
+			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">휴대폰</td>
+			<td class="col-md-4"><input type="text" class="form-control" id="humanPhoneNum" name="humanPhoneNum"/></td>
 		</tr>
 
 		<tr>
-			<td class="col-md-2" style="vertical-align: middle" bgcolor="cccccc">여권번호</td>
-			<td class="col-md-2"><input type="text" class="form-control" id="humanPassportNumber"/></td>
+			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">여권번호</td>
+			<td class="col-md-2"><input type="text" class="form-control" id="humanPassportNumber" name="humanPassportNumber"/></td>
 
-			<td class="col-md-2" style="vertical-align: middle" bgcolor="cccccc">Email</td>
-			<td class="col-md-4"><input type="email" class="form-control" id="humanEmail"/></td>
+			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">Email</td>
+			<td class="col-md-4"><input type="email" class="form-control" id="humanEmail" name="humanEmail"/></td>
 		</tr>
 
 		<tr>
-			<td class="col-md-2" style="vertical-align: middle" bgcolor="cccccc">부서코드</td>
-			<td class="col-md-3" style="vertical-align: middle"><div id="outTd4" data-tableName="departmentTable" data-url="hrm/department" data-search="departmentName" >
-					<input class="form-control form-min3" type="text" id="careerCode" name="test" size="10"
+			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">부서코드</td>
+			<td class="col-md-3" style="vertical-align: middle">
+				<div id="outTd4" data-tableName="departmentTable" data-url="department/list" data-search="departmentNo" >
+					<input class="form-control form-min3" type="text" id="departmentCode" name="departmentCode" data-url="department/search" size="10"
 					 onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
+					
 					<!-- 돋보기 버튼 누르면 팝업창 -->
 					<button type="button" data-toggle="modal" data-target="#myModal4" class="btn btn-default btn-sm">
   						<span class="glyphicon glyphicon-search" aria-hidden="true" style=""></span>
 					</button>					
-					<!-- 입사구분에서 입사구분이름 나오는곳 -->
-					<input class="form-control form-min" type="text" id="departmentNameInput" size="10" disabled/>
+					
+					<!-- 부서명 나오는곳 -->
+					<input class="form-control form-min" type="text" id="departmentName" size="10" disabled/>
 				</div> 
 				<!-- 모달 팝업 -->
 				<div class="modal fade" id="myModal4" tabindex="-1" role="dialog"
@@ -377,28 +368,31 @@
 							<div class="modal-body">
 							<table class="tableList" id="departmentTable">
 									<thead>
-										<tr>
-											<th data-field="departmentCode">부서 코드</th>
-											<th data-field="departmentName">부서명</th>
+										<tr class="listTr">
+											<th class="listTh" data-field="departmentCode">부서 코드</th>
+											<th class="listTh" data-field="departmentName">부서명</th>
 										</tr>
 									</thead>
 									<tbody>
 									</tbody>
 								</table>
-								<input type="hidden" id="departmentName">
+								<input type="hidden" id="departmentNo">
 							</div></div></div>
 				</div></td>
 
-			<td class="col-md-2" style="vertical-align: middle" bgcolor="cccccc">프로젝트</td>
-			<td class="col-md-4" style="vertical-align: middle"><div id="outTd5" data-tableName="projectTable" data-url="hrm/project" data-search="projectName" >
-					<input class="form-control form-min3" type="text" id="careerCode" name="test" size="10"
+			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">프로젝트</td>
+			<td class="col-md-4" style="vertical-align: middle">
+				<div id="outTd5" data-tableName="projectTable" data-url="project/list" data-search="projectNo" >
+					<input class="form-control form-min3" type="text" id="projectCode" name="projectCode" data-url="project/search" size="10"
 					 onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
+					
 					<!-- 돋보기 버튼 누르면 팝업창 -->
 					<button type="button" data-toggle="modal" data-target="#myModal5" class="btn btn-default btn-sm">
   						<span class="glyphicon glyphicon-search" aria-hidden="true" style=""></span>
 					</button>					
-					<!-- 입사구분에서 입사구분이름 나오는곳 -->
-					<input class="form-control form-min" type="text" id="projectNameInput" size="10" disabled/>
+					
+					<!-- 프로젝트명 나오는곳 -->
+					<input class="form-control form-min" type="text" id="projectName" size="10" disabled/>
 				</div> 
 				<!-- 모달 팝업 -->
 				<div class="modal fade" id="myModal5" tabindex="-1" role="dialog"
@@ -414,31 +408,33 @@
 							<div class="modal-body">
 							<table class="tableList" id="projectTable">
 									<thead>
-										<tr>
-											<th data-field="projectCode">프로젝트 코드</th>
-											<th data-field="projectName">프로젝트명</th>
+										<tr class="listTr">
+											<th class="listTh" data-field="projectCode">프로젝트 코드</th>
+											<th class="listTh" data-field="projectName">프로젝트명</th>
 										</tr>
 									</thead>
 									<tbody>
 									</tbody>
 								</table>
-								<input type="hidden" id="projectName">
+								<input type="hidden" id="projectNo">
 							</div></div></div>
 				</div></td>
 		</tr>
 
 		<tr>
-			<td class="col-md-2" style="vertical-align: middle" bgcolor="cccccc">급여통장</td>
+			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">급여통장</td>
 			<td class="col-md-4" colspan="4" style="vertical-align: middle">은행명 :
-				<div id="outTd6" style="display: inline" data-tableName="bankTable" data-url="bank/list" data-search="bankName" >
-					<input class="form-control form-min3" type="text" id="bankCode" name="test" size="10"
+				<div id="outTd6" style="display: inline" data-tableName="bankTable" data-url="bank/list" data-search="bankNo" >
+					<input class="form-control form-min3" type="text" id="bankCode" name="bankCode" data-url="bank/search" size="10"
 					 onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
+					
 					<!-- 돋보기 버튼 누르면 팝업창 -->
 					<button type="button" data-toggle="modal" data-target="#myModal6" class="btn btn-default btn-sm">
   						<span class="glyphicon glyphicon-search" aria-hidden="true" style=""></span>
 					</button>					
-					<!-- 입사구분에서 입사구분이름 나오는곳 -->
-					<input class="form-control form-min2" type="text" id="bankNameInput" size="10" disabled/>
+					
+					<!-- 은행명 나오는곳 -->
+					<input class="form-control form-min2" type="text" id="bankName" size="10" disabled/>
 				</div> 
 				<!-- 모달 팝업 -->
 				<div class="modal fade" id="myModal6" tabindex="-1" role="dialog"
@@ -454,56 +450,60 @@
 							<div class="modal-body">
 							<table class="tableList" id="bankTable">
 									<thead>
-										<tr>
-											<th data-field="bankCode">은행 코드</th>
-											<th data-field="bankName">은행명</th>
+										<tr class="listTr">
+											<th class="listTh" data-field="bankCode">은행 코드</th>
+											<th class="listTh" data-field="bankName">은행명</th>
 										</tr>
 									</thead>
 									<tbody>
 									</tbody>
 								</table>
-								<input type="hidden" id="bankName">
+								<input type="hidden" id="bankNo">
 							</div></div></div>
-				</div> 계좌번호 : <input type="text" class="form-control form-min2" id="humanAccountNumber">
-				예금주 : <input type="text" class="form-control form-min" id="humanAccountName">
+				</div> 계좌번호 : <input type="text" class="form-control form-min2" id="humanAccountNumber" name="humanAccountNumber" size="30">
+				예금주 : <input type="text" class="form-control form-min" id="humanAccountName" name="humanAccountName">
 			</td>
 		</tr>
 
 		<tr>
-			<td class="col-md-2" rowspan="2" style="vertical-align: middle"
-				bgcolor="cccccc">주소</td>
-			<td class="col-md-4" colspan="4"><a href='#javascript'
-				onclick='searchAddress()'>우편번호검색 :  <input class="form-control form-min"/></a></td>
+			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">주소</td>
+			<td class="col-md-4" colspan="4" align="left">
+				<!-- 주소와 우편번호를 입력할 <input>들을 생성하고 적당한 name과 class를 부여한다 -->
+				<a id="postcodify_search_button">우편번호검색
+				<input type="text" class="postcodify_postcode5 form-control form-min3" value="" />
+				<br /></a>
+				도로명주소
+				<input type="text" id="humanAddress" name="humanAddress" class="postcodify_address form-control" value=""  data-multi="humanAddress"/>
+				상세주소
+				<input type="text" class="postcodify_details form-control" value=""  data-multi="humanAddress"/>
+			</td>
 		</tr>
+		
 		<tr>
-			<td class="col-md-4" colspan="4">상세주소<textarea class="form-control"> </textarea></td>
+			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">적요</td>
+			<td class="col-md-4" colspan="4"><input type="text" class="form-control" id="humanEtc" name="humanEtc"/></td>
+		</tr>
+
+
+		<tr>
+			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">사진</td>
+			<td class="col-md-4" colspan="4"><input id="uploadImage" type="file" onchange="PreviewImage()" style="float: left" />
+			<a onclick="deletePic()" style="float: left">사진삭제</a></td>
 		</tr>
 
 		<tr>
-			<td class="col-md-2" style="vertical-align: middle" bgcolor="cccccc">적요</td>
-			<td class="col-md-4" colspan="4"><input type="text" class="form-control" id="humanEtc"></input></td>
-		</tr>
-
-
-		<tr>
-			<td class="col-md-2" style="vertical-align: middle" bgcolor="cccccc">사진</td>
-			<td class="col-md-4" colspan="4"><input id="uploadImage"
-				type="file" name="myPhoto" onchange="PreviewImage()"
-				style="float: left" /><a onclick="deletePic()" style="float: left">사진삭제</a></td>
-		</tr>
-
-		<tr>
-			<td class="col-md-2" style="vertical-align: middle" bgcolor="cccccc">첨부파일</td>
+			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">첨부파일</td>
 			<td class="col-md-4" colspan="4"><input type="file" /></td>
 		</tr>
 
 		<tr>
-			<td class="col-md-2" style="vertical-align: middle" bgcolor="cccccc">개인파일함</td>
+			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">개인파일함</td>
 			<td class="col-md-4" colspan="4"><input type="file" /></td>
 		</tr>
 	</table>
-	<input type="button" value="저장" /><input type="button" value="신규" /><input
-		type="button" value="삭제" /><input type="button" value="리스트" />
+	<input type="button" value="저장" />
+	<input type="button" value="삭제" />
+	<input type="button" value="리스트" />
 </div>
 
 <style>

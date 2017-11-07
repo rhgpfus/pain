@@ -89,9 +89,10 @@
 
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">세대주
 				여부</td>
-			<td class="col-md-4" style="vertical-align: middle"><div class="radio-inline">
+			<td class="col-md-4" style="vertical-align: middle">
+				<div class="radio-inline">
 		  			<label>
-						<input type="radio" id="humanGenerative" name="humanGenerative" value="1" />세대주
+						<input type="radio" id="humanGenerative1" name="humanGenerative" value="1" />세대주
 					</label>
 				</div>
 				
@@ -450,8 +451,10 @@
 		<tr>
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">주소</td>
 			<td class="col-md-4" colspan="4" align="left">
-				<!-- 주소와 우편번호를 입력할 <input>들을 생성하고 적당한 name과 class를 부여한다 --> <a
-				id="postcodify_search_button">우편번호검색 <input type="text" n="" class="postcodify_postcode5 form-control form-min3" value="" /><br /></a> 
+				<!-- 주소와 우편번호를 입력할 <input>들을 생성하고 적당한 name과 class를 부여한다 --> 
+				<a id="postcodify_search_button">우편번호검색 
+				<input type="text" n="" class="postcodify_postcode5 form-control form-min3" value="" />
+				<br /></a> 
 					도로명주소 <input type="text" id="humanAddress" name="humanAddress" class="postcodify_address form-control" value=""  data-multi="humanAddress"/>
 				상세주소 <input type="text" n="" class="postcodify_details form-control" value=""  data-multi="humanAddress"/>
 			</td>

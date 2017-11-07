@@ -75,7 +75,8 @@
 		
 		<if test="humanKorName!=null and humanKorName!=''">
 			<!-- 성명검색기능 -->
-			and hrm.humankorname = #{humanKorName}
+			and hrm.humankorname like concat('%',#{humanKorName},'%')
+			<!-- concat('%',#{dto에 있는 값},'%') -->
 		</if>
 		order by humanno desc
 	</select>

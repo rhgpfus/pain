@@ -11,7 +11,7 @@ public class HumanResourceManagement {
 	private String humanPwd; // varchar(30), #비밀번호
 	private String humanEngName; // varchar(30), #영어이름
 	private String humanResidentNumber; // varchar(30), #주민등록번호
-	private String humanGenerative; // varchar(5), #세대주여부
+	private String humanGenerative; // varchar(1), #세대주여부
 	private String humanEnteringDate; // varchar(30), #입사일자
 	private String humanLeaveDate; // varchar(30), #퇴사일자
 	private String humanLeaveReason; // varchar(255), #퇴사사유
