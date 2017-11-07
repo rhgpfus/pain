@@ -32,18 +32,13 @@
 			hrm.humanenteringdate,
 			hrm.humanaccountnumber,
 			hrm.humanemail
-		from human_resource_management as hrm,
-			human_department_code as hdc,
-			human_rank as hr
-		where humankorname!=''
-		<if test="departmentCodeNo!=0">
-		and hrm.departmentcodeno = hdc.departmentcodeno
-		</if>
-		
-		<if test="rankNo!=0">
-		and hrm.rankno = hr.rankno
-		</if>
-		
+		from human_resource_management as hrm
+			LEFT JOIN human_department_code as hdc
+			on hrm.departmentcodeno = hdc.departmentcodeno
+			LEFT JOIN human_rank as hr
+			on hr.rankno = hrm.rankno
+		where 
+			trim(hrm.humankorname)!=''
 		<if test="humanNo!=0">
 			<!-- 사번검색기능 -->
 			and hrm.humanno = #{humanNo}
