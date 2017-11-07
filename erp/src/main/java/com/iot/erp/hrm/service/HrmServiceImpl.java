@@ -1,5 +1,6 @@
 package com.iot.erp.hrm.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class HrmServiceImpl implements HrmService {
 	
 //인사관리-----------------------------------------------------------------------------------------------------------------------------------
 	@Override
-	public List<HumanResourceManagement> selectHumanResourceManagementList(HumanResourceManagement h_resourceManagement){
+	public List<HashMap> selectHumanResourceManagementList(HumanResourceManagement h_resourceManagement){
 		return hDao.selectHumanResourceManagementList(h_resourceManagement);
 		//인사관리 리스트.
 	}

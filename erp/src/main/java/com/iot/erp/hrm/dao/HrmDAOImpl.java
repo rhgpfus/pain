@@ -1,5 +1,6 @@
 package com.iot.erp.hrm.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
@@ -18,7 +19,7 @@ public class HrmDAOImpl extends SqlSessionDaoSupport implements HrmDAO{
 			
 //인사관리----------------------------------------------------------------------------------------------------------------	
 	@Override
-	public List<HumanResourceManagement> selectHumanResourceManagementList(HumanResourceManagement h_resourceManagement) {
+	public List<HashMap> selectHumanResourceManagementList(HumanResourceManagement h_resourceManagement) {
 		return this.getSqlSession().selectList("hrm.SELECT_HRMLIST", h_resourceManagement);
 		//인사관리 리스트.
 	}

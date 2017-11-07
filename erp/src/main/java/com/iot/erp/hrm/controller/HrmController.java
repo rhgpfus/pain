@@ -1,5 +1,6 @@
 package com.iot.erp.hrm.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -48,8 +49,10 @@ public class HrmController {
 	}
 	
 	@RequestMapping(value="hrm/list", method=RequestMethod.POST)
-	public @ResponseBody List<HumanResourceManagement> getHRMList(@RequestBody HumanResourceManagement h_resourceManagement){
-		return hs.selectHumanResourceManagementList(h_resourceManagement);
+	public @ResponseBody List<HashMap> getHRMList(@RequestBody HumanResourceManagement h_resourceManagement){
+		List<HashMap> h = hs.selectHumanResourceManagementList(h_resourceManagement);
+		
+		return h;
 	}
 	
 	//단일 select 
@@ -66,7 +69,8 @@ public class HrmController {
 	@RequestMapping(value="/hrm/insertList", method=RequestMethod.POST)
 	public @ResponseBody List<HumanResourceManagement> insertHRM(@RequestBody HumanResourceManagement[] hrmList,HumanResourceManagement h_resourceManagement){
 		int cnt = hs.insertHumanResourceManagement(hrmList);
-		return hs.selectHumanResourceManagementList(h_resourceManagement);
+		return null;
+//		return hs.selectHumanResourceManagementList(h_resourceManagement);
 	}
 
 	@RequestMapping(value="/hrm/insert", method=RequestMethod.POST)
