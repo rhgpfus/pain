@@ -1,0 +1,33 @@
+@CHARSET "UTF-8";
+
+.topName{
+	width: 75%;
+	margin: 50px 0px 20px 0px; /*위 오른쪽 아래 왼쪽*/
+	font-weight: bold;
+	text-align: left;
+	 color: #0080ff;.
+	
+}
+
+.tableList {
+	width: 75%;
+	border-collapse: collapse;
+	margin: 50px auto;
+}
+/* Zebra striping */
+tr:nth-of-type(odd) {
+	background: #eee;
+}
+
+.listTh {
+	background: #3498db;
+	color: white;
+	font-weight: bold;
+}
+
+.listTd, .listTh {
+	padding: 10px;
+	border: 1px solid #ccc;
+	text-align: center;
+	font-size: 14px;
+}

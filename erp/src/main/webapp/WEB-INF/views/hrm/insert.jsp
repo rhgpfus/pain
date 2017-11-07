@@ -30,26 +30,26 @@
 	}
 
 	var globalTarget = {};
-	$(document).ready(
-			function() {
-				$('div[id*="outTd"]').click(
-						function() {
-							var url = this.getAttribute("data-url");
-							var tableId = this.getAttribute("data-tableName");
-							var searchId = this.getAttribute("data-search");
-							if (url && tableId && searchId) {
-								globalTarget.url = url;
-								globalTarget.tableId = tableId;
-								globalTarget.searchId = searchId;
-								globalTarget.obj = this.firstElementChild;
-								globalTarget.btn = this.getElementsByTagName("button")[0];
-								globalTarget.obj2 = this.lastElementChild;
-								var aul = new AjaxUtilList(url, tableId,
-										searchId, null, null, null, null, null, initEvent);
-								aul.send();
-							}
-						})
-			});
+	$(document).ready(function() {
+		document.getElementById('humanEnteringDate').valueAsDate = thisDate;
+		//오늘 날짜 넣는 법.
+		$('div[id*="outTd"]').click(function() {
+			var url = this.getAttribute("data-url");
+			var tableId = this.getAttribute("data-tableName");
+			var searchId = this.getAttribute("data-search");
+			if (url && tableId && searchId) {
+				globalTarget.url = url;
+				globalTarget.tableId = tableId;
+				globalTarget.searchId = searchId;
+				globalTarget.obj = this.firstElementChild;
+				globalTarget.btn = this.getElementsByTagName("button")[0];
+				globalTarget.obj2 = this.lastElementChild;
+				var aul = new AjaxUtilList(url, tableId,searchId, null, null, null, null, null, initEvent);
+				aul.send();
+			}
+		})
+		
+	});
 	//검색 단추를 누르면 팝업 레이어가 열리도록 설정한다
 	$(function() {
 		$("#postcodify_search_button").postcodifyPopUp();

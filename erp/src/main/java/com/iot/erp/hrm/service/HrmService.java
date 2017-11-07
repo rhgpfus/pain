@@ -12,7 +12,7 @@ public interface HrmService {
 	public HumanResourceManagement login(HumanResourceManagement h_resourceManagement);
 	
 //인사관리--------------------------------------------------------------------------------------------------------------------	
-	public List<HashMap> selectHumanResourceManagementList(HumanResourceManagement h_resourceManagement);
+	public List<HumanResourceManagement> selectHumanResourceManagementList(HumanResourceManagement h_resourceManagement);
 	//인사관리 리스트를 받아오는 함수.
 	public HumanResourceManagement selectHumanResourceManagement(HumanResourceManagement h_resourceManagement);
 	//인사관리 단일로 받아오는 함수.

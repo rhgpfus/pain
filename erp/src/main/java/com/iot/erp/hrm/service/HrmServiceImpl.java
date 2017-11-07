@@ -28,7 +28,7 @@ public class HrmServiceImpl implements HrmService {
 	
 //인사관리-----------------------------------------------------------------------------------------------------------------------------------
 	@Override
-	public List<HashMap> selectHumanResourceManagementList(HumanResourceManagement h_resourceManagement){
+	public List<HumanResourceManagement> selectHumanResourceManagementList(HumanResourceManagement h_resourceManagement){
 		return hDao.selectHumanResourceManagementList(h_resourceManagement);
 		//인사관리 리스트.
 	}

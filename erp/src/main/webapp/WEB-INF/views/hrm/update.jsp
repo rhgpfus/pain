@@ -6,34 +6,6 @@
 
 <script>
 	
-function AjaxUtil(p_url, p_params, pCallBackFunc, pMethod){
-	if (!p_url) {
-		alert("url정보가 없습니다.");
-		return null;
-	}
-	var params = JSON.stringify(p_params);
-	$.ajax({ 
-			type     : pMethod ? pMethod : "POST"
-	    ,   url      : "${rootPath}/" + p_url
-	    ,   dataType : "json" 
-	    //내가 받을 데이터 타입.
-	    ,   beforeSend: function(xhr) {
-	        xhr.setRequestHeader("Accept", "application/json");
-	        xhr.setRequestHeader("Content-Type", "application/json");
-	    }
-	    ,   data     : params
-	    ,   success : pCallBackFunc
-	    //제이 쿼리가 success를 호출하게 되면 pCallBackFunc을 호출하게되고,
-	    //pCallBackFunc은  callback함수이다.
-	    //성공을 한다면 pCallBackFunc(callback)라는 함수를 호출.
-	    ,   error : function(xhr, status, e) {
-		    	alert("에러 : "+e);
-		},
-		complete  : function() {
-		}
-	});
-}
-	
 	function deletePic() {
 		$('#uploadPreview').attr('src', '');
 	}
@@ -61,16 +33,18 @@ function AjaxUtil(p_url, p_params, pCallBackFunc, pMethod){
 		})
 	}
 	
-	function callback2(result){
-		if(result){
-			$("#careerCode").val(result.careerCode);
-			$("#careerNameInput").val(result.careerName);			
-		}
-	}
-	
 	function callback(result){
 		if(result){
-			$("#humanKorName").val(result.humanKorName); //한국이름
+			Object.keys(result).forEach((key)=>{
+				var obj = $("#" + key);
+				var value = result[key];
+				if(obj && obj.length==1){
+					obj.val(value);
+				}else if(value && value.indexOf("#multi#")!=-1){
+					
+				}
+			})
+			/* $("#humanKorName").val(result.humanKorName); //한국이름
 			$("#humanEngName").val(result.humanEngName); //영어이름
 			$("#humanSecondLanguage").val(result.humanSecondLanguage); //제2외국어
 			if(result.humanResidentNumber){
@@ -89,17 +63,14 @@ function AjaxUtil(p_url, p_params, pCallBackFunc, pMethod){
 			}
 			$("#humanEnteringDate").val(result.humanEnteringDate); //입사일자
 			
-			if(result.careerNo){
-				var param = {};
-				param["careerNo"] = result.careerNo;
-				AjaxUtil("hrm/career", param, callback2);
-			}
+			
+				
 			$("#humanKorName").val(result.humanKorName);
 			$("#humanKorName").val(result.humanKorName);
 			$("#humanKorName").val(result.humanKorName);
 			$("#humanKorName").val(result.humanKorName);
 			$("#humanKorName").val(result.humanKorName);
-			$("#humanKorName").val(result.humanKorName);
+			$("#humanKorName").val(result.humanKorName); */
 		}
 		
 		
@@ -107,11 +78,12 @@ function AjaxUtil(p_url, p_params, pCallBackFunc, pMethod){
 	
 	var globalTarget = {};
 	$(document).ready(function() {
-		var param = {};
-		param["humanNo"] = "<%=request.getParameter("humanNo")%>";
-			
+		//var param = {};
+		//param["humanNo"] = "<%=request.getParameter("humanNo")%>";
 		
-		AjaxUtil("hrm/select", param, callback);
+		var au = new AjaxUtil("hrm/select", "humanNo");
+		au.setCallbackSuccess(callback);
+		au.send();
 		
 		$('div[id*="outTd"]').click(function(){
 			var url = this.getAttribute("data-url"); 
@@ -142,7 +114,7 @@ function AjaxUtil(p_url, p_params, pCallBackFunc, pMethod){
 			<td rowspan="9" align="center" style="vertical-align: middle"><img
 				id="uploadPreview" style="width: 200px; height: 350px;" /></td>
 			<td class="col-md-2" style="vertical-align: middle" bgcolor="cccccc">사원번호</td>
-			<td class="col-md-2"><input type="text" class="form-control" value="<%=request.getParameter("humanNo")%>" disabled/></td>
+			<td class="col-md-2"><input type="text" class="form-control" id="humanNo" value="<%=request.getParameter("humanNo")%>" disabled/></td>
 
 			<td class="col-md-2" style="vertical-align: middle" bgcolor="cccccc">성명</td>
 			<td class="col-md-4"><input type="text" class="form-control" id="humanKorName"/></td>

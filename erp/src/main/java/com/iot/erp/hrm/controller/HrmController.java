@@ -49,8 +49,8 @@ public class HrmController {
 	}
 	
 	@RequestMapping(value="hrm/list", method=RequestMethod.POST)
-	public @ResponseBody List<HashMap> getHRMList(@RequestBody HumanResourceManagement h_resourceManagement){
-		List<HashMap> h = hs.selectHumanResourceManagementList(h_resourceManagement);
+	public @ResponseBody List<HumanResourceManagement> getHRMList(@RequestBody HumanResourceManagement h_resourceManagement){
+		List<HumanResourceManagement> h = hs.selectHumanResourceManagementList(h_resourceManagement);
 		
 		return h;
 	}

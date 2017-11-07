@@ -19,13 +19,13 @@ public class HrmDAOImpl extends SqlSessionDaoSupport implements HrmDAO{
 			
 //인사관리----------------------------------------------------------------------------------------------------------------	
 	@Override
-	public List<HashMap> selectHumanResourceManagementList(HumanResourceManagement h_resourceManagement) {
+	public List<HumanResourceManagement> selectHumanResourceManagementList(HumanResourceManagement h_resourceManagement) {
 		return this.getSqlSession().selectList("hrm.SELECT_HRMLIST", h_resourceManagement);
 		//인사관리 리스트.
 	}
 	@Override
 	public HumanResourceManagement selectHumanResourceManagement(HumanResourceManagement h_resourceManagement) {
-		return this.getSqlSession().selectOne("hrm.SELECT_HRM", h_resourceManagement);
+		return this.getSqlSession().selectOne("hrm.SELECT_HRM_DETAIL", h_resourceManagement);
 		//인사관리 단일.
 	}
 	@Override

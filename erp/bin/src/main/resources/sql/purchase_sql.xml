@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd"> 
+
+<mapper namespace="purchase" >
+
+<select id="SELECT_PMLIST" parameterType="pm" resultType="pm">
+	select pm.purchaseno,pm.orderdate,ci.clientname,i.itemname,imc.amount,w.warehousename 
+	from purchase_management as pm 
+	, client_information as ci 
+	, item as i 
+	, item_middle_client as imc 
+	, warehouse as w 
+	where ci.clientno = pm.clientno
+	and i.itemno = pm.itemno
+	and imc.imcno = pm.imcno
+	and w.warehouseno = pm.warehouseno
+	<if test="purchaseNo !=0">
+				<!-- 번호로 검색 -->
+		and pm.purchaseno = #{purchaseNo}
+	</if>
+	
+</select>
+
+<select  id="SELECT_PURCHASE_ITEM" parameterType="pmi" resultType="pmi">
+	select 
+		pm.purchaseno,
+		pm.itemno,
+		i.itemname,
+		i.warehousingcost,
+		imc.quantity,
+		imc.amount
+	from purchase_management pm  , item_middle_client imc , item i	
+	where pm.purchaseno = imc.purchaseno and i.itemcode = imc.itemcode 
+	and pm.purchaseno = #{purchaseNo}
+</select>
+
+<select id="SELECT_PURCHASE_MANAGEMENT"  parameterType="pmi" resultType="pmi">
+	select orderDate,clientNo,managerNo,warehouseNo,icmno from purchase_management
+	WHERE 1=1
+	<if test="purchaseNo!=null and purchaseNo!=''">
+	and clientno = #{clientNo}
+	</if>
+</select>
+
+</mapper>
+
+
+

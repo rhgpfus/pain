@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="position">
+
+<!-- 직책 리스트 -->
+	<select id="SELECT_POSITION" parameterType="position" resultType="position">
+		select 
+			positionno,positioncode,positionname 
+		from human_position where 1=1
+		<if test="positionCode!=null and positionCode!=''">
+			<!-- 직책 코드 검색기능 -->
+			and positioncode = #{positionCode}
+		</if>
+		<if test="positionName!=null and positionName!=''">
+			<!-- 직책 명 검색기능 -->
+			and positionname = #{positionName}
+		</if>	
+	</select>
+	
+	<insert id="INSERT_POSITION" parameterType="position">
+		insert 
+		into human_position(positionCode,positionName)
+		values(#{positionCode},#{positionName})
+		
+	</insert>
+	
+	<update id="UPDATE_POSITION" parameterType="position">
+		update 
+		 human_position
+		 set positioncode=#{positionCode}, positionname=#{positionName}
+		 where positionno=#{positionNo}
+		
+	</update>
+	
+	<delete id="DELETET_POSITION" parameterType="position">
+		delete from human_position
+		 where positionno = #{positionNo}
+		
+	</delete>
+
+</mapper>

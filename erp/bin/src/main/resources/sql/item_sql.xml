@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd"> 
+
+<mapper namespace="item" >
+
+<select id="SELECT_ITEM" parameterType="ii" resultType="ii">
+
+
+		select 
+			itemNo,
+			img,
+			itemCode,
+			itemName,
+			warehousingCost,
+			unstoringCost,
+			itemDivision,
+			createUser,
+			createDate,
+			modifiedUser,
+			modifiedData
+		from item where 1=1
+<if test="itemNo!=null and itemNo!=''">
+			<!-- 거래처명검색 -->
+and itemName = #{itemName}
+</if>
+
+</select>
+
+
+</mapper>
+
+

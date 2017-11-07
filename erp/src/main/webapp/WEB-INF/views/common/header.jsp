@@ -43,6 +43,8 @@
 	href="<c:url value="/resources/css/tableList.css?version=${pVar}"/>" />
 
 <script>
+	// 오늘 일자
+	var thisDate = new Date('<fmt:formatDate pattern = "yyyy-MM-dd" value = "${now}" />');
 	//페이지 이동
 	var pageMove = function(p_page, p_colName, p_param){
 		var page = p_page;
@@ -340,7 +342,7 @@
 					}else if(row[colName] && row[colName]!='undefined'){
 						tbodyStr += row[colName];
 					}else{
-						tbodyStr += '-';
+						tbodyStr += '';
 					}
 					tbodyStr += "</td>";
 				}

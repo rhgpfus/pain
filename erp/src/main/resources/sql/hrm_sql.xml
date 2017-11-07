@@ -16,20 +16,49 @@
 	</select>
 
 	<!-- 인사관리 단일 -->
-	<select id="SELECT_HRM" parameterType="h_resourceManagement" resultType="h_resourceManagement">
-		select * from human_resource_management
-		where humanno = #{humanNo}
+	<select id="SELECT_HRM_DETAIL" parameterType="h_resourceManagement" resultType="h_resourceManagement">
+		select   hrm.*,
+			hdc.departmentcode,
+			hdc.departmentname,
+			hr.rankname,
+			hr.rankcode,
+			hb.bankname,
+			hb.bankcode,
+			hc.careername,
+			hc.careercode,
+			hpr.projectname,
+			hpr.projectcode,
+			hpo.positionname,
+			hpo.positioncode
+		from human_resource_management as hrm
+			LEFT JOIN human_department_code as hdc
+			on hrm.departmentcodeno = hdc.departmentcodeno
+			LEFT JOIN human_rank as hr
+			on hr.rankno = hrm.rankno
+			LEFT JOIN human_bank as hb
+			on hb.bankno = hrm.bankno
+			LEFT JOIN human_career as hc
+			on hc.careerno = hrm.careerno
+			LEFT JOIN human_project as hpr
+			on hpr.projectno = hrm.projectno
+			LEFT JOIN human_position as hpo
+			on hpo.positionno = hrm.positionno
+		where 
+			trim(hrm.humankorname)!=''
+			and humanno=#{humanNo}
+		order by humanno desc
 		
 	</select>
-
+	
+	
 	<!-- 인사관리 리스트  -->
-	<select id="SELECT_HRMLIST" parameterType="h_resourceManagement" resultType="java.util.HashMap">
+	<select id="SELECT_HRMLIST" parameterType="h_resourceManagement" resultType="h_resourceManagement">
 		select hrm.humanno,
 			hrm.humankorname,
 			hrm.humanresidentnumber,
 			hdc.departmentname,
 			hr.rankname,
-			hrm.humanenteringdate,
+			hrm.humanenteringdate, 
 			hrm.humanaccountnumber,
 			hrm.humanemail
 		from human_resource_management as hrm
