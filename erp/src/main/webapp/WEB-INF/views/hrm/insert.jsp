@@ -92,7 +92,7 @@
 			<td class="col-md-4" style="vertical-align: middle">
 				<div class="radio-inline">
 		  			<label>
-						<input type="radio" id="humanGenerative1" name="humanGenerative" value="1" />세대주
+						<input type="radio" id="humanGenerative" name="humanGenerative" value="1" />세대주
 					</label>
 				</div>
 				
@@ -110,7 +110,7 @@
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">입사구분</td>
 			<td class="col-md-4" style="vertical-align: middle"><div
 					id="outTd1" data-tableName="careerTable" data-url="career/list"
-					data-search="careerName">
+					data-search="careerNo">
 
 					<input class="form-control form-min3" type="text" id="careerCode" name="careerCode" data-url="career/search" size="10"
 						onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
@@ -194,7 +194,7 @@
 									<tbody>
 									</tbody>
 								</table>
-<!-- 								<input type="hidden" id="careerName"> -->
+								<input type="hidden" id="careerNo">
 							</div>
 						</div>
 					</div>
@@ -205,7 +205,7 @@
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">직위/직급</td>
 			<td class="col-md-2" style="vertical-align: middle"><div
 					id="outTd2" data-tableName="rankTable" data-url="rank/list"
-					data-search="rankName">
+					data-search="rankNo">
 					<input class="form-control form-min3" type="text" id="rankCode" name="rankCode"  data-url="rank/search" size="10"
 						onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
 					<!-- 돋보기 버튼 누르면 팝업창 -->
@@ -239,7 +239,7 @@
 									<tbody>
 									</tbody>
 								</table>
-<!-- 								<input type="hidden" id="rankName"> -->
+								<input type="hidden" id="rankNo">
 							</div>
 						</div>
 					</div>
@@ -248,7 +248,7 @@
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">직책</td>
 			<td class="col-md-4" style="vertical-align: middle"><div
 					id="outTd3" data-tableName="positionTable" data-url="position/list"
-					data-search="positionName">
+					data-search="positionNo">
 					<input class="form-control form-min3" type="text" id="positionCode" name="positionName" data-url="position/search" size="10"
 						onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
 					<!-- 돋보기 버튼 누르면 팝업창 -->
@@ -282,7 +282,7 @@
 									<tbody>
 									</tbody>
 								</table>
-<!-- 								<input type="hidden" id="positionName"> -->
+								<input type="hidden" id="positionNo">
 							</div>
 						</div>
 					</div>
@@ -316,7 +316,7 @@
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">부서코드</td>
 			<td class="col-md-3" style="vertical-align: middle"><div
 					id="outTd4" data-tableName="departmentTable"
-					data-url="department/list" data-search="departmentName">
+					data-url="department/list" data-search="departmentNo">
 					<input class="form-control form-min3" type="text"
 						id="departmentCode" name="departmentCode" data-url="department/search" size="10"
 						onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
@@ -351,7 +351,7 @@
 									<tbody>
 									</tbody>
 								</table>
-<!-- 								<input type="hidden" id="departmentName"> -->
+								<input type="hidden" id="departmentNo">
 							</div>
 						</div>
 					</div>
@@ -360,7 +360,7 @@
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">프로젝트</td>
 			<td class="col-md-4" style="vertical-align: middle"><div
 					id="outTd5" data-tableName="projectTable" data-url="project/list"
-					data-search="projectName">
+					data-search="projectNo">
 					<input class="form-control form-min3" type="text" id="projectCode" name="projectCode" data-url="project/search" size="10"
 						onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
 					<!-- 돋보기 버튼 누르면 팝업창 -->
@@ -394,7 +394,7 @@
 									<tbody>
 									</tbody>
 								</table>
-<!-- 								<input type="hidden" id="projectName"> -->
+								<input type="hidden" id="projectNo">
 							</div>
 						</div>
 					</div>
@@ -405,7 +405,7 @@
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">급여통장</td>
 			<td class="col-md-4" colspan="4" style="vertical-align: middle">
 				<div id="outTd6" style="display: inline" data-tableName="bankTable"
-					data-url="bank/list" data-search="bankName">
+					data-url="bank/list" data-search="bankNo">
 					<input class="form-control form-min3" type="text" id="bankCode" name="bankCode"	data-url="bank/search" size="10"
 						onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
 					<!-- 돋보기 버튼 누르면 팝업창 -->
@@ -439,7 +439,7 @@
 									<tbody>
 									</tbody>
 								</table>
-<!-- 								<input type="hidden" id="bankName"> -->
+								<input type="hidden" id="bankNo">
 							</div>
 						</div>
 					</div>

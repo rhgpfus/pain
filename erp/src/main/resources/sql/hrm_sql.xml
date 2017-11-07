@@ -87,9 +87,9 @@
 		careerno,rankno,positionno,humanleavedate,humanleavereason,humanhomenum,humanphonenum,humanpassportnumber,humanemail,
 		departmentcodeno,projectno,humansecondlanguage,bankno,humanaccountnumber,humanaccountname,humanaddress,
 		humanEtc,humanauthority)
-		values(#{humanKorName},#{humanId},#{humanPwd},#{humanEngName},#{humanResidentNumber},#{humanGenerative},#{humanEnteringDate},#{careerNo},
-		#{rankNo},#{positionNo},#{humanLeaveDate},#{humanLeaveReason},#{humanHomeNum},#{humanPhoneNum},#{humanPassportNumber},#{humanEmail},
-		#{departmentCodeNo},#{projectNo},#{humanSecondLanguage},#{bankNo},#{humanAccountNumber},#{humanAccountName},#{humanAddress},#{humanEtc},#{humanAuthority})
+		values(#{humanKorName},#{humanId},#{humanPwd},#{humanEngName},#{humanResidentNumber},#{humanGenerative},#{humanEnteringDate},(select careerno from human_career where careercode=#{careerCode}),
+		(select rankno from human_rank where rankcode=#{rankCode}),(select positionno from human_position where positioncode=#{positionCode}),#{humanLeaveDate},#{humanLeaveReason},#{humanHomeNum},#{humanPhoneNum},#{humanPassportNumber},#{humanEmail},
+		(select departmentcodeno from human_department_code where departmentcode=#{departmentCode}),(select projectno from human_project where projectcode=#{projectCode}),#{humanSecondLanguage},(select bankno from human_bank where bankcode=#{bankCode}),#{humanAccountNumber},#{humanAccountName},#{humanAddress},#{humanEtc},#{humanAuthority})
 	</insert>
 	
 	<delete id="DELETE_HUMANRESOURCEMANAGEMENT" parameterType="h_resourceManagement">
