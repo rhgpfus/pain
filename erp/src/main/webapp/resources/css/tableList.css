@@ -2,7 +2,7 @@
 
 .topName{
 	width: 75%;
-	margin: 50px 0px 20px 0px; /*위 오른쪽 아래 왼쪽*/
+	margin: 50px 50px 20px 0px; /*위 오른쪽 아래 왼쪽*/
 	font-weight: bold;
 	text-align: left;
 	 color: #0080ff;.
@@ -10,7 +10,7 @@
 }
 
 .tableList {
-	width: 75%;
+	width: 100%;
 	border-collapse: collapse;
 	margin: 50px auto;
 }
@@ -23,6 +23,7 @@ tr:nth-of-type(odd) {
 	background: #3498db;
 	color: white;
 	font-weight: bold;
+	right: 10px;
 }
 
 .listTd, .listTh {

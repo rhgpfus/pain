@@ -43,13 +43,9 @@
 					var values = value.split("#multi#");
 					$("input[data-multi=" + key + "]").val(values[1]);
 					objs.val(values[0]);
-					
 				}
 			})
-			
 		}
-		
-		
 	}
 	
 	function initEvent() {
@@ -425,7 +421,7 @@
 
 		<tr>
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">급여통장</td>
-			<td class="col-md-4" colspan="4" style="vertical-align: middle">은행명 :
+			<td class="col-md-4" colspan="4" style="vertical-align: middle">
 				<div id="outTd6" style="display: inline" data-tableName="bankTable" data-url="bank/list" data-search="bankNo" >
 					<input class="form-control form-min3" type="text" id="bankCode" name="bankCode" data-url="bank/search" size="10"
 					 onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
@@ -527,4 +523,5 @@
 .modal-backdrop {
 	z-index: -1;
 }
+
 </style>
