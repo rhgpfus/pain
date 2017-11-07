@@ -46,4 +46,16 @@ public class BankController {
 		}
 		return map;
 	}
+	
+	@RequestMapping(value="/bank/update", method=RequestMethod.POST)
+	public @ResponseBody ModelMap updateBank(@RequestBody HumanBank h_bank, ModelMap map){
+		int cnt = bs.updateHumanBank(h_bank);
+		map.put("msg", h_bank.getBankName() + "수정이 실패하였습니다.");
+		map.put("url","no-move");
+		map.put("action", "close,refresh");
+		if(cnt==1){
+			map.put("msg", "은행이 정상적으로 수정 되었습니다.");
+		}
+		return map;
+	}
 }

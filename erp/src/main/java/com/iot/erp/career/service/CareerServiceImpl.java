@@ -32,7 +32,7 @@ public class CareerServiceImpl implements CareerService {
 		}
 		@Override
 		public int deleteCareer(Career h_career) {
-			return 0;
+			return caDAO.deleteCareer(h_career);
 			//입사구분 삭제.
 		}
 		@Override

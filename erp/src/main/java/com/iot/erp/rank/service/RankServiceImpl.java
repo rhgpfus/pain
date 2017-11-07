@@ -33,12 +33,12 @@ public class RankServiceImpl implements RankService {
 		}
 		@Override
 		public int deleteHumanRank(Rank h_rank) {
-			return 0;
+			return rDao.deleteHumanRank(h_rank);
 			//직급 삭제.
 		}
 		@Override
 		public int updateHumanRank(Rank h_rank) {
-			return 0;
+			return rDao.updateHumanRank(h_rank);
 			//직급 수정.
 		}
 	

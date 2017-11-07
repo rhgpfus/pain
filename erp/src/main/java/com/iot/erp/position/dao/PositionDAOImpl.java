@@ -28,12 +28,12 @@ public class PositionDAOImpl extends SqlSessionDaoSupport implements PositionDAO
 		}
 		@Override
 		public int deleteHumanPosition(Position h_position) {
-			return 0;
+			return this.getSqlSession().delete("position.DELETET_POSITION", h_position);
 			//직책 삭제.
 		}
 		@Override
 		public int updateHumanPosition(Position h_position) {
-			return 0;
+			return this.getSqlSession().update("position.UPDATE_POSITION", h_position);
 			//직책 수정.
 		}
 }

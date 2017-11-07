@@ -24,7 +24,21 @@
 		values(#{departmentCode},#{departmentName})
 		
 	</insert>
+	
+	<update id="UPDATE_DC" parameterType="departmentcode">
+		update 
+		 human_department_code
+		 set departmentCode=#{departmentCode}, departmentName=#{departmentName}
+		 where departmentcodeno=#{departmentCodeNo}
+		
+	</update>
 
+	<delete id="DELETE_DC" parameterType="departmentcode">
+		delete from human_department_code
+		where departmentcodeno = #{departmentCodeNo}
+		
+	</delete>
+	
 </mapper>
 
 

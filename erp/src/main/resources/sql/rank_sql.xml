@@ -25,7 +25,19 @@
 		
 	</insert>
 
+	<update id="UPDATE_RANK" parameterType="rank">
+		update 
+		 human_rank
+		 set rankCode = #{rankCode}, rankName = #{rankName}
+		 where rankno = #{rankNo}
+		
+	</update>
 	
+	<update id="DELETE_RANK" parameterType="rank">
+		delete from human_rank
+		 where rankno = #{rankNo}
+		
+	</update>
 		
 </mapper>
 

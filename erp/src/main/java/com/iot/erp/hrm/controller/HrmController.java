@@ -87,9 +87,16 @@ public class HrmController {
 	}
 	
 	@RequestMapping(value="/hrm/update", method=RequestMethod.POST)
-	public @ResponseBody String update(@RequestBody HumanResourceManagement h_resourceManagement){
-		System.out.println(h_resourceManagement);
-		return "hrm/update";
+	public @ResponseBody ModelMap updateHRM(@RequestBody HumanResourceManagement hrm, ModelMap map){
+		int cnt = hs.updateHumanResourceManagement(hrm);
+		System.out.println(hrm);
+		map.put("msg", hrm.getHumanKorName() + "등록이 실패하였습니다.");
+		map.put("url","no-move");
+		map.put("action", "close,refresh");
+		if(cnt==1){
+			map.put("msg", "정보가 정상적으로 등록 되었습니다.");
+		}
+		return map;
 	}
 
 	

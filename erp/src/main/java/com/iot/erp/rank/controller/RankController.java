@@ -46,4 +46,28 @@ public class RankController {
 		}
 		return map;
 	}
+	
+	@RequestMapping(value="/rank/update", method=RequestMethod.POST)
+	public @ResponseBody ModelMap updateRank(@RequestBody Rank h_rank, ModelMap map){
+		int cnt = rs.updateHumanRank(h_rank);
+		map.put("msg", h_rank.getRankName() + "수정이 실패하였습니다.");
+		map.put("url","no-move");
+		map.put("action", "close,refresh");
+		if(cnt==1){
+			map.put("msg", "직급이 정상적으로 수정 되었습니다.");
+		}
+		return map;
+	}
+	
+	@RequestMapping(value="/rank/delete", method=RequestMethod.POST)
+	public @ResponseBody ModelMap deleteRank(@RequestBody Rank h_rank, ModelMap map){
+		int cnt = rs.deleteHumanRank(h_rank);
+		map.put("msg", h_rank.getRankName() + "삭제가 실패하였습니다.");
+		map.put("url","no-move");
+		map.put("action", "close,refresh");
+		if(cnt==1){
+			map.put("msg", "직급이 정상적으로 삭제 되었습니다.");
+		}
+		return map;
+	}
 }

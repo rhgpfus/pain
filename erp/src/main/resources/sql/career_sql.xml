@@ -32,4 +32,10 @@
 		 where careerno = #{careerNo}
 		
 	</update>
+	
+	<delete id="DELETE_CAREER" parameterType="career">
+		delete from human_career
+		where careerno = #{careerNo}
+		
+	</delete>
 </mapper>

@@ -25,5 +25,13 @@
 		values(#{bankCode},#{bankName})
 		
 	</insert>
+	
+	<update id="UPDATE_HUMANBANK" parameterType="h_bank">
+		update 
+		 human_bank
+		 set bankCode = #{bankCode},bankName = #{bankName}
+		 where bankno = #{bankNo}
+		
+	</update>
 
 </mapper>

@@ -28,7 +28,7 @@ public class CareerDAOImpl extends SqlSessionDaoSupport implements CareerDAO {
 			}
 			@Override
 			public int deleteCareer(Career h_career) {
-				return 0;
+				return this.getSqlSession().delete("car.DELETE_CAREER", h_career);
 				//입사구분 삭제.
 			}
 			@Override

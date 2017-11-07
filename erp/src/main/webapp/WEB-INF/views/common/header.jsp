@@ -24,6 +24,9 @@
 	src="<c:url value="/resources/ui/btsp3.7.7/js/bootstrap-table.js?version=${pVar}"/>"></script>
 <script
 	src="<c:url value="/resources/ui/btsp3.7.7/js/bootstrap-table.js?version=${pVar}"/>"></script>
+<script
+	src="<c:url value="/resources/js/iudAjax.js?version=${pVar}"/>"></script>
+	
 
 <!--  css -->
 <link rel="stylesheet"
@@ -56,13 +59,12 @@
 	var modalOpen = function(no, p_colName , p_param){
 		var param = {};
 		param[p_colName] = p_param;
-		$("input[name='update0']").val(no);
-		$("input[name='update1']").val(p_colName);
-		$("input[name='update2']").val(p_param);
+		$("input[name='iud0']").val(no);
+		$("input[name='iud1']").val(p_colName);
+		$("input[name='iud2']").val(p_param);
 		$("#myModal").modal("show");
 		
 		alert(param[p_colName]);
-		$("#myModal div[class='modal-footer']").valu();
 	}
 	//
 	$(document).ready(

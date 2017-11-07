@@ -9,15 +9,12 @@
 $(document).ready(function(){
 
 	
-	var aul = new AjaxUtilList("bank/list","bankTable","bankNo",null, null);
+	var aul = new AjaxUtilList("bank/list","bankTable","bankNo",null, null, "");
 	aul.send();
-	
+	$('#myModal').on('hidden.bs.modal', function () {
+		$("#changeButton").html("<button type='button' class='btn btn-primary' onclick='iudAjax(\""+"bank/update"+"\")'>수정</button>");
+	});
 })
-function insertBank(){
-	var params = "bankCode,bankName";
-	var aui = new AjaxUtil("bank/insert",params);
-	aui.send();
-}
 
 
 function deleteBank(){
@@ -38,10 +35,10 @@ function deleteBank(){
 <body>
 <div class="container">
 	<h1 class="topName">은행 목록 리스트</h1>
-	<table class="tableList" id="bankTable">
 	<!-- 버튼 --> 
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> 신규</button>
+		<button type="button" class="btn btn-primary" onclick="modalOpen2('bank/insert')"> 신규</button>
 		<button type="button" class="btn btn-primary" onclick="deleteBank()"> 삭제</button>
+	<table class="tableList" id="bankTable">
 	
 		<thead>
 			<tr class="listTr">	
@@ -54,7 +51,7 @@ function deleteBank(){
 		<tbody>
 		</tbody>
 	</table>
-	<input type="hidden" id="bankNo">
+<!-- 	<input type="hidden" id="bankNo"> -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
 		<div class="modal-dialog">
 		
@@ -69,20 +66,26 @@ function deleteBank(){
 				<div class="modal-body">
 					<table data-height="460" class="table table-bordered table-hover">
 						<tr>
+							<td class="listTh">은행구분번호</td>
+							<td><input type="text" id="bankNo" name="iud0" class="postcodify_extra_info" disabled /></td>
+						</tr>
+						<tr>
 							<td class="listTh">은행 코드</td>
-							<td><input type="text"  id="bankCode"  class="postcodify_extra_info" data-req="은행코드를 입력해주세요" placeholder="은행코드를 입력하세요" /></td>
+							<td><input type="text"  id="bankCode" name="iud1" class="postcodify_extra_info" data-req="은행코드를 입력해주세요" placeholder="은행코드를 입력하세요" /></td>
 						</tr>
 						<tr>
 							<td class="listTh">은행 이름</td>
-							<td><input type="text"  id="bankName"   class="postcodify_extra_info" data-req="은행이름을 입력해주세요" placeholder="은행이름을 입력하세요" /></td>
+							<td><input type="text"  id="bankName" name="iud2"  class="postcodify_extra_info" data-req="은행이름을 입력해주세요" placeholder="은행이름을 입력하세요" /></td>
 						</tr>
 					</table>
-					<input type="hidden" id="bankCode">
+<!-- 					<input type="hidden" id="bankCode"> -->
 				</div>
 				
 				<div class="modal-footer"> 
 					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button> 
-					<button type="button" class="btn btn-primary" onclick="insertBank()">저장</button> 
+					<div id="changeButton" style="display: inline"> 
+					<button type="button" class="btn btn-primary" onclick="iudAjax('bank/update')">수정</button>
+					</div>
 					
 				</div>
 
@@ -90,6 +93,10 @@ function deleteBank(){
 			</div>
 		</div>
 	</div>
+</div>
+</body>
+</html>
+
 <style>
 
 .modal-backdrop {
@@ -98,8 +105,4 @@ function deleteBank(){
 /*모달 팝업창 클릭 시 안닫히게 하는 것.*/
 </style>
 	
-</div>
-</body>
-</html>
-
 

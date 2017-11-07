@@ -29,12 +29,12 @@ public class RankDAOImpl extends SqlSessionDaoSupport implements RankDAO {
 		}
 		@Override
 		public int deleteHumanRank(Rank h_rank) {
-			return 0;
+			return this.getSqlSession().delete("rank.DELETE_RANK", h_rank);
 			//직급 삭제.
 		}
 		@Override
 		public int updateHumanRank(Rank h_rank) {
-			return 0;
+			return this.getSqlSession().update("rank.UPDATE_RANK", h_rank);
 			//직급 수정.
 		}
 

@@ -8,15 +8,13 @@
 <script>
 $(document).ready(function(){
 
-	var aul = new AjaxUtilList("position/list","positionTable","positionNo","", "");
+	var aul = new AjaxUtilList("position/list","positionTable","positionNo","", "", "");
 	aul.send();
-	
+	$('#myModal').on('hidden.bs.modal', function () {
+		$("#changeButton").html("<button type='button' class='btn btn-primary' onclick='iudAjax(\""+"position/update"+"\")'>수정</button>");
+		$("#changeButton").append("<button type='button' class='btn btn-primary' onclick='iudAjax(\""+"position/delete"+"\")'>삭제</button>");
+	});
 })
-function insertPosition(){
-	var params = "positionCode,positionName";
-	var aui = new AjaxUtil("position/insert",params);
-	aui.send();
-}
 </script>
 
 <title>직책 리스트</title>
@@ -25,7 +23,7 @@ function insertPosition(){
 <div class="container">
 	<h1 class="topName">직책 목록 리스트</h1>
 	<!-- 버튼 --> 
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> 신규</button>
+	<button type="button" class="btn btn-primary" onclick="modalOpen2('position/insert')"> 신규</button>
 		
 	<table class="tableList" id="positionTable">
 		<thead>
@@ -38,7 +36,7 @@ function insertPosition(){
 		<tbody>
 		</tbody>
 	</table>
-	<input type="hidden" id="positionNo">
+<!-- 	<input type="hidden" id="positionNo"> -->
 	
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
 		<div class="modal-dialog">
@@ -54,25 +52,35 @@ function insertPosition(){
 				<div class="modal-body">
 					<table id="table" data-height="460" class="table table-bordered table-hover">
 						<tr>
+							<td class="listTh">직책구분번호</td>
+							<td><input type="text" id="positionNo" name="iud0" class="postcodify_extra_info" disabled /></td>
+						</tr>
+						<tr>
 							<td class="listTh">직책 코드</td>
-							<td><input type="text" id="positionCode" class="postcodify_extra_info" data-req="직책코드를 입력해주세요" placeholder="직책코드를 입력하세요"/></td>
+							<td><input type="text" id="positionCode" name="iud1" class="postcodify_extra_info" data-req="직책코드를 입력해주세요" placeholder="직책코드를 입력하세요"/></td>
 						</tr>
 						<tr>
 							<td class="listTh">직책 이름</td>
-							<td><input type="text" id="positionName" class="postcodify_extra_info" data-req="직책이름을 입력해주세요" placeholder="직책이름을 입력하세요"/></td>
+							<td><input type="text" id="positionName" name="iud2" class="postcodify_extra_info" data-req="직책이름을 입력해주세요" placeholder="직책이름을 입력하세요"/></td>
 						</tr>
 					</table>
 				</div>
 				
 				<div class="modal-footer"> 
 					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button> 
-					<button type="button" class="btn btn-primary" onclick="insertPosition()">저장</button> 
+					<div id="changeButton" style="display: inline"> 
+					<button type="button" class="btn btn-primary" onclick="iudAjax('position/update')">수정</button>
+					<button type="button" class="btn btn-primary" onclick="iudAjax('position/delete')">삭제</button>
+					</div>
 				</div>
 
 
 			</div>
 		</div>
 	</div>
+</div>
+</body>
+</html>
 <style>
 
 .modal-backdrop {
@@ -80,6 +88,3 @@ function insertPosition(){
 }
 /*모달 팝업창 클릭 시 안닫히게 하는 것.*/
 </style>
-</div>
-</body>
-</html>

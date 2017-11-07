@@ -46,4 +46,28 @@ public class PositionController {
 		}
 		return map;
 	}
+	
+	@RequestMapping(value="/position/update", method=RequestMethod.POST)
+	public @ResponseBody ModelMap updatePosition(@RequestBody Position h_position, ModelMap map){
+		int cnt = pss.updateHumanPosition(h_position);
+		map.put("msg", h_position.getPositionName() + "등록이 실패하였습니다.");
+		map.put("url","no-move");
+		map.put("action", "close,refresh");
+		if(cnt==1){
+			map.put("msg", "직책이 정상적으로 등록 되었습니다.");
+		}
+		return map;
+	}
+	
+	@RequestMapping(value="/position/delete", method=RequestMethod.POST)
+	public @ResponseBody ModelMap deletePosition(@RequestBody Position h_position, ModelMap map){
+		int cnt = pss.deleteHumanPosition(h_position);
+		map.put("msg", h_position.getPositionName() + "삭제가 실패하였습니다.");
+		map.put("url","no-move");
+		map.put("action", "close,refresh");
+		if(cnt==1){
+			map.put("msg", "직책이 정상적으로 삭제 되었습니다.");
+		}
+		return map;
+	}
 }

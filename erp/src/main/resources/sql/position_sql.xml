@@ -24,5 +24,19 @@
 		values(#{positionCode},#{positionName})
 		
 	</insert>
+	
+	<update id="UPDATE_POSITION" parameterType="position">
+		update 
+		 human_position
+		 set positioncode=#{positionCode}, positionname=#{positionName}
+		 where positionno=#{positionNo}
+		
+	</update>
+	
+	<delete id="DELETET_POSITION" parameterType="position">
+		delete from human_position
+		 where positionno = #{positionNo}
+		
+	</delete>
 
 </mapper>

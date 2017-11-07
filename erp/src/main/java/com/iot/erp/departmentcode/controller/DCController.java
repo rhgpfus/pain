@@ -50,4 +50,32 @@ public class DCController {
 		}
 		return map;
 	}
+	
+	@RequestMapping(value="/department/update", method=RequestMethod.POST)
+	public @ResponseBody ModelMap updateDepartmentCode(@RequestBody DepartmentCode h_departmentCode, ModelMap map){
+		int cnt = dcs.updateHumanDepartmentCode(h_departmentCode);
+		map.put("msg", h_departmentCode.getDepartmentName() + "수정이 실패하였습니다.");
+		map.put("url","no-move");
+		map.put("action", "close,refresh");
+		if(cnt==1){
+			map.put("msg", "부서가 정상적으로 수정 되었습니다.");
+		}else{
+			map.put("msg","부서가 정상적으로 수정되지 않았습니다.");
+		}
+		return map;
+	}
+	
+	@RequestMapping(value="/department/delete", method=RequestMethod.POST)
+	public @ResponseBody ModelMap deleteDepartmentCode(@RequestBody DepartmentCode h_departmentCode, ModelMap map){
+		int cnt = dcs.deleteHumanDepartmentCode(h_departmentCode);
+		map.put("msg", h_departmentCode.getDepartmentName() + "삭제가 실패하였습니다.");
+		map.put("url","no-move");
+		map.put("action", "close,refresh");
+		if(cnt==1){
+			map.put("msg", "부서가 정상적으로 삭제 되었습니다.");
+		}else{
+			map.put("msg","부서가 정상적으로 삭제되지 않았습니다.");
+		}
+		return map;
+	}
 }

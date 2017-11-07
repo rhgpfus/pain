@@ -84,8 +84,8 @@
 		<tr>
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">주민등록번호</td>
 			<td class="col-md-2"><input type="text"
-				class="form-control form-min" size="6" id="humanResidentNumber" name="humanResidentNumber" data-multi="humanResidentNumber"/> - <input type="text"
-				class="form-control form-min" size="7" data-multi="humanResidentNumber"/></td>
+				class="form-control form-min" maxlength="6" id="humanResidentNumber" name="humanResidentNumber" data-multi="humanResidentNumber"/> - <input type="text"
+				class="form-control form-min" maxlength="7" data-multi="humanResidentNumber"/></td>
 
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">세대주
 				여부</td>
@@ -119,7 +119,7 @@
 							param[obj.id] = obj.value;
 							var url = "${rootPath}/"
 									+ obj.getAttribute("data-url");
-							var tableId = obj.getAttribute("id");
+							var tableId = obj.getAttribute("data-name");
 							var param = {};
 							param[tableId] = obj.value;
 							//입사구분,직급,직책,부서코드,프로젝트,은행 모두 이 이벤트 적용.
@@ -205,7 +205,7 @@
 			<td class="col-md-2" style="vertical-align: middle"><div
 					id="outTd2" data-tableName="rankTable" data-url="rank/list"
 					data-search="rankName">
-					<input class="form-control form-min3" type="text" id="rankCode" data-url="rank/search" size="10"
+					<input class="form-control form-min3" type="text" id="rankNo" name="rankNo" data-name="rankCode" data-url="rank/search" size="10"
 						onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
 					<!-- 돋보기 버튼 누르면 팝업창 -->
 					<button type="button" data-toggle="modal" data-target="#myModal2"
@@ -317,7 +317,7 @@
 					id="outTd4" data-tableName="departmentTable"
 					data-url="department/list" data-search="departmentName">
 					<input class="form-control form-min3" type="text"
-						id="departmentCode"	data-url="department/search" size="10"
+						id="departmentCodeNo" name="departmentCodeNo" data-name="departmentCode"	data-url="department/search" size="10"
 						onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
 					<!-- 돋보기 버튼 누르면 팝업창 -->
 					<button type="button" data-toggle="modal" data-target="#myModal4"

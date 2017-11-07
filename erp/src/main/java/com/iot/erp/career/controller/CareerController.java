@@ -61,4 +61,17 @@ public class CareerController {
 			}
 			return map;
 		}
+		
+		@RequestMapping(value="/career/delete", method=RequestMethod.POST)
+		public @ResponseBody ModelMap deleteCareer(@RequestBody Career h_career, ModelMap map){
+			System.out.println(h_career);
+			int cnt = cas.deleteCareer(h_career);
+			map.put("msg", h_career.getCareerName() + "삭제가 실패하였습니다.");
+			map.put("url","no-move");
+			map.put("action", "close,refresh");
+			if(cnt==1){
+				map.put("msg", "경력사항이 정상적으로 삭제 되었습니다.");
+			}
+			return map;
+		}
 }
