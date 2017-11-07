@@ -85,6 +85,7 @@ public class HrmController {
 		}
 		return map;
 	}
+	
 	@RequestMapping(value="/hrm/update", method=RequestMethod.GET)
 	public String Update(){
 		return "hrm/update";

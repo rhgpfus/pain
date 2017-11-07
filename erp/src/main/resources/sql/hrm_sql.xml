@@ -35,9 +35,15 @@
 		from human_resource_management as hrm,
 			human_department_code as hdc,
 			human_rank as hr
-		where
-			hrm.departmentcodeno = hdc.departmentcodeno and
-			hrm.rankno = hr.rankno
+		where humankorname!=''
+		<if test="departmentCodeNo!=0">
+		and hrm.departmentcodeno = hdc.departmentcodeno
+		</if>
+		
+		<if test="rankNo!=0">
+		and hrm.rankno = hr.rankno
+		</if>
+		
 		<if test="humanNo!=0">
 			<!-- 사번검색기능 -->
 			and hrm.humanno = #{humanNo}
