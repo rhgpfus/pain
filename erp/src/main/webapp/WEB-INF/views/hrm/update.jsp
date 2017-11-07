@@ -88,7 +88,10 @@
 			}
 		})
 	});
-	
+	//검색 단추를 누르면 팝업 레이어가 열리도록 설정한다
+	$(function() {
+		$("#postcodify_search_button").postcodifyPopUp();
+	});
 </script>
 <div class="container">
 	<table id="table" data-height="460"
