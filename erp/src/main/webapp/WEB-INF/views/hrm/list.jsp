@@ -25,21 +25,23 @@ $(document).ready(function(){
 		<thead>
 			<tr class="listTr">
 				<th class="listTh" data-field="checkbox"></th>
-				<th class="listTh" data-field="humanNo">사원 번호</th>
-				<th class="listTh" data-field="humanKorName">이름</th>
-				<th class="listTh" data-field="humanResidentNumber">주민등록번호</th>
-				<th class="listTh" data-field="departmentName">부서</th>
-				<th class="listTh" data-field="rankName">직급</th>
-				<th class="listTh" data-field="humanEnteringDate">입사 일자</th>
-				<th class="listTh" data-field="humanAccountNumber">계좌번호</th>
-				<th class="listTh" data-field="humanAddress">e-mail 주소</th>
+				<th class="listTh" data-field="humanno">사원 번호</th>
+				<th class="listTh" data-field="humankorname">이름</th>
+				<th class="listTh" data-field="humanresidentnumber">주민등록번호</th>
+				<th class="listTh" data-field="departmentname">부서</th>
+				<th class="listTh" data-field="rankname">직급</th>
+				<th class="listTh" data-field="humanenteringdate">입사 일자</th>
+				<th class="listTh" data-field="humanaccountnumber">계좌번호</th>
+				<th class="listTh" data-field="humanemail">e-mail 주소</th>
 				<th class="listTh" data-field="button">인쇄</th>
 			</tr>
 		</thead>
 		<tbody>
 		</tbody>
 	</table>
-	<input type="hidden" id="humanKorName">
+<!-- 	<input type="hidden" id="humanKorName"> -->
+	<p align="center"><input type="text" id="humanKorName" data-url="hrm/list" data-name="hrmTable" onkeypress="if(event.keyCode==13) {searchName(humanKorName.getAttribute('data-url'), humanKorName.getAttribute('data-name'), humanKorName.id); return false;}">
+	<button onclick="searchName('hrm/list', 'hrmTable', 'humanKorName')">검색</button></p>
 </div>
 </body>
 </html>

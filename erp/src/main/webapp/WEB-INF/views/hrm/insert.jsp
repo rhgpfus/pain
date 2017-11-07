@@ -111,7 +111,7 @@
 					id="outTd1" data-tableName="careerTable" data-url="career/list"
 					data-search="careerName">
 
-					<input class="form-control form-min3" type="text" id="careerCode" data-url="career/search" size="10"
+					<input class="form-control form-min3" type="text" id="careerCode" name="careerCode" data-url="career/search" size="10"
 						onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
 					<script>
 						function searchClass(obj) {
@@ -119,7 +119,7 @@
 							param[obj.id] = obj.value;
 							var url = "${rootPath}/"
 									+ obj.getAttribute("data-url");
-							var tableId = obj.getAttribute("data-name");
+							var tableId = obj.getAttribute("id");
 							var param = {};
 							param[tableId] = obj.value;
 							//입사구분,직급,직책,부서코드,프로젝트,은행 모두 이 이벤트 적용.
@@ -205,7 +205,7 @@
 			<td class="col-md-2" style="vertical-align: middle"><div
 					id="outTd2" data-tableName="rankTable" data-url="rank/list"
 					data-search="rankName">
-					<input class="form-control form-min3" type="text" id="rankNo" name="rankNo" data-name="rankCode" data-url="rank/search" size="10"
+					<input class="form-control form-min3" type="text" id="rankCode" name="rankCode"  data-url="rank/search" size="10"
 						onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
 					<!-- 돋보기 버튼 누르면 팝업창 -->
 					<button type="button" data-toggle="modal" data-target="#myModal2"
@@ -248,7 +248,7 @@
 			<td class="col-md-4" style="vertical-align: middle"><div
 					id="outTd3" data-tableName="positionTable" data-url="position/list"
 					data-search="positionName">
-					<input class="form-control form-min3" type="text" id="positionCode" data-url="position/search" size="10"
+					<input class="form-control form-min3" type="text" id="positionCode" name="positionName" data-url="position/search" size="10"
 						onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
 					<!-- 돋보기 버튼 누르면 팝업창 -->
 					<button type="button" data-toggle="modal" data-target="#myModal3"
@@ -317,7 +317,7 @@
 					id="outTd4" data-tableName="departmentTable"
 					data-url="department/list" data-search="departmentName">
 					<input class="form-control form-min3" type="text"
-						id="departmentCodeNo" name="departmentCodeNo" data-name="departmentCode"	data-url="department/search" size="10"
+						id="departmentCode" name="departmentCode" data-url="department/search" size="10"
 						onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
 					<!-- 돋보기 버튼 누르면 팝업창 -->
 					<button type="button" data-toggle="modal" data-target="#myModal4"
@@ -360,7 +360,7 @@
 			<td class="col-md-4" style="vertical-align: middle"><div
 					id="outTd5" data-tableName="projectTable" data-url="project/list"
 					data-search="projectName">
-					<input class="form-control form-min3" type="text" id="projectCode" data-url="project/search" size="10"
+					<input class="form-control form-min3" type="text" id="projectCode" name="projectCode" data-url="project/search" size="10"
 						onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
 					<!-- 돋보기 버튼 누르면 팝업창 -->
 					<button type="button" data-toggle="modal" data-target="#myModal5"
@@ -405,7 +405,7 @@
 			<td class="col-md-4" colspan="4" style="vertical-align: middle">
 				<div id="outTd6" style="display: inline" data-tableName="bankTable"
 					data-url="bank/list" data-search="bankName">
-					<input class="form-control form-min3" type="text" id="bankCode"	data-url="bank/search" size="10"
+					<input class="form-control form-min3" type="text" id="bankCode" name="bankCode"	data-url="bank/search" size="10"
 						onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
 					<!-- 돋보기 버튼 누르면 팝업창 -->
 					<button type="button" data-toggle="modal" data-target="#myModal6"
