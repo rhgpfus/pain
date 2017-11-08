@@ -10,8 +10,7 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-         
-       <li class="dropdown">
+         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> 인사 관리</a>
           <ul class="dropdown-menu" role="menu">
             	<li><a href="http://localhost/erp/hrm/list">인사 리스트</a></li>
@@ -20,7 +19,7 @@
             <li class="divider"></li>
             	<li><a href="http://localhost/erp/manager/mlist">사원리스트</a></li>
           </ul>
-        </li>
+		</li>
         
          <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">재고 관리</a>
@@ -37,13 +36,74 @@
           </ul>
         </li>
       
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">검색</button>
-      </form>
-    
+	<form class="navbar-form navbar-left" role="search box">
+		<div class="input-group">
+		<input type="text" class="form-control" placeholder="Search for..." size="40">
+		<span class="input-group-btn">
+			<button type="submit" class="btn btn-default btn-sm" style="">
+         		<span class="glyphicon glyphicon-search" aria-hidden="true" style="color: whitesmoke;" ></span>
+         	</button>
+		</span>
+		</div><!-- /input-group -->
+	</form>
+		
+<form class="navbar-form navbar-left">
+  <div class="dropdown">
+	  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+	    <span class="glyphicon glyphicon-question-sign" aria-hidden="true" style="color: whitesmoke;" ></span>고객센터 
+	    <span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+		    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">온라인 문의</a></li>
+		    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">동영상 문의</a></li>
+		    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">원격지원</a></li>
+		    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">브라우저 최적화</a></li>
+		    <li class="divider"></li>
+		    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">온라인 메뉴얼</a></li>
+		    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">부가서비스</a></li>
+		    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">사용료확인</a></li>
+	  </ul>
+  </div>
+</form>	
+		
+    </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
+<style>
+.btn-group-sm>.btn, .btn-sm {
+    padding: 5px 10px;
+    font-size: 22px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+
+.input-group-btn:last-child>.btn, .input-group-btn:last-child>.btn-group {
+    z-index: 2;
+    margin-left: -1px;
+    color: #bbb;
+    background-color: #005b9e;
+    border-color: #004c85;
+    border-radius: 0;
+    padding-left: 10px;
+    
+}
+
+.form-control {
+	padding-right: 2px;
+	border-radius: 0;
+    border-right: none;
+    box-shadow: none;
+    border-color: #005b9e;
+} 
+.btn-primary {
+    color: #fff;
+    background-color: #005b9e;
+    border-color: #004c85;
+    border-radius: 0;
+}
+.navbar-form {
+    padding: 0px 3px;
+}
+</style>

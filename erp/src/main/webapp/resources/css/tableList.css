@@ -5,7 +5,7 @@
 	margin: 50px 50px 20px 0px; /*위 오른쪽 아래 왼쪽*/
 	font-weight: bold;
 	text-align: left;
-	 color: #0080ff;.
+	 color: #005b9e;
 	
 }
 
@@ -20,7 +20,7 @@ tr:nth-of-type(odd) {
 }
 
 .listTh {
-	background: #3498db;
+	background: #005b9e;
 	color: white;
 	font-weight: bold;
 }
