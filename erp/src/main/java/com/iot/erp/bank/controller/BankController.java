@@ -58,4 +58,17 @@ public class BankController {
 		}
 		return map;
 	}
+	
+	@RequestMapping(value="/bank/delete", method=RequestMethod.POST)
+	public @ResponseBody ModelMap deleteBank(@RequestBody HumanBank h_bank, ModelMap map){
+		System.out.println(h_bank);
+		int cnt = bs.deleteHumanBank(h_bank);
+		map.put("msg", h_bank.getBankName() + "삭제가 실패하였습니다.");
+		map.put("url","no-move");
+		map.put("action", "close,refresh");
+		if(cnt==1){
+			map.put("msg", "은행이 정상적으로 삭제 되었습니다.");
+		}
+		return map;
+	}
 }

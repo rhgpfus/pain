@@ -31,8 +31,7 @@ public class BankServiceIpml implements BankService{
 
 	@Override
 	public int deleteHumanBank(HumanBank h_bank) {
-		// TODO Auto-generated method stub
-		return 0;
+		return bDao.deleteHumanBank(h_bank);
 	}
 
 	@Override

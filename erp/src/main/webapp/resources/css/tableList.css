@@ -31,3 +31,6 @@ tr:nth-of-type(odd) {
 	text-align: center;
 	font-size: 14px;
 }
+#currentHuman{
+	margin-top : -50px;
+}

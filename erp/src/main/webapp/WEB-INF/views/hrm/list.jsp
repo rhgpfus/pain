@@ -8,11 +8,15 @@
 <script>
 $(document).ready(function(){
 
-	var aul = new AjaxUtilList("hrm/list","hrmTable","humanKorName","hrm/insert", "/hrm/excel" , "hrm/update");
+	var aul = new AjaxUtilList("hrm/list","hrmTable","humanKorName","hrm/insert", "/hrm/excel" , "hrm/update", null, null, initEvent);
 	aul.send();
 	
 })
-
+function initEvent(){
+	var rowCount = $('#hrmTable tbody tr').length;
+	var str ="현재 총사원 : "+ rowCount + " 명";
+	$("#currentHuman").html(str);
+}
 
 </script>
 
@@ -40,6 +44,7 @@ $(document).ready(function(){
 		</tbody>
 	</table>
 <!-- 	<input type="hidden" id="humanKorName"> -->
+	<div align="right" id="currentHuman"></div>
 	<p align="center"><input type="text" id="humanKorName" data-url="hrm/list" data-name="hrmTable" onkeypress="if(event.keyCode==13) {searchName(humanKorName.getAttribute('data-url'), humanKorName.getAttribute('data-name'), humanKorName.id); return false;}">
 	<button onclick="searchName('hrm/list', 'hrmTable', 'humanKorName')">검색</button></p>
 </div>

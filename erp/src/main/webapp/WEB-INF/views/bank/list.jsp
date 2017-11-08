@@ -7,27 +7,19 @@
 
 <script>
 $(document).ready(function(){
-
-	
+	var param = new Array();
+	for(var i=0;i<5;i++){
+		param = 1;
+	}
 	var aul = new AjaxUtilList("bank/list","bankTable","bankNo",null, null, "");
 	aul.send();
 	$('#myModal').on('hidden.bs.modal', function () {
 		$("#changeButton").html("<button type='button' class='btn btn-primary' onclick='iudAjax(\""+"bank/update"+"\")'>수정</button>");
+		$("#changeButton").append("<button type='button' class='btn btn-primary' onclick='iudAjax(\""+"bank/delete"+"\")'>삭제</button>");
 	});
 })
 
 
-function deleteBank(){
-	
-	
-  if( $(":checkbox[name='chkList']:checked").length==0 ){
-    alert("항목을 하나이상 체크해주세요.");
-  }else if( $(":checkbox[name='chkList']:checked").length!=0 ){
-	var params="bankCode,bankName";
-	var aud = new AjaxUtil("bank/delete",params);
-	aud.send();
-  }
-}
 </script>
 
 <title>은행 리스트</title>
@@ -37,12 +29,10 @@ function deleteBank(){
 	<h1 class="topName">은행 목록 리스트</h1>
 	<!-- 버튼 --> 
 		<button type="button" class="btn btn-primary" onclick="modalOpen2('bank/insert')"> 신규</button>
-		<button type="button" class="btn btn-primary" onclick="deleteBank()"> 삭제</button>
 	<table class="tableList" id="bankTable">
 	
 		<thead>
 			<tr class="listTr">	
-				<th class="listTh" data-field="checkbox"></th>	
 				<th  class="listTh" data-field="bankNo">은행 번호</th>
 				<th  class="listTh" data-field="bankCode">은행 코드</th>
 				<th  class="listTh" data-field="bankName">은행 이름</th>
@@ -85,6 +75,7 @@ function deleteBank(){
 					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button> 
 					<div id="changeButton" style="display: inline"> 
 					<button type="button" class="btn btn-primary" onclick="iudAjax('bank/update')">수정</button>
+					<button type="button" class="btn btn-primary" onclick="iudAjax('bank/delete')">삭제</button>
 					</div>
 					
 				</div>

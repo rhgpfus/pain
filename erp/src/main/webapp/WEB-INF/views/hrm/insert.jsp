@@ -69,7 +69,7 @@
 			<td class="col-md-2"><input type="text" class="form-control" disabled/></td>
 
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">성명</td>
-			<td class="col-md-4"><input type="text" class="form-control" id="humanKorName" name="humanKorName"/></td>
+			<td class="col-md-4"><input type="text" class="form-control" id="humanKorName" name="humanKorName" data-req="이름을 입력해주세요" /></td>
 		</tr>
 
 		<tr>
@@ -88,7 +88,7 @@
 
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">세대주
 				여부</td>
-			<td class="col-md-4" style="vertical-align: middle">
+			<td class="col-md-4" style="vertical-align: bottom">
 				<div class="radio-inline">
 		  			<label>
 						<input type="radio" id="humanGenerative" name="humanGenerative" value="1" />세대주
@@ -248,7 +248,7 @@
 			<td class="col-md-4" style="vertical-align: middle"><div
 					id="outTd3" data-tableName="positionTable" data-url="position/list"
 					data-search="positionNo">
-					<input class="form-control form-min3" type="text" id="positionCode" name="positionName" data-url="position/search" size="10"
+					<input class="form-control form-min3" type="text" id="positionCode" name="positionCode" data-url="position/search" size="10"
 						onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
 					<!-- 돋보기 버튼 누르면 팝업창 -->
 					<button type="button" data-toggle="modal" data-target="#myModal3"

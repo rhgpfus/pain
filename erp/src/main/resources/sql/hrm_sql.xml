@@ -55,7 +55,7 @@
 	<select id="SELECT_HRMLIST" parameterType="h_resourceManagement" resultType="h_resourceManagement">
 		select hrm.humanno,
 			hrm.humankorname,
-			hrm.humanresidentnumber,
+			replace (hrm.humanresidentnumber,'#multi#','-') as humanresidentnumber,
 			hdc.departmentname,
 			hr.rankname,
 			hrm.humanenteringdate, 
