@@ -23,27 +23,19 @@ public class ClientServiceImpl implements ClientService{
 		return cDao.selectClientInformationList(ci);
 	}
 
-	@Override
-	public int insertClientInformationList(ClientInformation[] ciList) {
-		int result = 0;
-		for(ClientInformation ci : ciList){
-			result +=cDao.insertClientInformation(ci);
-		}
-		return result;
-	}
 
 	@Override
-	public int insertClientInformationList(ClientInformation ci) {
+	public int insertClientInformation(ClientInformation ci) {
 		return cDao.insertClientInformation(ci);
 	}
 
 	@Override
-	public int updateClientInformationList(ClientInformation ci) {
+	public int updateClientInformation(ClientInformation ci) {
 		return cDao.updateClientInformation(ci);
 	}
 
 	@Override
-	public int deleteClientInformationList(ClientInformation ci) {
+	public int deleteClientInformation(ClientInformation ci) {
 		return cDao.deleteClientInformation(ci);
 	}
 
