@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+
+
+   
  <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
 
@@ -38,7 +40,7 @@
       
 	<form class="navbar-form navbar-left" role="search box">
 		<div class="input-group">
-		<input type="text" class="form-control" placeholder="Search for..." size="40">
+		<input type="text" class="form-control" placeholder="Search for...">
 		<span class="input-group-btn">
 			<button type="submit" class="btn btn-default btn-sm" style="">
          		<span class="glyphicon glyphicon-search" aria-hidden="true" style="color: whitesmoke;" ></span>
@@ -65,11 +67,62 @@
 	  </ul>
   </div>
 </form>	
-		
+	
+	<!-- 로그아웃버튼 -->
     </ul>
+    <div class="icon">
+    <button type="button" class="btn btn-default btn-lg" data-toggle="tooltip" data-placement="left" title="로그아웃">
+  	<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+	</button>
+    </div>
+	
+	<!-- Email버튼 -->
+    </ul>
+    <div class="icon">
+    <button type="button" class="btn btn-default btn-lg" data-toggle="tooltip" data-placement="left" title="Email">
+  	<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+	</button>
+    </div>
+	
+	<!-- SMS버튼 -->
+    </ul>
+    <div class="icon">
+    <button type="button" class="btn btn-default btn-lg" data-toggle="tooltip" data-placement="left" title="SMS">
+  	<span class="glyphicon glyphicon-phone" aria-hidden="true"></span>
+	</button>
+    </div>	
+    
+    <!-- 알람버튼 -->
+    </ul>
+    <div class="icon">
+    <button type="button" class="btn btn-default btn-lg" data-toggle="tooltip" data-placement="left" title="알람">
+  	<span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
+	</button>
+    </div>
+    
+    <!-- 메모장버튼 -->
+    </ul>
+    <div class="icon">
+    <button type="button" class="btn btn-default btn-lg" data-toggle="tooltip" data-placement="left" title="메모장" onclick="myfunction()">
+  	<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+	</button>
+    </div>
+    
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
+<script>
+	//툴팁 함수.
+	$(function () {
+	  $('[data-toggle="tooltip"]').tooltip()
+	})
+	
+	function myfunction() {
+    	window.open("${rootPath}/memo/memo_list","","width=400, height=300,left=1300, top=400");
+	}
+</script>
+
 
 <style>
 .btn-group-sm>.btn, .btn-sm {
@@ -90,13 +143,15 @@
     
 }
 
-.form-control {
-	padding-right: 2px;
-	border-radius: 0;
-    border-right: none;
+.input-group > .form-control {
+	border-radius: 0;    
     box-shadow: none;
     border-color: #005b9e;
 } 
+.form-control{
+	border-color:#ccc;
+}
+
 .btn-primary {
     color: #fff;
     background-color: #005b9e;
@@ -105,5 +160,20 @@
 }
 .navbar-form {
     padding: 0px 3px;
+}
+.icon{
+	margin-top:6px;
+	float:right;
+}
+.icon > .btn-default{
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	border-color:none;
+	background:transparent;
+	border:none;
+}	
+.icon > .btn-default:hover{
+	background:none;
+	color:#ccc;
 }
 </style>
