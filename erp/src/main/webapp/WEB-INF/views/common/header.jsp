@@ -26,7 +26,7 @@
 	src="<c:url value="/resources/ui/btsp3.7.7/js/bootstrap-table.js?version=${pVar}"/>"></script>
 <script
 	src="<c:url value="/resources/js/iudAjax.js?version=${pVar}"/>"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>	
 
 <!--  css -->
