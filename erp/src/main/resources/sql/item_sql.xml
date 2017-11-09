@@ -23,9 +23,15 @@
 			<!-- 거래처명검색 -->
 and itemName = #{itemName}
 </if>
-
 </select>
 
+<insert id="INSERT_ITEM" parameterType="ii" >
+	insert into item(img, itemcode, itemname, warehousingcost, 
+	unstoringcost, itemdivision, createuser, createdate, modifieduser, modifieddata)
+	values (#{img},#{itemCode},#{itemName},#{warehousingCost},#{unstoringCost},#{itemDivision},
+	#{createUser},now(),#{modifiedUser},now());
+
+</insert>
 
 </mapper>
 

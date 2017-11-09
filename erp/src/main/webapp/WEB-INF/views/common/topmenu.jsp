@@ -37,7 +37,7 @@
          <li class="dropdown" >
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">재고 관리</a>
           <ul class="dropdown-menu" role="menu">
-            	<li><a href="http://localhost/erp/item/itemlist">품목 리스트</a></li>
+            	<li><a href="http://localhost/erp/item/list">품목 리스트</a></li>
             <li class="divider"></li>  <!-- 선 출력. -->
             	<li><a href="http://localhost/erp/client/clist">거래처 등록</a></li>
             <li class="divider"></li>
