@@ -17,6 +17,15 @@ public class PurchaseManagement {
 	private int modifiedUser; //int comment '수정자(인사관리에서의 이름)',
 	private String modifiedData; //varchar(100) comment '수정일자'
 	
+	//화면에보일컬럼
+	private String clientName;
+	private String itemName;
+	private int amount;
+	private String warehouseName;
+	private int quantity;
+	private int unitPrice;
+	
+	
 	public int getPurchaseNo() {
 		return purchaseNo;
 	}
@@ -101,14 +110,53 @@ public class PurchaseManagement {
 	public void setModifiedData(String modifiedData) {
 		this.modifiedData = modifiedData;
 	}
+	public String getClientName() {
+		return clientName;
+	}
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
+	}
+	public String getItemName() {
+		return itemName;
+	}
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+	public int getAmount() {
+		return amount;
+	}
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+	public String getWarehouseName() {
+		return warehouseName;
+	}
+	public void setWarehouseName(String warehouseName) {
+		this.warehouseName = warehouseName;
+	}
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	public int getUnitPrice() {
+		return unitPrice;
+	}
+	public void setUnitPrice(int unitPrice) {
+		this.unitPrice = unitPrice;
+	}
 	@Override
 	public String toString() {
 		return "PurchaseManagement [purchaseNo=" + purchaseNo + ", orderDate=" + orderDate + ", clientNo=" + clientNo
 				+ ", itemNo=" + itemNo + ", deliveryDate=" + deliveryDate + ", imcNo=" + imcNo + ", managerNo="
 				+ managerNo + ", warehouseNo=" + warehouseNo + ", projectNo=" + projectNo + ", purchaseStatus="
 				+ purchaseStatus + ", createUser=" + createUser + ", createDate=" + createDate + ", modifiedUser="
-				+ modifiedUser + ", modifiedData=" + modifiedData + "]";
+				+ modifiedUser + ", modifiedData=" + modifiedData + ", clientName=" + clientName + ", itemName="
+				+ itemName + ", amount=" + amount + ", warehouseName=" + warehouseName + ", quantity=" + quantity
+				+ ", unitPrice=" + unitPrice + "]";
 	}
+	
 	
 	
 	

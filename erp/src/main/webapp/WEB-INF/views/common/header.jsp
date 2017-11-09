@@ -638,6 +638,7 @@ var AjaxUtilUpdateList = function(url, tableId, params, type, dataType) {
 				},
 				data : this.param,
 				success : this.callbackSuccess,
+				async: false,
 				error : function(xhr, status, e) {
 					if (xhr.responseJSON) {
 						var obj = xhr.responseJSON;
