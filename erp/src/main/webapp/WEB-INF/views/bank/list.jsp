@@ -7,10 +7,7 @@
 
 <script>
 $(document).ready(function(){
-	var param = new Array();
-	for(var i=0;i<5;i++){
-		param = 1;
-	}
+	
 	var aul = new AjaxUtilList("bank/list","bankTable","bankNo",null, null, "");
 	aul.send();
 	$('#myModal').on('hidden.bs.modal', function () {

@@ -20,31 +20,22 @@ public class WarehouseServiceImpl implements WarehouseService {
 	}
 
 	@Override
-	public List<WarehouseManagement> getWarehouseManagementList(WarehouseManagement wm) {
-		return wDao.selectWarehouseManagementList(wm);
+	public List<WarehouseManagement> getWarehouseManagementList(WarehouseManagement wmList) {
+		return wDao.selectWarehouseManagementList(wmList);
 	}
 
 	@Override
-	public int insertPurchaseManagementList(WarehouseManagement[] wmList) {
-		int result = 0;
-		for(WarehouseManagement wm : wmList) {
-			result +=wDao.insertWarehouseManagement(wm);
-		}
-		return result;
-	}
-
-	@Override
-	public int insertPurchaseManagementList(WarehouseManagement wm) {
+	public int insertWarehouse(WarehouseManagement wm) {
 		return wDao.insertWarehouseManagement(wm);
 	}
 
 	@Override
-	public int updatePurchaseManagementList(WarehouseManagement wm) {
+	public int updateWarehouse(WarehouseManagement wm) {
 		return wDao.updateWarehouseManagement(wm);
 	}
 
 	@Override
-	public int deletePurchaseManagementList(WarehouseManagement wm) {
+	public int deleteWarehouse(WarehouseManagement wm) {
 		return wDao.deleteWarehouseManagement(wm);
 	}
 	

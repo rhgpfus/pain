@@ -10,12 +10,11 @@ public interface WarehouseService {
 
 	public List<WarehouseManagement> getWarehouseManagementList(WarehouseManagement wm);
 	
-	public int insertPurchaseManagementList(WarehouseManagement[] wm);
+	public int insertWarehouse(WarehouseManagement wm);
 	
-	public int insertPurchaseManagementList(WarehouseManagement wm);
+	public int updateWarehouse(WarehouseManagement wm);
 	
-	public int updatePurchaseManagementList(WarehouseManagement wm);
-	
-	public int deletePurchaseManagementList(WarehouseManagement wm);
+	public int deleteWarehouse(WarehouseManagement wm);
+
 	
 }

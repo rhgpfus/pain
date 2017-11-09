@@ -20,8 +20,30 @@
 	and warehousename = #{warehousename}
 </if>
 
-</select>
+	</select>
 		
+	<insert id="INSERT_WAREHOUSE" parameterType="wm">
+		insert 
+		into warehouse(division,warehouseCode,warehouseName,warehouseAddress,createUser,createDate,modifiedUser,modifiedData)
+		values(#{division},#{warehouseCode},#{warehouseName},#{warehouseAddress},#{createUser},CURDATE(),#{modifiedUser},CURDATE())
+		
+	</insert>
+
+	<update id="UPDATE_WAREHOUSE" parameterType="wm">
+		update 
+		 warehouse
+		 set rankCode = #{rankCode}, rankName = #{rankName}
+		 where rankno = #{rankNo}
+		
+	</update>
+	
+	<update id="DELETE_WAREHOUSE" parameterType="wm">
+		delete from warehouse
+		 where rankno = #{rankNo}
+		
+	</update>	
+		
+	
 </mapper>
 
 
