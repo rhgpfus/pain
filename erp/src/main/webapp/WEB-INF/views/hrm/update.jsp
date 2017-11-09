@@ -499,7 +499,7 @@
 			<td class="col-md-4" colspan="4"><input type="file" /></td>
 		</tr>
 	</table>
-	<input type="button" value="저장" />
+	<input type="button" value="저장" id=""/>
 	<input type="button" value="삭제" />
 	<input type="button" value="리스트" />
 </div>

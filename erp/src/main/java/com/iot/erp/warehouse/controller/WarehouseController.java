@@ -20,6 +20,7 @@ public class WarehouseController {
 	@RequestMapping(value="/warehouse/whlist",method=RequestMethod.POST)
 	public @ResponseBody List<WarehouseManagement> 
 	getWarehouseManagement(@RequestBody WarehouseManagement wm ){
+		
 		return ws.getWarehouseManagementList(wm);
 	}
 	@RequestMapping(value="/warehouse/whlist",method=RequestMethod.GET)

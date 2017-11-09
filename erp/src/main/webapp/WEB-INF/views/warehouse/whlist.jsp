@@ -5,10 +5,14 @@
 <%@ include file="/WEB-INF/views/common/sidebar.jsp"%>
 
 <script> 
+
 $(document).ready(function(){
 	var aul = new AjaxUtilList("warehouse/whlist","wmTable","warehouseName","warehouse/insert","/warehouse/excel");
 	aul.send();
+	
 })
+
+var userNo = "<%= user.getHumanKorName()%>";
 </script>
 
 <title>창고목록</title>
@@ -20,9 +24,9 @@ $(document).ready(function(){
 		<thead>
 			<tr class="listTr">
 				<th class="listTh" data-field="warehouseNo">창고번호</th>
-				<th class="listTh" data-field="division">구분</th>
 				<th class="listTh" data-field="warehouseCode">창고코드</th>
 				<th class="listTh" data-field="warehouseName">창고이름</th>
+				<th class="listTh" data-field="division">구분</th>
 				<th class="listTh" data-field="warehouseAddress">창고주소</th>
 				<th class="listTh" data-field="createUser">입력자</th>
 				<th class="listTh" data-field="createDate">입력일자</th>

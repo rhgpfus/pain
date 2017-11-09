@@ -5,7 +5,7 @@
 
 	<!-- 로그인 -->
 	<select id = "LOGIN_HUMANRESOURCEMANAGEMENT" parameterType="h_resourceManagement" resultType="h_resourceManagement">
-		select humanno,humanid,humanpwd ,humanauthority
+		select humanno,humankorname,humanid,humanpwd ,humanauthority
 		from human_resource_management where 1=1
 		<if test = "humanId!= null and humanId!=''">
 			and humanid = #{humanId}

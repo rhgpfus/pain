@@ -1,9 +1,11 @@
+<%@page import="com.iot.erp.hrm.dto.HumanResourceManagement"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@ include file="/WEB-INF/views/common/common.jsp"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -42,8 +44,17 @@
 	href="<c:url value='/resources/css/dashboard.css?version=${pVar}'/>" />
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/tableList.css?version=${pVar}"/>" />
+<%
+//유저 정보
+HumanResourceManagement user = new HumanResourceManagement();
+ if((HumanResourceManagement) session.getAttribute("hrmuser")!=null){
+	 user = (HumanResourceManagement) session.getAttribute("hrmuser");
+ }
 
+%>
 <script>
+
+	
 	// 오늘 일자
 	var thisDate = new Date('<fmt:formatDate pattern = "yyyy-MM-dd" value = "${now}" />');
 	//페이지 이동
@@ -347,6 +358,16 @@
 						tbodyStr += "<input type='checkbox'>";
 					}else if (colName == "button") {
 						tbodyStr += "<input type='button'>";
+					}else if(colName == "division"){
+						if(row[colName]=='1'){
+							tbodyStr += '창고';
+						}else if(row[colName]=='2'){
+							tbodyStr += '공장';
+						}else if(row[colName]=='3'){
+							tbodyStr += '외주공장';
+						}
+						//row[colName] ---> 값
+						//colInfos[j] ---> 컬럼명
 					}else if(row[colName] && row[colName]!='undefined'){
 						tbodyStr += row[colName];
 					}else{
