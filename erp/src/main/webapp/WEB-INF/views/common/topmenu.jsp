@@ -12,7 +12,7 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-         <li class="dropdown">
+         <li class="dropdown" >
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> 인사 관리</a>
           <ul class="dropdown-menu" role="menu">
             	<li><a href="http://localhost/erp/hrm/list">인사 리스트</a></li>
@@ -23,7 +23,7 @@
           </ul>
 		</li>
         
-         <li class="dropdown">
+         <li class="dropdown" >
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">재고 관리</a>
           <ul class="dropdown-menu" role="menu">
             	<li><a href="http://localhost/erp/item/itemlist">품목 리스트</a></li>

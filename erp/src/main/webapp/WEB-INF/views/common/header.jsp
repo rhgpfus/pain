@@ -75,6 +75,13 @@
 				var nowUrl = "${nowUrl}";
 				var obj = $("a[href='" + nowUrl + "']").parent().attr("class",
 						"active");
+				if(nowUrl.indexOf("item")!=-1 || nowUrl.indexOf("client")!=-1 || nowUrl.indexOf("purchase")!=-1 || nowUrl.indexOf("sale")!=-1 || nowUrl.indexOf("warehouse")!=-1){
+					$("#human").attr("style","display:none");
+					$("#item").attr("style","display:");
+				}else{
+					$("#human").attr("style","display:");
+					$("#item").attr("style","display:none");
+				}
 			});
 	
 	var JSException = function(e){
