@@ -69,7 +69,7 @@
 		
 		alert(param[p_colName]);
 	}
-	//
+	//sidebar를 숨기는 기능으로 탑메뉴 클릭시 바뀌게 만듬
 	$(document).ready(
 			function() {
 				var nowUrl = "${nowUrl}";
