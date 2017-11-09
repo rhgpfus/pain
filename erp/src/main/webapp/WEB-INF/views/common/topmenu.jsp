@@ -12,18 +12,29 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-         <li class="dropdown" id="human" name="human">
+         <li class="dropdown" >
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> 인사 관리</a>
           <ul class="dropdown-menu" role="menu">
             	<li><a href="http://localhost/erp/hrm/list">인사 리스트</a></li>
             <li class="divider"></li>  <!-- 선 출력. -->
             	<li><a href="http://localhost/erp/hrm/insert">인사 등록</a></li>
             <li class="divider"></li>
-            	<li><a href="http://localhost/erp/manager/mlist">사원리스트</a></li>
+            	<li><a href="http://localhost/erp/career/list">경력 리스트</a></li>
+            <li class="divider"></li>
+            	<li><a href="http://localhost/erp/project/list">프로젝트 리스트</a></li>
+            <li class="divider"></li>
+            	<li><a href="http://localhost/erp/position/list">직책 리스트</a></li>
+            <li class="divider"></li>
+          	   <li><a href="http://localhost/erp/bank/list">은행 리스트</a></li>
+            <li class="divider"></li>
+            	<li><a href="http://localhost/erp/rank/list">직급 리스트</a></li>
+            <li class="divider"></li>
+            	<li><a href="http://localhost/erp/department/list">부서코드 리스트</a></li>
+            	
           </ul>
 		</li>
         
-         <li class="dropdown" id="liitem" name="item">
+         <li class="dropdown" >
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">재고 관리</a>
           <ul class="dropdown-menu" role="menu">
             	<li><a href="http://localhost/erp/item/itemlist">품목 리스트</a></li>
