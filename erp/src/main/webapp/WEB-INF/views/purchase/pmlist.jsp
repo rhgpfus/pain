@@ -19,6 +19,27 @@ $(document).ready(function(){
 	aul.send();
 })
 
+var globalTarget = {};
+	$(document).ready(function() {
+		document.getElementById('humanEnteringDate').valueAsDate = thisDate;
+		//오늘 날짜 넣는 법.
+		$('div[id*="outTd"]').click(function() {
+			var url = this.getAttribute("data-url");
+			var tableId = this.getAttribute("data-tableName");
+			var searchId = this.getAttribute("data-search");
+			if (url && tableId && searchId) {
+				globalTarget.url = url;
+				globalTarget.tableId = tableId;
+				globalTarget.searchId = searchId;
+				globalTarget.obj = this.firstElementChild;
+				globalTarget.btn = this.getElementsByTagName("button")[0];
+				globalTarget.obj2 = this.lastElementChild;
+				var aul = new AjaxUtilList(url, tableId,searchId, null, null, null, null, null, initEvent);
+				aul.send();
+			}
+		})
+		
+	});
 // $('#myModal').on('hidden.bs.modal', function () {
 // 	$("#changeButton").html("<button type='button' class='btn btn-primary' onclick='iudAjax(\""+"puchase/update"+"\")'>수정</button>");
 // 	$("#changeButton").append("<button type='button' class='btn btn-primary' onclick='iudAjax(\""+"puchase/delete"+"\")'>삭제</button>");
@@ -64,12 +85,59 @@ $(document).ready(function(){
 				<div class="modal-body">
 					<table id="table" data-height="460" class="table table-bordered table-hover">
 						<tr>
-							<td class="listTh">발주요청 일자</td>
-							<td><input type="text" id="clientNo" name="iud1" class="postcodify_extra_info" disabled /></td>
+							<td class="listTh col-md-1" >발주요청 일자</td>
+							<td class="col-md-1" ><input type="text" id="clientNo" name="iud2" class="postcodify_extra_info" disabled /></td>
 							
-							<td class="listTh">거래처 이름</td>
-							<td><input type="text" id="clientName"name="iud2" class="postcodify_extra_info" data-req="거래처 이름을 입력해주세요"  /></td>
+							
+							
+							<td class="col-md-1" align="center" style="vertical-align: middle" bgcolor="cccccc">거래처이름</td>
+								<td class="col-md-1" style="vertical-align: middle">
+								<div id="outTd2" data-tableName="puchaseTable" data-url="puchase/pmlist" data-search="puchaseNo">
+					<input class="form-control form-min3" type="text" id="puchaseCode" name="puchaseCode"  data-url="puchase/search" size="10" onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
+					
+					<!-- 돋보기 버튼 누르면 팝업창 -->
+					<button type="button" data-toggle="modal" data-target="#myModal2"
+						class="btn btn-default btn-sm">
+						<span class="glyphicon glyphicon-search" aria-hidden="true" style=""></span>
+					</button>
+					
+					<!-- 입사구분에서 입사구분이름 나오는곳 -->
+					<input class="form-control form-min" type="text" id="clientName" size="10" disabled />
+				</div> 
+				
+				<!-- 모달 팝업 --> 
+				<div class="modal fade" id="myModal2" tabindex="-1" role="dialog"
+					aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">
+									<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+								</button>
+								<h4 class="modal-title" id="myModalLabel2">거래처이름검색</h4>
+							</div>
+							<div class="modal-body">
+								<table class="tableList" id="clienTable">
+									<thead>
+										<tr class="listTr">
+											<th class="listTh" data-field="clientCode">거래처코드</th>
+											<th class="listTh" data-field="clientName">거래처이름</th>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+								<input type="hidden" id="clientNo">
+							</div>
+						</div>
+					</div>
+				</div>
+				</td>
+				
 						</tr>
+						
+						
+						
 						<tr>
 							<td class="listTh">담당자</td>
 							<td><input type="text" id="clientCode" name="" class="postcodify_extra_info" data-req="담당자를 입력해주세요"  /></td>
@@ -104,6 +172,20 @@ $(document).ready(function(){
 		</div>
 	</div>
 <style>
+.form-control.form-min {
+	width: 100px;
+	display: inline;
+}
+
+.form-control.form-min2 {
+	width: 250px;
+	display: inline;
+}
+
+.form-control.form-min3 {
+	width: 80px;
+	display: inline;
+}
 
 .modal-backdrop {
 	z-index: -1;
