@@ -3,7 +3,7 @@
 
 	<!--  사이드 바 -->
     <div class="container-fluid text-center" >
-        <div class="col-sm-3 col-md-1 sidebar" id="human">
+        <div class="col-sm-3 col-md-1 sidebar" id="sideHuman">
           <ul class="nav nav-sidebar">
             <a href="http://localhost/erp/hrm/list">인사 리스트</a></li>
             
@@ -38,7 +38,7 @@
           </ul>
         </div>
         
-        <div class="col-sm-3 col-md-1 sidebar" id="item" style="display:none">
+        <div class="col-sm-3 col-md-1 sidebar" id="sideItem" style="display:none">
           
           <ul class="nav nav-sidebar">
             <a href="http://localhost/erp/item/itemlist">품목 리스트</a></li>
