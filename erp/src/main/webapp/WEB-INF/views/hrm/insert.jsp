@@ -21,7 +21,7 @@
 	function initEvent() {
 		$('div[id*="myModal"] table[id="' + globalTarget.tableId
 						+ '"] tbody tr').click(function() {
-			var str = this.firstChild.innerText
+			var str = this.firstChild.innerText;
 			var str2 = this.lastChild.innerText;
 			globalTarget.obj.value = str;
 			globalTarget.obj2.value = str2;
@@ -66,7 +66,7 @@
 			<td rowspan="9" style="vertical-align: middle"><img
 				id="uploadPreview" style="width: 200px; height: 350px;" /></td>
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">사원번호</td>
-			<td class="col-md-2"><input type="text" class="form-control" disabled/></td>
+			<td class="col-md-2"><input type="text" class="form-control" id="humanNo" name="humanNo" disabled/></td>
 
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">성명</td>
 			<td class="col-md-4"><input type="text" class="form-control" id="humanKorName" name="humanKorName" data-req="이름을 입력해주세요" /></td>
@@ -139,6 +139,8 @@
 										},
 										data : param,
 										success : function(result) {
+											alert(result);
+											alert(result[0]);
 											var keyList = Object.keys(result);
 											obj.closest("div").firstElementChild.value = result[keyList[1]];
 											obj.closest("div").lastElementChild.value = result[keyList[2]];
@@ -160,7 +162,7 @@
 
 					<!-- 입사구분에서 입사구분이름 나오는곳 -->
 					<input class="form-control form-min" type="text"
-						id="careerName" size="10" disabled />
+						id="careerName" name="careerName" size="10" disabled />
 
 				</div> <!-- 모달 팝업 -->
 				<div class="modal fade" id="myModal1" tabindex="-1" role="dialog"
@@ -214,7 +216,7 @@
 							style=""></span>
 					</button>
 					<!-- 입사구분에서 입사구분이름 나오는곳 -->
-					<input class="form-control form-min" type="text" id="rankName"
+					<input class="form-control form-min" type="text" id="rankName" name="rankName"
 						size="10" disabled />
 				</div> <!-- 모달 팝업 -->
 				<div class="modal fade" id="myModal2" tabindex="-1" role="dialog"
@@ -257,7 +259,7 @@
 							style=""></span>
 					</button>
 					<!-- 입사구분에서 입사구분이름 나오는곳 -->
-					<input class="form-control form-min" type="text" id="positionName"
+					<input class="form-control form-min" type="text" id="positionName" name="positionName"
 						size="10" disabled />
 				</div> <!-- 모달 팝업 -->
 				<div class="modal fade" id="myModal3" tabindex="-1" role="dialog"
@@ -293,7 +295,7 @@
 			<td class="col-md-2"><input type="date" class="form-control" id="humanLeaveDate" name="humanLeaveDate"/></td>
 
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">퇴사사유</td>
-			<td class="col-md-4"><input type="text" class="form-control" id="humanLeaveReason"/></td>
+			<td class="col-md-4"><input type="text" class="form-control" id="humanLeaveReason" name="humanLeaveReason"/></td>
 		</tr>
 
 		<tr>
@@ -326,7 +328,7 @@
 							style=""></span>
 					</button>
 					<!-- 입사구분에서 입사구분이름 나오는곳 -->
-					<input class="form-control form-min" type="text"
+					<input class="form-control form-min" type="text" name="departmentName"
 						id="departmentName" size="10" disabled />
 				</div> <!-- 모달 팝업 -->
 				<div class="modal fade" id="myModal4" tabindex="-1" role="dialog"
@@ -369,7 +371,7 @@
 							style=""></span>
 					</button>
 					<!-- 입사구분에서 입사구분이름 나오는곳 -->
-					<input class="form-control form-min" type="text"
+					<input class="form-control form-min" type="text" name="projectName"
 						id="projectName" size="10" disabled />
 				</div> <!-- 모달 팝업 -->
 				<div class="modal fade" id="myModal5" tabindex="-1" role="dialog"
@@ -414,7 +416,7 @@
 							style=""></span>
 					</button>
 					<!-- 입사구분에서 입사구분이름 나오는곳 -->
-					<input class="form-control form-min2" type="text"
+					<input class="form-control form-min2" type="text" name="bankName"
 						id="bankName" size="10" disabled />
 				</div> <!-- 모달 팝업 -->
 				<div class="modal fade" id="myModal6" tabindex="-1" role="dialog"
@@ -452,10 +454,10 @@
 			<td class="col-md-4" colspan="4" align="left">
 				<!-- 주소와 우편번호를 입력할 <input>들을 생성하고 적당한 name과 class를 부여한다 --> 
 				<a id="postcodify_search_button">우편번호검색 
-				<input type="text" n="" class="postcodify_postcode5 form-control form-min3" value="" />
+				<input type="text" name="humanAddress" class="postcodify_postcode5 form-control form-min3" value="" data-multi="humanAddress" disabled/>
 				<br /></a> 
 					도로명주소 <input type="text" id="humanAddress" name="humanAddress" class="postcodify_address form-control" value=""  data-multi="humanAddress"/>
-				상세주소 <input type="text" n="" class="postcodify_details form-control" value=""  data-multi="humanAddress"/>
+				상세주소 <input type="text" name="humanAddress" class="postcodify_details form-control" value=""  data-multi="humanAddress"/>
 			</td>
 		</tr>
 

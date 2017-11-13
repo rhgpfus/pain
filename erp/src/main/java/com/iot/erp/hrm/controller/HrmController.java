@@ -104,6 +104,18 @@ public class HrmController {
 		return map;
 	}
 
+	@RequestMapping(value="/hrm/delete", method=RequestMethod.POST)
+	public @ResponseBody ModelMap deleteHRM(@RequestBody HumanResourceManagement hrm, ModelMap map){
+		int cnt = hs.deleteHumanResourceManagement(hrm);
+		System.out.println(hrm);
+		map.put("msg", hrm.getHumanKorName() + "삭제가 실패하였습니다.");
+		map.put("url","no-move");
+		map.put("action", "close,refresh");
+		if(cnt==1){
+			map.put("msg", "정보가 정상적으로 삭제 되었습니다.");
+		}
+		return map;
+	}
 	
 	
 }

@@ -70,15 +70,13 @@ HumanResourceManagement user = new HumanResourceManagement();
 	}
 	
 	//모달창(325번째줄에 modalOpen()파라메터를 추가하였고 59,60,61,62번째줄 추가)
-	var modalOpen = function(no, p_colName , p_param){
-		var param = {};
-		param[p_colName] = p_param;
-		$("input[name='iud0']").val(no);
-		$("input[name='iud1']").val(p_colName);
-		$("input[name='iud2']").val(p_param);
+	var modalOpen = function(json){
+		var keys = Object.keys(json);
+		for(var i = 0 ; i < keys.length; i++) {
+			console.log(json[keys[i]]);
+			$("input[id="+keys[i]+"]").val(json[keys[i]]);
+		}
 		$("#myModal").modal("show");
-		
-		alert(param[p_colName]);
 	}
 	//sidebar를 숨기는 기능으로 탑메뉴 클릭시 바뀌게 만듬
 	$(document).ready(
@@ -87,11 +85,11 @@ HumanResourceManagement user = new HumanResourceManagement();
 				var obj = $("a[href='" + nowUrl + "']").parent().attr("class",
 						"active");
 				if(nowUrl.indexOf("item")!=-1 || nowUrl.indexOf("client")!=-1 || nowUrl.indexOf("purchase")!=-1 || nowUrl.indexOf("sale")!=-1 || nowUrl.indexOf("warehouse")!=-1){
-					$("#sideHuman").attr("style","display:none");
-					$("#sideItem").attr("style","display:");
+					$("#human").attr("style","display:none");
+					$("#item").attr("style","display:");
 				}else{
-					$("#sideHuman").attr("style","display:");
-					$("#sideItem").attr("style","display:none");
+					$("#human").attr("style","display:");
+					$("#item").attr("style","display:none");
 				}
 			});
 	
@@ -343,12 +341,16 @@ HumanResourceManagement user = new HumanResourceManagement();
 			for (var i = 0, max = json.length; i < max; i++) {
 
 				var row = json[i];
+
+// 				for(var key in row){
+// 					console.log(key);
+// 					console.log(row[key]); 
+// 				}
 				var clickStr ="";
 				if(updateUrl!=null && updateUrl=="hrm/update"){
 					clickStr = "onclick='pageMove(\"" + updateUrl +  "\",\"" + colInfos[1] + "\",\"" + row[colInfos[1]] + "\")'";
 				}else if(updateUrl!=null){
-					
-					clickStr = "onclick='modalOpen(\"" + row[colInfos[0]] + "\",\"" +  row[colInfos[1]] + "\",\"" + row[colInfos[2]] +"\")'";
+					clickStr = "onclick='modalOpen(" + JSON.stringify(row) + ")'";
 				}
 				tbodyStr += "<tr " + clickStr + " style='cursor:pointer'>";
 				for (var j = 0, jMax = colInfos.length; j < jMax; j++) {
@@ -377,7 +379,7 @@ HumanResourceManagement user = new HumanResourceManagement();
 				}
 				tbodyStr += "</tr>";
 			}
-
+ 
 			var tbodyObj = $("#" + this.tableId + " tbody");
 			tbodyObj.html(tbodyStr);
 			if(initEvent){
@@ -638,7 +640,6 @@ var AjaxUtilUpdateList = function(url, tableId, params, type, dataType) {
 				},
 				data : this.param,
 				success : this.callbackSuccess,
-				async: false,
 				error : function(xhr, status, e) {
 					if (xhr.responseJSON) {
 						var obj = xhr.responseJSON;

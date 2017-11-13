@@ -19,18 +19,25 @@
 		};
 	};
 
-	function searchAddress() {
-		window.open('/erp/address', 'winname', 'directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no');
-	}
 
 	function callback(result){
 		if(result){
 			Object.keys(result).forEach((key)=>{
-				var obj = $("#" + key);
+				var obj = $("input[name=" + key + "]");
 				var value = result[key];
-				if(obj && obj.length==1){
-					obj.val(value);
-				}else if(obj.length==0 && value && ("string"===typeof(value)) && value.indexOf("#multi#")==-1){
+				if(("string"===typeof(value)) && value.indexOf("#multi#")!=-1){
+					var objs = $("#" + key);
+					var values = value.split("#multi#");
+					if($("input[data-multi=" + key + "]").length>2){
+						var objss = document.getElementById(key);
+						objss.closest("td").firstElementChild.firstElementChild.value=values[0];
+						objs.val(values[1]);
+						objss.closest("td").lastElementChild.value=values[2];
+					}else{
+					$("input[data-multi=" + key + "]").val(values[1]);
+					objs.val(values[0]);
+					}
+				}else if(obj.length!=1 && value && ("string"===typeof(value)) && value.indexOf("#multi#")==-1){
 					var objs = $("input[id*=" + key +"]");
 					//id중에 humanGenerative인 input태그의 모든것을 가져온다. 
 					for(var ele of objs){
@@ -38,11 +45,8 @@
 							ele.checked = true;
 						} 
 					}
-				}else if(obj.length==0 && ("string"===typeof(value)) && value.indexOf("#multi#")!=-1){
-					var objs = $("input[id*=" + key +"]");
-					var values = value.split("#multi#");
-					$("input[data-multi=" + key + "]").val(values[1]);
-					objs.val(values[0]);
+				}else if(obj && obj.length==1){
+					obj.val(value);
 				}
 			})
 		}
@@ -101,7 +105,7 @@
 			<td rowspan="9" style="vertical-align: middle"><img
 				id="uploadPreview" style="width: 200px; height: 350px;" /></td>
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">사원번호</td>
-			<td class="col-md-2"><input type="text" class="form-control" id="humanNo" value="<%=request.getParameter("humanNo")%>" disabled/></td>
+			<td class="col-md-2"><input type="text" class="form-control" id="humanNo" name="humanNo" value="<%=request.getParameter("humanNo")%>" disabled/></td>
 
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">성명</td>
 			<td class="col-md-4"><input type="text" class="form-control" id="humanKorName" name="humanKorName"/></td>
@@ -119,14 +123,14 @@
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">주민등록번호</td>
 			<td class="col-md-2">
 				<input type="text"
-				class="form-control form-min" size="6" id="humanResidentNumber1" name="humanResidentNumber" data-multi="humanResidentNumber"/> - <input type="text"
+				class="form-control form-min" size="6" id="humanResidentNumber" name="humanResidentNumber" data-multi="humanResidentNumber"/> - <input type="text"
 				class="form-control form-min" size="7" data-multi="humanResidentNumber"/></td>
 
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">세대주여부</td>
 			<td class="col-md-4" style="vertical-align: middle">
 				<div class="radio-inline">
 		  			<label>
-						<input type="radio" id="humanGenerative1" name="humanGenerative" value="1" />세대주
+						<input type="radio" id="humanGenerative" name="humanGenerative" value="1" />세대주
 					</label>
 				</div>
 				
@@ -189,7 +193,7 @@
 					</button>
 					
 					<!-- 입사구분명 나오는곳 -->
-					<input class="form-control form-min" type="text" id="careerName" size="10" disabled/>
+					<input class="form-control form-min" type="text" id="careerName" name="careerName" size="10" disabled/>
 				
 				</div> 
 				<!-- 모달 팝업 -->
@@ -243,7 +247,7 @@
 					</button>					
 					
 					<!-- 직위/직급명 나오는곳 -->
-					<input class="form-control form-min" type="text" id="rankName" size="10" disabled/>
+					<input class="form-control form-min" type="text" id="rankName" name="rankName" size="10" disabled/>
 				</div> 
 				
 				<!-- 모달 팝업 -->
@@ -284,7 +288,7 @@
 					</button>					
 					
 					<!-- 직책명 나오는곳 -->
-					<input class="form-control form-min" type="text" id="positionName" size="10" disabled/>
+					<input class="form-control form-min" type="text" id="positionName" name="positionName" size="10" disabled/>
 				</div> 
 				<!-- 모달 팝업 -->
 				<div class="modal fade" id="myModal3" tabindex="-1" role="dialog"
@@ -318,7 +322,7 @@
 			<td class="col-md-2"><input type="date" class="form-control" id="humanLeaveDate" name="humanLeaveDate"/></td>
 
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">퇴사사유</td>
-			<td class="col-md-4"><input type="text" class="form-control" id="humanLeaveReason"/></td>
+			<td class="col-md-4"><input type="text" class="form-control" id="humanLeaveReason" name="humanLeaveReason"/></td>
 		</tr>
 
 		<tr>
@@ -350,7 +354,7 @@
 					</button>					
 					
 					<!-- 부서명 나오는곳 -->
-					<input class="form-control form-min" type="text" id="departmentName" size="10" disabled/>
+					<input class="form-control form-min" type="text" id="departmentName" name="departmentName" size="10" disabled/>
 				</div> 
 				<!-- 모달 팝업 -->
 				<div class="modal fade" id="myModal4" tabindex="-1" role="dialog"
@@ -390,7 +394,7 @@
 					</button>					
 					
 					<!-- 프로젝트명 나오는곳 -->
-					<input class="form-control form-min" type="text" id="projectName" size="10" disabled/>
+					<input class="form-control form-min" type="text" id="projectName" name="projectName" size="10" disabled/>
 				</div> 
 				<!-- 모달 팝업 -->
 				<div class="modal fade" id="myModal5" tabindex="-1" role="dialog"
@@ -432,7 +436,7 @@
 					</button>					
 					
 					<!-- 은행명 나오는곳 -->
-					<input class="form-control form-min2" type="text" id="bankName" size="10" disabled/>
+					<input class="form-control form-min2" type="text" id="bankName" name="bankName" size="10" disabled/>
 				</div> 
 				<!-- 모달 팝업 -->
 				<div class="modal fade" id="myModal6" tabindex="-1" role="dialog"
@@ -468,12 +472,12 @@
 			<td class="col-md-4" colspan="4" align="left">
 				<!-- 주소와 우편번호를 입력할 <input>들을 생성하고 적당한 name과 class를 부여한다 -->
 				<a id="postcodify_search_button">우편번호검색
-				<input type="text" class="postcodify_postcode5 form-control form-min3" value="" />
+				<input type="text" name="humanAddress" class="postcodify_postcode5 form-control form-min3" value="" data-multi="humanAddress" disabled/>
 				<br /></a>
 				도로명주소
 				<input type="text" id="humanAddress" name="humanAddress" class="postcodify_address form-control" value=""  data-multi="humanAddress"/>
 				상세주소
-				<input type="text" class="postcodify_details form-control" value=""  data-multi="humanAddress"/>
+				<input type="text" name="humanAddress" class="postcodify_details form-control" value=""  data-multi="humanAddress"/>
 			</td>
 		</tr>
 		
@@ -499,11 +503,33 @@
 			<td class="col-md-4" colspan="4"><input type="file" /></td>
 		</tr>
 	</table>
-	<input type="button" value="저장" id=""/>
-	<input type="button" value="삭제" />
-	<input type="button" value="리스트" />
+	<button type="button" onclick="udAjax('hrm/update')" >수정</button>
+	<button type="button" onclick="udAjax('hrm/delete')" >삭제</button>
+	<button type="button" onclick="pageMove('hrm/list')" >리스트</button>
 </div>
 
+<script>
+function getNamesFromInputTags(){
+	var names = "";
+	$("input[name]").each(function(idx,element){
+		if(element.getAttribute("data-id")){
+			var dataId = element.getAttribute("data-id");
+			if(ids.indexOf(dataId)==-1){
+				
+			}
+		}else{
+			names += element.name+",";
+		}
+	});
+	return names.substr(0,names.length-1);
+}
+function udAjax(url){
+		var params = getNamesFromInputTags();
+		alert(params);
+		var au = new AjaxUtil(url, params);
+		au.send();
+}
+</script>
 <style>
 .form-control.form-min {
 	width: 124px;

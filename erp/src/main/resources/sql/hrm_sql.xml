@@ -5,7 +5,7 @@
 
 	<!-- 로그인 -->
 	<select id = "LOGIN_HUMANRESOURCEMANAGEMENT" parameterType="h_resourceManagement" resultType="h_resourceManagement">
-		select humanno,humankorname,humanid,humanpwd ,humanauthority
+		select humanno,humanid,humanpwd ,humanauthority
 		from human_resource_management where 1=1
 		<if test = "humanId!= null and humanId!=''">
 			and humanid = #{humanId}
@@ -92,6 +92,14 @@
 		(select departmentcodeno from human_department_code where departmentcode=#{departmentCode}),(select projectno from human_project where projectcode=#{projectCode}),#{humanSecondLanguage},(select bankno from human_bank where bankcode=#{bankCode}),#{humanAccountNumber},#{humanAccountName},#{humanAddress},#{humanEtc},#{humanAuthority})
 	</insert>
 	
+	<update id="UPDATE_HUMANRESOURCEMANAGEMENT" parameterType="h_resourceManagement">
+		update human_resource_management
+		 set humankorname=#{humanKorName},humanid=#{humanId},humanpwd=#{humanPwd},humanengname=#{humanEngName},humanresidentnumber=#{humanResidentNumber},humangenerative=#{humanGenerative},humanenteringdate=#{humanEnteringDate},careerno=(select careerno from human_career where careercode=#{careerCode}),
+		rankno=(select rankno from human_rank where rankcode=#{rankCode}),positionno=(select positionno from human_position where positioncode=#{positionCode}),humanleavedate=#{humanLeaveDate},humanleavereason=#{humanLeaveReason},humanhomenum=#{humanHomeNum},humanphonenum=#{humanPhoneNum},humanpassportnumber=#{humanPassportNumber},humanemail=#{humanEmail},
+		departmentcodeno=(select departmentcodeno from human_department_code where departmentcode=#{departmentCode}),projectno=(select projectno from human_project where projectcode=#{projectCode}),humansecondlanguage=#{humanSecondLanguage},bankno=(select bankno from human_bank where bankcode=#{bankCode}),humanaccountnumber=#{humanAccountNumber},humanaccountname=#{humanAccountName},humanaddress=#{humanAddress},humanetc=#{humanEtc},humanauthority=#{humanAuthority}
+		where humanno = #{humanNo}
+	</update>
+	
 	<delete id="DELETE_HUMANRESOURCEMANAGEMENT" parameterType="h_resourceManagement">
 		delete from human_resource_management
 		where humanno = #{humanNo}
@@ -112,9 +120,4 @@
 	
 		
 </mapper>
-
-
-
-
-
 
