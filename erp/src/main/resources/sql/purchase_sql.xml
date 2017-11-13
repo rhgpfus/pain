@@ -7,13 +7,19 @@
 	select 
 		pm.purchaseno,
 		pm.orderdate,
+		pm.clientno,
 		ci.clientname,
+		ci.clientcode,
 		i.itemname,
 		imc.amount,
 		imc.quantity,
 		imc.unitprice,
 		ws.warehousename, 
-		pm.purchasestatus
+		ws.warehousecode,
+		pm.purchasestatus,
+		pm.createuser,
+		pm.modifieduser
+		
 	from purchase_management as pm 
 		LEFT JOIN client_information as ci
 		on pm.clientno = ci.clientno

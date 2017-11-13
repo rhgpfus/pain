@@ -24,7 +24,8 @@ public class PurchaseManagement {
 	private String warehouseName;
 	private int quantity;
 	private int unitPrice;
-	
+	private String clientCode;
+	private String warehouseCode;
 	
 	public int getPurchaseNo() {
 		return purchaseNo;
@@ -146,6 +147,18 @@ public class PurchaseManagement {
 	public void setUnitPrice(int unitPrice) {
 		this.unitPrice = unitPrice;
 	}
+	public String getClientCode() {
+		return clientCode;
+	}
+	public void setClientCode(String clientCode) {
+		this.clientCode = clientCode;
+	}
+	public String getWarehouseCode() {
+		return warehouseCode;
+	}
+	public void setWarehouseCode(String warehouseCode) {
+		this.warehouseCode = warehouseCode;
+	}
 	@Override
 	public String toString() {
 		return "PurchaseManagement [purchaseNo=" + purchaseNo + ", orderDate=" + orderDate + ", clientNo=" + clientNo
@@ -154,9 +167,8 @@ public class PurchaseManagement {
 				+ purchaseStatus + ", createUser=" + createUser + ", createDate=" + createDate + ", modifiedUser="
 				+ modifiedUser + ", modifiedData=" + modifiedData + ", clientName=" + clientName + ", itemName="
 				+ itemName + ", amount=" + amount + ", warehouseName=" + warehouseName + ", quantity=" + quantity
-				+ ", unitPrice=" + unitPrice + "]";
+				+ ", unitPrice=" + unitPrice + ", clientCode=" + clientCode + ", warehouseCode=" + warehouseCode + "]";
 	}
-	
 	
 	
 	
