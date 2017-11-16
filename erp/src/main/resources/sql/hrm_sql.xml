@@ -94,7 +94,7 @@
 	
 	<update id="UPDATE_HUMANRESOURCEMANAGEMENT" parameterType="h_resourceManagement">
 		update human_resource_management
-		 set humankorname=#{humanKorName},humanid=#{humanId},humanpwd=#{humanPwd},humanengname=#{humanEngName},humanresidentnumber=#{humanResidentNumber},humangenerative=#{humanGenerative},humanenteringdate=#{humanEnteringDate},careerno=(select careerno from human_career where careercode=#{careerCode}),
+		 set humankorname=#{humanKorName},humanengname=#{humanEngName},humanresidentnumber=#{humanResidentNumber},humangenerative=#{humanGenerative},humanenteringdate=#{humanEnteringDate},careerno=(select careerno from human_career where careercode=#{careerCode}),
 		rankno=(select rankno from human_rank where rankcode=#{rankCode}),positionno=(select positionno from human_position where positioncode=#{positionCode}),humanleavedate=#{humanLeaveDate},humanleavereason=#{humanLeaveReason},humanhomenum=#{humanHomeNum},humanphonenum=#{humanPhoneNum},humanpassportnumber=#{humanPassportNumber},humanemail=#{humanEmail},
 		departmentcodeno=(select departmentcodeno from human_department_code where departmentcode=#{departmentCode}),projectno=(select projectno from human_project where projectcode=#{projectCode}),humansecondlanguage=#{humanSecondLanguage},bankno=(select bankno from human_bank where bankcode=#{bankCode}),humanaccountnumber=#{humanAccountNumber},humanaccountname=#{humanAccountName},humanaddress=#{humanAddress},humanetc=#{humanEtc},humanauthority=#{humanAuthority}
 		where humanno = #{humanNo}
