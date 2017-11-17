@@ -62,47 +62,47 @@ var userNo = "<%= user.getHumanNo()%>";
 					<table data-height="460" class="table table-bordered table-hover">
 						<tr>
 							<td class="listTh">창고번호</td>
-							<td><input type="text" id="warehouseNo" name="iud0" class="form-control" disabled /></td>
+							<td><input type="text" id="warehouseNo" name="warehouseNo" class="form-control" disabled /></td>
 						</tr>
 						<tr>
 							<td class="listTh">구분</td>
 							<td>
 								<div class="radio-inline">
 						  			<label>
-										<input type="radio" id="division" name="iud1" value="1" />창고
+										<input type="radio" id="division" name="division" value="1" />창고
 									</label>
 								</div>
 								
 								<div class="radio-inline">
 						  			<label>
-										<input type="radio" id="division2" name="iud2" value="2" />공장
+										<input type="radio" id="division2" name="division" value="2" />공장
 									</label>
 								</div>
 								
 								<div class="radio-inline">
 						  			<label>
-										<input type="radio" id="division3" name="iud3" value="3" />외주공장
+										<input type="radio" id="division3" name="division" value="3" />외주공장
 									</label>
 								</div>
 							</td>
 						</tr>
 						<tr>
 							<td class="listTh">창고코드</td>
-							<td><input type="text"  id="warehouseCode" name="iud4" class="form-control" data-req="창고코드를 입력해주세요"/></td>
+							<td><input type="text"  id="warehouseCode" name="warehouseCode" class="form-control" data-req="창고코드를 입력해주세요"/></td>
 						</tr>
 						<tr>
 							<td class="listTh">창고명</td>
-							<td><input type="text"  id="warehouseName" name="iud"5  class="form-control" data-req="창고명을 입력해주세요"/></td>
+							<td><input type="text"  id="warehouseName" name="warehouseName"  class="form-control" data-req="창고명을 입력해주세요"/></td>
 						</tr>
 						<tr>
 							<td class="listTh">창고주소</td>
-							<td><input type="text"  id="warehouseAddress" name="iud6"  class="form-control" data-req="창고주소를 입력해주세요"/></td>
+							<td><input type="text"  id="warehouseAddress" name="warehouseAddress"  class="form-control" data-req="창고주소를 입력해주세요"/></td>
 						</tr>
 						
-						<input type="hidden" id="createUser" value="<%= user.getHumanNo()%>">
-						<input type="hidden" id="createDate">
-						<input type="hidden" id="modifiedUser" value="<%= user.getHumanNo()%>">
-						<input type="hidden" id="modifiedData">
+						<input type="hidden" id="createUser" name="createUser" value="<%= user.getHumanNo()%>">
+						<input type="hidden" id="createDate" name="createDate">
+						<input type="hidden" id="modifiedUser" name="modifiedUser" value="<%= user.getHumanNo()%>">
+						<input type="hidden" id="modifiedData" name="modifiedData">
 					</table>
 
 				</div>
