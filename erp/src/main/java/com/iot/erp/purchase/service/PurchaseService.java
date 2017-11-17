@@ -14,11 +14,11 @@ public interface PurchaseService {
 	
 	public int insertPurchaseManagementList(PurchaseManagement[] pm);
 	
-	public int insertPurchaseManagementList(PurchaseManagement pm);
+	public int insertPurchaseManagement(PurchaseManagement pm);
 	
-	public int updatePurchaseManagementList(PurchaseManagement pm);
+	public int updatePurchaseManagement(PurchaseManagement pm);
 	
-	public int deletePurchaseManagementList(PurchaseManagement pm);
+	public int deletePurchaseManagement(PurchaseManagement pm);
 	
 
 }

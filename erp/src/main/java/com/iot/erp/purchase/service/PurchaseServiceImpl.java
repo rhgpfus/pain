@@ -39,17 +39,17 @@ public class PurchaseServiceImpl implements PurchaseService {
 	}
 
 	@Override
-	public int insertPurchaseManagementList(PurchaseManagement pm) {
+	public int insertPurchaseManagement(PurchaseManagement pm) {
 		return pDao.insertPurchaseManagement(pm);
 	}
 
 	@Override
-	public int updatePurchaseManagementList(PurchaseManagement pm) {
+	public int updatePurchaseManagement(PurchaseManagement pm) {
 		return pDao.updatePurchaseManagement(pm);
 	}
 
 	@Override
-	public int deletePurchaseManagementList(PurchaseManagement pm) {
+	public int deletePurchaseManagement(PurchaseManagement pm) {
 		return pDao.deletePurchaseManagement(pm);
 	}
 
