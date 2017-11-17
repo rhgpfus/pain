@@ -85,11 +85,11 @@ HumanResourceManagement user = new HumanResourceManagement();
 				var obj = $("a[href='" + nowUrl + "']").parent().attr("class",
 						"active");
 				if(nowUrl.indexOf("item")!=-1 || nowUrl.indexOf("client")!=-1 || nowUrl.indexOf("purchase")!=-1 || nowUrl.indexOf("sale")!=-1 || nowUrl.indexOf("warehouse")!=-1){
-					$("#human").attr("style","display:none");
-					$("#item").attr("style","display:");
+					$("#sideHuman").attr("style","display:none");
+					$("#sideItem").attr("style","display:");
 				}else{
-					$("#human").attr("style","display:");
-					$("#item").attr("style","display:none");
+					$("#sideHuman").attr("style","display:");
+					$("#sideItem").attr("style","display:none");
 				}
 			});
 	
