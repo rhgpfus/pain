@@ -10,8 +10,8 @@ $(document).ready(function(){
 	var aul = new AjaxUtilList("department/list","departmentTable","departmentCodeNo","", "","");
 	aul.send();
 	$('#myModal').on('hidden.bs.modal', function () {
-		$("#changeButton").html("<button type='button' class='btn btn-primary' onclick='iudAjax(\""+"department/update"+"\")'>수정</button>");
-		$("#changeButton").append("<button type='button' class='btn btn-primary' onclick='iudAjax(\""+"department/delete"+"\")'>삭제</button>");
+		$("#changeButton").html("<button type='button' class='btn btn-primary' onclick='iudAjax(\""+"department/update"+"\", \""+"department"+"\")'>수정</button>");
+		$("#changeButton").append("<button type='button' class='btn btn-primary' onclick='iudAjax(\""+"department/delete"+"\", \""+"department"+"\")'>삭제</button>");
 	});
 })
 
@@ -23,7 +23,7 @@ $(document).ready(function(){
 <body>
 <div class="container">
 	<h1 class="topName">부서코드 리스트</h1>
-		<button type="button" class="btn btn-primary" onclick="modalOpen2('department/insert')"> 신규</button>
+		<button type="button" class="btn btn-primary" onclick="modalOpen2('department/insert', 'department')"> 신규</button>
 	<table class="tableList" id="departmentTable">
 	
 		<thead>
@@ -53,15 +53,15 @@ $(document).ready(function(){
 					<table id="table" data-height="460" class="table table-bordered table-hover">
 						<tr>
 							<td class="listTh">부서구분번호</td>
-							<td><input type="text" id="departmentCodeNo" name="iud0" class="postcodify_extra_info" disabled /></td>
+							<td><input type="text" id="departmentCodeNo" name="departmentCodeNo" class="postcodify_extra_info" disabled /></td>
 						</tr>
 						<tr>
 							<td class="listTh">부서 코드</td>
-							<td><input type="text" id="departmentCode" name="iud1" class="postcodify_extra_info" data-req="부서코드를 입력해주세요" placeholder="부서코드를 입력하세요" /></td>
+							<td><input type="text" id="departmentCode" name="departmentCode" class="postcodify_extra_info" data-req="부서코드를 입력해주세요" placeholder="부서코드를 입력하세요" /></td>
 						</tr>
 						<tr>
 							<td class="listTh">부서 이름</td>
-							<td><input type="text" id="departmentName" name="iud2" class="postcodify_extra_info" data-req="부서이름을 입력해주세요" placeholder="부서이름을 입력하세요" /></td>
+							<td><input type="text" id="departmentName" name="departmentName" class="postcodify_extra_info" data-req="부서이름을 입력해주세요" placeholder="부서이름을 입력하세요" /></td>
 						</tr>
 					</table>
 				</div>
@@ -69,8 +69,8 @@ $(document).ready(function(){
 				<div class="modal-footer"> 
 					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button> 
 					<div id="changeButton" style="display: inline"> 
-					<button type="button" class="btn btn-primary" onclick="iudAjax('department/update')">수정</button>
-					<button type="button" class="btn btn-primary" onclick="iudAjax('department/delete')">삭제</button>
+					<button type="button" class="btn btn-primary" onclick="iudAjax('department/update', 'department')">수정</button>
+					<button type="button" class="btn btn-primary" onclick="iudAjax('department/delete', 'department')">삭제</button>
 					</div>
 				</div>
 			

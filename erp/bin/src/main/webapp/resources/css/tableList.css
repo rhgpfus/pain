@@ -2,15 +2,15 @@
 
 .topName{
 	width: 75%;
-	margin: 50px 0px 20px 0px; /*위 오른쪽 아래 왼쪽*/
+	margin: 50px 50px 20px 0px; /*위 오른쪽 아래 왼쪽*/
 	font-weight: bold;
 	text-align: left;
-	 color: #0080ff;.
+	 color: #005b9e;
 	
 }
 
 .tableList {
-	width: 75%;
+	width: 100%;
 	border-collapse: collapse;
 	margin: 50px auto;
 }
@@ -20,7 +20,7 @@ tr:nth-of-type(odd) {
 }
 
 .listTh {
-	background: #3498db;
+	background: #005b9e;
 	color: white;
 	font-weight: bold;
 }
@@ -30,4 +30,7 @@ tr:nth-of-type(odd) {
 	border: 1px solid #ccc;
 	text-align: center;
 	font-size: 14px;
+}
+#currentHuman{
+	margin-top : -50px;
 }

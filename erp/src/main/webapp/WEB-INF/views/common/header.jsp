@@ -73,8 +73,17 @@ HumanResourceManagement user = new HumanResourceManagement();
 	var modalOpen = function(json){
 		var keys = Object.keys(json);
 		for(var i = 0 ; i < keys.length; i++) {
+			console.log(keys[i]);
 			console.log(json[keys[i]]);
+			if($("input[id="+keys[i]+"]").attr("type")==="radio"){
+				for(ele of $("input[id*="+keys[i]+"]")){
+					if(ele.value == json[keys[i]]){
+						ele.checked = true;
+					}
+				}
+			}else{
 			$("input[id="+keys[i]+"]").val(json[keys[i]]);
+			}
 		}
 		$("#myModal").modal("show");
 	}

@@ -4,25 +4,46 @@
 <mapper namespace="warehouse">
 
 	<select id="SELECT_WAREHOUSE" parameterType="wm" resultType="wm">
-
 		select 
-	warehouseno,
-	division,
-	warehouseCode,
-	warehousename,
-	warehouseaddress,
-	createuser,
-	createdate,
-	modifieduser,
-	modifieddata
+			warehouseno,
+			division,
+			warehouseCode,
+			warehousename,
+			warehouseaddress,
+			createuser,
+			createdate,
+			modifieduser,
+			modifieddata
 		from warehouse where 1=1
 <if test="warehouseNo!=null and warehouseNo!=''">
 			<!-- 창고명검색 -->
-and warehousename = #{warehousename}
+	and warehousename = #{warehousename}
 </if>
 
-</select>
+	</select>
 		
+	<insert id="INSERT_WAREHOUSE" parameterType="wm">
+		insert 
+		into warehouse(division,warehouseCode,warehouseName,warehouseAddress,createUser,createDate,modifiedUser,modifiedData)
+		values(#{division},#{warehouseCode},#{warehouseName},#{warehouseAddress},#{createUser},CURDATE(),#{modifiedUser},CURDATE())
+		
+	</insert>
+
+	<update id="UPDATE_WAREHOUSE" parameterType="wm">
+		update 
+		 warehouse
+		 set rankCode = #{rankCode}, rankName = #{rankName}
+		 where rankno = #{rankNo}
+		
+	</update>
+	
+	<update id="DELETE_WAREHOUSE" parameterType="wm">
+		delete from warehouse
+		 where rankno = #{rankNo}
+		
+	</update>	
+		
+	
 </mapper>
 
 

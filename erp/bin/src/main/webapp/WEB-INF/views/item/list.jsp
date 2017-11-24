@@ -12,10 +12,6 @@
 
 				var aul = new AjaxUtilList("item/list", "itemTable", "itemName", null, null,"");
 				aul.send();
-				$('#myModal').on('hidden.bs.modal', function () {
-					$("#changeButton").html("<button type='button' class='btn btn-primary' onclick='iudAjax(\""+"item/update"+"\", \""+"item"+"\")'>수정</button>");
-					$("#changeButton").append("<button type='button' class='btn btn-primary' onclick='iudAjax(\""+"item/delete"+"\", \""+"item"+"\")'>삭제</button>");
-				});
 			})
 </script>
 
@@ -24,7 +20,7 @@
 <body>
 	<div class="container">
 		<h1 class="topName">품목리스트</h1>
-		<button type="button" class="btn btn-primary" onclick="modalOpen2('item/insert', 'item')"> 신규</button>
+		<button type="button" class="btn btn-primary" onclick="modalOpen2('item/insert')"> 신규</button>
 		<table class="tableList" id="itemTable">
 			<thead>
 				<tr class="listTr">
@@ -60,45 +56,45 @@
 					<table id="table" data-height="460" class="table table-bordered table-hover">
 						<tr>
 							<td class="listTh">품목 번호</td>
-							<td><input type="text" id="itemNo" name="itemNo" class="postcodify_extra_info" disabled /></td>
+							<td><input type="text" id="itemNo" name="iud0" class="postcodify_extra_info" disabled /></td>
 							
 							<td class="listTh">이미지</td>
-							<td><input type="text" id="img" name="img" class="postcodify_extra_info"/></td>
+							<td><input type="text" id="img" name="iud1" class="postcodify_extra_info"/></td>
 						</tr>
 						<tr>
 							<td class="listTh">품목 코드</td>
-							<td><input type="text" id="itemCode"name="itemCode" class="postcodify_extra_info"/></td>
+							<td><input type="text" id="itemCode"name="iud2" class="postcodify_extra_info"/></td>
 							
 							<td class="listTh">품목 이름</td>
-							<td><input type="text" id="itemName"name="itemName" class="postcodify_extra_info"/></td>
+							<td><input type="text" id="itemName"name="iud2" class="postcodify_extra_info"/></td>
 						</tr>
 						<tr>
 							<td class="listTh">입고 단가</td>
-							<td><input type="text" id="warehousingCost"name="warehousingCost" class="postcodify_extra_info"/></td>
+							<td><input type="text" id="warehousingCost"name="iud2" class="postcodify_extra_info"/></td>
 							
 							<td class="listTh">출고 단가</td>
-							<td><input type="text" id="unstoringCost"name="unstoringCost" class="postcodify_extra_info"/></td>
+							<td><input type="text" id="unstoringCost"name="iud2" class="postcodify_extra_info"/></td>
 						</tr>
 						
 						<tr>
 							<td class="listTh">품목 구분</td>
-							<td><input type="text" id="itemDivision"name="itemDivision" class="postcodify_extra_info"/></td>
+							<td><input type="text" id="itemDivision"name="iud2" class="postcodify_extra_info"/></td>
 							
 							<td class="listTh">입력자</td>
-							<td><input type="text" id="createUser"name="createUser" class="postcodify_extra_info"/></td>
+							<td><input type="text" id="createUser"name="iud2" class="postcodify_extra_info"/></td>
 						</tr>
 						
 						<tr>
 							<td class="listTh">입력 일정</td>
-							<td><input type="text" id="createDate"name="createDate" class="postcodify_extra_info"/></td>
+							<td><input type="text" id="createDate"name="iud2" class="postcodify_extra_info"/></td>
 							
 							<td class="listTh">수정자</td>
-							<td><input type="text" id="modifiedUser"name="modifiedUser" /></td>
+							<td><input type="text" id="modifiedUser"name="iud2" /></td>
 						</tr>
 						
 						<tr>
 							<td class="listTh">수정 일정</td>
-							<td><input type="text" id="modifiedData"name="modifiedData"/></td>
+							<td><input type="text" id="modifiedData"name="iud2"/></td>
 						</tr>
 					</table>
 				</div>
@@ -106,8 +102,8 @@
 				<div class="modal-footer"> 
 					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button> 
 					<div id="changeButton" style="display: inline"> 
-					<button type="button" class="btn btn-primary" onclick="iudAjax('item/update', 'item')">수정</button>
-					<button type="button" class="btn btn-primary" onclick="iudAjax('item/delete', 'item')">삭제</button>
+					<button type="button" class="btn btn-primary" onclick="iudAjax('project/update')">수정</button>
+					<button type="button" class="btn btn-primary" onclick="iudAjax('project/delete')">삭제</button>
 					</div>
 				</div>
 

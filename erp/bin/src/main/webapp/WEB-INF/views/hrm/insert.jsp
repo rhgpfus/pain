@@ -21,7 +21,7 @@
 	function initEvent() {
 		$('div[id*="myModal"] table[id="' + globalTarget.tableId
 						+ '"] tbody tr').click(function() {
-			var str = this.firstChild.innerText
+			var str = this.firstChild.innerText;
 			var str2 = this.lastChild.innerText;
 			globalTarget.obj.value = str;
 			globalTarget.obj2.value = str2;
@@ -30,33 +30,32 @@
 	}
 
 	var globalTarget = {};
-	$(document).ready(
-			function() {
-				$('div[id*="outTd"]').click(
-						function() {
-							var url = this.getAttribute("data-url");
-							var tableId = this.getAttribute("data-tableName");
-							var searchId = this.getAttribute("data-search");
-							if (url && tableId && searchId) {
-								globalTarget.url = url;
-								globalTarget.tableId = tableId;
-								globalTarget.searchId = searchId;
-								globalTarget.obj = this.firstElementChild;
-								globalTarget.btn = this.getElementsByTagName("button")[0];
-								globalTarget.obj2 = this.lastElementChild;
-								var aul = new AjaxUtilList(url, tableId,
-										searchId, null, null, null, null, null, initEvent);
-								aul.send();
-							}
-						})
-			});
+	$(document).ready(function() {
+		document.getElementById('humanEnteringDate').valueAsDate = thisDate;
+		//오늘 날짜 넣는 법.
+		$('div[id*="outTd"]').click(function() {
+			var url = this.getAttribute("data-url");
+			var tableId = this.getAttribute("data-tableName");
+			var searchId = this.getAttribute("data-search");
+			if (url && tableId && searchId) {
+				globalTarget.url = url;
+				globalTarget.tableId = tableId;
+				globalTarget.searchId = searchId;
+				globalTarget.obj = this.firstElementChild;
+				globalTarget.btn = this.getElementsByTagName("button")[0];
+				globalTarget.obj2 = this.lastElementChild;
+				var aul = new AjaxUtilList(url, tableId,searchId, null, null, null, null, null, initEvent);
+				aul.send();
+			}
+		})
+		
+	});
 	//검색 단추를 누르면 팝업 레이어가 열리도록 설정한다
 	$(function() {
 		$("#postcodify_search_button").postcodifyPopUp();
 	});
 </script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+
 <div class="container">
 
 	<h1 class="topName">인사 등록</h1>
@@ -67,10 +66,10 @@
 			<td rowspan="9" style="vertical-align: middle"><img
 				id="uploadPreview" style="width: 200px; height: 350px;" /></td>
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">사원번호</td>
-			<td class="col-md-2"><input type="text" class="form-control" disabled/></td>
+			<td class="col-md-2"><input type="text" class="form-control" id="humanNo" name="humanNo" disabled/></td>
 
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">성명</td>
-			<td class="col-md-4"><input type="text" class="form-control" id="humanKorName" name="humanKorName"/></td>
+			<td class="col-md-4"><input type="text" class="form-control" id="humanKorName" name="humanKorName" data-req="이름을 입력해주세요" /></td>
 		</tr>
 
 		<tr>
@@ -89,7 +88,8 @@
 
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">세대주
 				여부</td>
-			<td class="col-md-4" style="vertical-align: middle"><div class="radio-inline">
+			<td class="col-md-4" style="vertical-align: bottom">
+				<div class="radio-inline">
 		  			<label>
 						<input type="radio" id="humanGenerative" name="humanGenerative" value="1" />세대주
 					</label>
@@ -109,9 +109,9 @@
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">입사구분</td>
 			<td class="col-md-4" style="vertical-align: middle"><div
 					id="outTd1" data-tableName="careerTable" data-url="career/list"
-					data-search="careerName">
+					data-search="careerNo">
 
-					<input class="form-control form-min3" type="text" id="careerCode" data-url="career/search" size="10"
+					<input class="form-control form-min3" type="text" id="careerCode" name="careerCode" data-url="career/search" size="10"
 						onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
 					<script>
 						function searchClass(obj) {
@@ -119,7 +119,7 @@
 							param[obj.id] = obj.value;
 							var url = "${rootPath}/"
 									+ obj.getAttribute("data-url");
-							var tableId = obj.getAttribute("data-name");
+							var tableId = obj.getAttribute("id");
 							var param = {};
 							param[tableId] = obj.value;
 							//입사구분,직급,직책,부서코드,프로젝트,은행 모두 이 이벤트 적용.
@@ -139,6 +139,8 @@
 										},
 										data : param,
 										success : function(result) {
+											alert(result);
+											alert(result[0]);
 											var keyList = Object.keys(result);
 											obj.closest("div").firstElementChild.value = result[keyList[1]];
 											obj.closest("div").lastElementChild.value = result[keyList[2]];
@@ -160,7 +162,7 @@
 
 					<!-- 입사구분에서 입사구분이름 나오는곳 -->
 					<input class="form-control form-min" type="text"
-						id="careerName" size="10" disabled />
+						id="careerName" name="careerName" size="10" disabled />
 
 				</div> <!-- 모달 팝업 -->
 				<div class="modal fade" id="myModal1" tabindex="-1" role="dialog"
@@ -193,7 +195,7 @@
 									<tbody>
 									</tbody>
 								</table>
-<!-- 								<input type="hidden" id="careerName"> -->
+								<input type="hidden" id="careerNo">
 							</div>
 						</div>
 					</div>
@@ -204,8 +206,8 @@
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">직위/직급</td>
 			<td class="col-md-2" style="vertical-align: middle"><div
 					id="outTd2" data-tableName="rankTable" data-url="rank/list"
-					data-search="rankName">
-					<input class="form-control form-min3" type="text" id="rankNo" name="rankNo" data-name="rankCode" data-url="rank/search" size="10"
+					data-search="rankNo">
+					<input class="form-control form-min3" type="text" id="rankCode" name="rankCode"  data-url="rank/search" size="10"
 						onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
 					<!-- 돋보기 버튼 누르면 팝업창 -->
 					<button type="button" data-toggle="modal" data-target="#myModal2"
@@ -214,7 +216,7 @@
 							style=""></span>
 					</button>
 					<!-- 입사구분에서 입사구분이름 나오는곳 -->
-					<input class="form-control form-min" type="text" id="rankName"
+					<input class="form-control form-min" type="text" id="rankName" name="rankName"
 						size="10" disabled />
 				</div> <!-- 모달 팝업 -->
 				<div class="modal fade" id="myModal2" tabindex="-1" role="dialog"
@@ -238,7 +240,7 @@
 									<tbody>
 									</tbody>
 								</table>
-<!-- 								<input type="hidden" id="rankName"> -->
+								<input type="hidden" id="rankNo">
 							</div>
 						</div>
 					</div>
@@ -247,8 +249,8 @@
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">직책</td>
 			<td class="col-md-4" style="vertical-align: middle"><div
 					id="outTd3" data-tableName="positionTable" data-url="position/list"
-					data-search="positionName">
-					<input class="form-control form-min3" type="text" id="positionCode" data-url="position/search" size="10"
+					data-search="positionNo">
+					<input class="form-control form-min3" type="text" id="positionCode" name="positionCode" data-url="position/search" size="10"
 						onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
 					<!-- 돋보기 버튼 누르면 팝업창 -->
 					<button type="button" data-toggle="modal" data-target="#myModal3"
@@ -257,7 +259,7 @@
 							style=""></span>
 					</button>
 					<!-- 입사구분에서 입사구분이름 나오는곳 -->
-					<input class="form-control form-min" type="text" id="positionName"
+					<input class="form-control form-min" type="text" id="positionName" name="positionName"
 						size="10" disabled />
 				</div> <!-- 모달 팝업 -->
 				<div class="modal fade" id="myModal3" tabindex="-1" role="dialog"
@@ -281,7 +283,7 @@
 									<tbody>
 									</tbody>
 								</table>
-<!-- 								<input type="hidden" id="positionName"> -->
+								<input type="hidden" id="positionNo">
 							</div>
 						</div>
 					</div>
@@ -293,7 +295,7 @@
 			<td class="col-md-2"><input type="date" class="form-control" id="humanLeaveDate" name="humanLeaveDate"/></td>
 
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">퇴사사유</td>
-			<td class="col-md-4"><input type="text" class="form-control" id="humanLeaveReason"/></td>
+			<td class="col-md-4"><input type="text" class="form-control" id="humanLeaveReason" name="humanLeaveReason"/></td>
 		</tr>
 
 		<tr>
@@ -315,9 +317,9 @@
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">부서코드</td>
 			<td class="col-md-3" style="vertical-align: middle"><div
 					id="outTd4" data-tableName="departmentTable"
-					data-url="department/list" data-search="departmentName">
+					data-url="department/list" data-search="departmentNo">
 					<input class="form-control form-min3" type="text"
-						id="departmentCodeNo" name="departmentCodeNo" data-name="departmentCode"	data-url="department/search" size="10"
+						id="departmentCode" name="departmentCode" data-url="department/search" size="10"
 						onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
 					<!-- 돋보기 버튼 누르면 팝업창 -->
 					<button type="button" data-toggle="modal" data-target="#myModal4"
@@ -326,7 +328,7 @@
 							style=""></span>
 					</button>
 					<!-- 입사구분에서 입사구분이름 나오는곳 -->
-					<input class="form-control form-min" type="text"
+					<input class="form-control form-min" type="text" name="departmentName"
 						id="departmentName" size="10" disabled />
 				</div> <!-- 모달 팝업 -->
 				<div class="modal fade" id="myModal4" tabindex="-1" role="dialog"
@@ -350,7 +352,7 @@
 									<tbody>
 									</tbody>
 								</table>
-<!-- 								<input type="hidden" id="departmentName"> -->
+								<input type="hidden" id="departmentNo">
 							</div>
 						</div>
 					</div>
@@ -359,8 +361,8 @@
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">프로젝트</td>
 			<td class="col-md-4" style="vertical-align: middle"><div
 					id="outTd5" data-tableName="projectTable" data-url="project/list"
-					data-search="projectName">
-					<input class="form-control form-min3" type="text" id="projectCode" data-url="project/search" size="10"
+					data-search="projectNo">
+					<input class="form-control form-min3" type="text" id="projectCode" name="projectCode" data-url="project/search" size="10"
 						onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
 					<!-- 돋보기 버튼 누르면 팝업창 -->
 					<button type="button" data-toggle="modal" data-target="#myModal5"
@@ -369,7 +371,7 @@
 							style=""></span>
 					</button>
 					<!-- 입사구분에서 입사구분이름 나오는곳 -->
-					<input class="form-control form-min" type="text"
+					<input class="form-control form-min" type="text" name="projectName"
 						id="projectName" size="10" disabled />
 				</div> <!-- 모달 팝업 -->
 				<div class="modal fade" id="myModal5" tabindex="-1" role="dialog"
@@ -393,7 +395,7 @@
 									<tbody>
 									</tbody>
 								</table>
-<!-- 								<input type="hidden" id="projectName"> -->
+								<input type="hidden" id="projectNo">
 							</div>
 						</div>
 					</div>
@@ -404,8 +406,8 @@
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">급여통장</td>
 			<td class="col-md-4" colspan="4" style="vertical-align: middle">
 				<div id="outTd6" style="display: inline" data-tableName="bankTable"
-					data-url="bank/list" data-search="bankName">
-					<input class="form-control form-min3" type="text" id="bankCode"	data-url="bank/search" size="10"
+					data-url="bank/list" data-search="bankNo">
+					<input class="form-control form-min3" type="text" id="bankCode" name="bankCode"	data-url="bank/search" size="10"
 						onkeypress="if(event.keyCode==13) {searchClass(this); return false;}">
 					<!-- 돋보기 버튼 누르면 팝업창 -->
 					<button type="button" data-toggle="modal" data-target="#myModal6"
@@ -414,7 +416,7 @@
 							style=""></span>
 					</button>
 					<!-- 입사구분에서 입사구분이름 나오는곳 -->
-					<input class="form-control form-min2" type="text"
+					<input class="form-control form-min2" type="text" name="bankName"
 						id="bankName" size="10" disabled />
 				</div> <!-- 모달 팝업 -->
 				<div class="modal fade" id="myModal6" tabindex="-1" role="dialog"
@@ -438,7 +440,7 @@
 									<tbody>
 									</tbody>
 								</table>
-<!-- 								<input type="hidden" id="bankName"> -->
+								<input type="hidden" id="bankNo">
 							</div>
 						</div>
 					</div>
@@ -450,10 +452,12 @@
 		<tr>
 			<td class="col-md-2" align="center" style="vertical-align: middle" bgcolor="cccccc">주소</td>
 			<td class="col-md-4" colspan="4" align="left">
-				<!-- 주소와 우편번호를 입력할 <input>들을 생성하고 적당한 name과 class를 부여한다 --> <a
-				id="postcodify_search_button">우편번호검색 <input type="text" n="" class="postcodify_postcode5 form-control form-min3" value="" /><br /></a> 
+				<!-- 주소와 우편번호를 입력할 <input>들을 생성하고 적당한 name과 class를 부여한다 --> 
+				<a id="postcodify_search_button">우편번호검색 
+				<input type="text" name="humanAddress" class="postcodify_postcode5 form-control form-min3" value="" data-multi="humanAddress" disabled/>
+				<br /></a> 
 					도로명주소 <input type="text" id="humanAddress" name="humanAddress" class="postcodify_address form-control" value=""  data-multi="humanAddress"/>
-				상세주소 <input type="text" n="" class="postcodify_details form-control" value=""  data-multi="humanAddress"/>
+				상세주소 <input type="text" name="humanAddress" class="postcodify_details form-control" value=""  data-multi="humanAddress"/>
 			</td>
 		</tr>
 

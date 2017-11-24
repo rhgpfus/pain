@@ -41,7 +41,7 @@
         <div class="col-sm-3 col-md-1 sidebar" id="sideItem" style="display:none">
           
           <ul class="nav nav-sidebar">
-            <a href="http://localhost/erp/item/itemlist">품목 리스트</a></li>
+            <a href="http://localhost/erp/item/list">품목 리스트</a></li>
           </ul>
           
           <ul class="nav nav-sidebar">                

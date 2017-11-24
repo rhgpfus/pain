@@ -16,20 +16,49 @@
 	</select>
 
 	<!-- 인사관리 단일 -->
-	<select id="SELECT_HRM" parameterType="h_resourceManagement" resultType="h_resourceManagement">
-		select * from human_resource_management
-		where humanno = #{humanNo}
-		
-	</select>
-
-	<!-- 인사관리 리스트  -->
-	<select id="SELECT_HRMLIST" parameterType="h_resourceManagement" resultType="java.util.HashMap">
-		select hrm.humanno,
-			hrm.humankorname,
-			hrm.humanresidentnumber,
+	<select id="SELECT_HRM_DETAIL" parameterType="h_resourceManagement" resultType="h_resourceManagement">
+		select   hrm.*,
+			hdc.departmentcode,
 			hdc.departmentname,
 			hr.rankname,
-			hrm.humanenteringdate,
+			hr.rankcode,
+			hb.bankname,
+			hb.bankcode,
+			hc.careername,
+			hc.careercode,
+			hpr.projectname,
+			hpr.projectcode,
+			hpo.positionname,
+			hpo.positioncode
+		from human_resource_management as hrm
+			LEFT JOIN human_department_code as hdc
+			on hrm.departmentcodeno = hdc.departmentcodeno
+			LEFT JOIN human_rank as hr
+			on hr.rankno = hrm.rankno
+			LEFT JOIN human_bank as hb
+			on hb.bankno = hrm.bankno
+			LEFT JOIN human_career as hc
+			on hc.careerno = hrm.careerno
+			LEFT JOIN human_project as hpr
+			on hpr.projectno = hrm.projectno
+			LEFT JOIN human_position as hpo
+			on hpo.positionno = hrm.positionno
+		where 
+			trim(hrm.humankorname)!=''
+			and humanno=#{humanNo}
+		order by humanno desc
+		
+	</select>
+	
+	
+	<!-- 인사관리 리스트  -->
+	<select id="SELECT_HRMLIST" parameterType="h_resourceManagement" resultType="h_resourceManagement">
+		select hrm.humanno,
+			hrm.humankorname,
+			replace (hrm.humanresidentnumber,'#multi#','-') as humanresidentnumber,
+			hdc.departmentname,
+			hr.rankname,
+			hrm.humanenteringdate, 
 			hrm.humanaccountnumber,
 			hrm.humanemail
 		from human_resource_management as hrm
@@ -46,7 +75,8 @@
 		
 		<if test="humanKorName!=null and humanKorName!=''">
 			<!-- 성명검색기능 -->
-			and hrm.humankorname = #{humanKorName}
+			and hrm.humankorname like concat('%',#{humanKorName},'%')
+			<!-- concat('%',#{dto에 있는 값},'%') -->
 		</if>
 		order by humanno desc
 	</select>
@@ -57,10 +87,18 @@
 		careerno,rankno,positionno,humanleavedate,humanleavereason,humanhomenum,humanphonenum,humanpassportnumber,humanemail,
 		departmentcodeno,projectno,humansecondlanguage,bankno,humanaccountnumber,humanaccountname,humanaddress,
 		humanEtc,humanauthority)
-		values(#{humanKorName},#{humanId},#{humanPwd},#{humanEngName},#{humanResidentNumber},#{humanGenerative},#{humanEnteringDate},#{careerNo},
-		#{rankNo},#{positionNo},#{humanLeaveDate},#{humanLeaveReason},#{humanHomeNum},#{humanPhoneNum},#{humanPassportNumber},#{humanEmail},
-		#{departmentCodeNo},#{projectNo},#{humanSecondLanguage},#{bankNo},#{humanAccountNumber},#{humanAccountName},#{humanAddress},#{humanEtc},#{humanAuthority})
+		values(#{humanKorName},#{humanId},#{humanPwd},#{humanEngName},#{humanResidentNumber},#{humanGenerative},#{humanEnteringDate},(select careerno from human_career where careercode=#{careerCode}),
+		(select rankno from human_rank where rankcode=#{rankCode}),(select positionno from human_position where positioncode=#{positionCode}),#{humanLeaveDate},#{humanLeaveReason},#{humanHomeNum},#{humanPhoneNum},#{humanPassportNumber},#{humanEmail},
+		(select departmentcodeno from human_department_code where departmentcode=#{departmentCode}),(select projectno from human_project where projectcode=#{projectCode}),#{humanSecondLanguage},(select bankno from human_bank where bankcode=#{bankCode}),#{humanAccountNumber},#{humanAccountName},#{humanAddress},#{humanEtc},#{humanAuthority})
 	</insert>
+	
+	<update id="UPDATE_HUMANRESOURCEMANAGEMENT" parameterType="h_resourceManagement">
+		update human_resource_management
+		 set humankorname=#{humanKorName},humanengname=#{humanEngName},humanresidentnumber=#{humanResidentNumber},humangenerative=#{humanGenerative},humanenteringdate=#{humanEnteringDate},careerno=(select careerno from human_career where careercode=#{careerCode}),
+		rankno=(select rankno from human_rank where rankcode=#{rankCode}),positionno=(select positionno from human_position where positioncode=#{positionCode}),humanleavedate=#{humanLeaveDate},humanleavereason=#{humanLeaveReason},humanhomenum=#{humanHomeNum},humanphonenum=#{humanPhoneNum},humanpassportnumber=#{humanPassportNumber},humanemail=#{humanEmail},
+		departmentcodeno=(select departmentcodeno from human_department_code where departmentcode=#{departmentCode}),projectno=(select projectno from human_project where projectcode=#{projectCode}),humansecondlanguage=#{humanSecondLanguage},bankno=(select bankno from human_bank where bankcode=#{bankCode}),humanaccountnumber=#{humanAccountNumber},humanaccountname=#{humanAccountName},humanaddress=#{humanAddress},humanetc=#{humanEtc},humanauthority=#{humanAuthority}
+		where humanno = #{humanNo}
+	</update>
 	
 	<delete id="DELETE_HUMANRESOURCEMANAGEMENT" parameterType="h_resourceManagement">
 		delete from human_resource_management
@@ -82,9 +120,4 @@
 	
 		
 </mapper>
-
-
-
-
-
 

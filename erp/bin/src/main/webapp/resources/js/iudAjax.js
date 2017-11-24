@@ -1,18 +1,24 @@
-
 function iudAjax(url){
 	var params = "";
-	$("input[name*='iud'][id]").each(function(key,val){
-		if(val.getAttribute("id")){
-			params += val.getAttribute("id") + ",";
+	$("input[name]").each(function(key,val){
+		if(val.getAttribute("name")){
+			params += val.getAttribute("name") + ",";
 		}
 	}); 
-	params = params.substr(0,params.length-1); // , 없애주기위해
+	params = params.substr(0,params.length-1);  // , 없애주기위해
 	var aui = new AjaxUtil(url,params);
 	aui.send();
 }
 
 function modalOpen2(url){
-	$("input[name*='iud']").val("");
+	$("input[name]").each(function(key,val){
+		val.value="";
+	});
 	$("#changeButton").html("<button type='button' class='btn btn-primary' onclick='iudAjax(\""+url+"\")'>저장</button>");
 	$("#myModal").modal("show");
+}
+
+function searchName(url, tableName, searchName){
+	var aul = new AjaxUtilList(url,"hrmTable",searchName);
+	aul.send();
 }

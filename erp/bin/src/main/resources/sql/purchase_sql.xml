@@ -4,16 +4,33 @@
 <mapper namespace="purchase" >
 
 <select id="SELECT_PMLIST" parameterType="pm" resultType="pm">
-	select pm.purchaseno,pm.orderdate,ci.clientname,i.itemname,imc.amount,w.warehousename 
+	select 
+		pm.purchaseno,
+		pm.orderdate,
+		pm.clientno,
+		ci.clientname,
+		ci.clientcode,
+		i.itemname,
+		imc.amount,
+		imc.quantity,
+		imc.unitprice,
+		ws.warehousename, 
+		ws.warehousecode,
+		pm.purchasestatus,
+		pm.createuser,
+		pm.modifieduser
+		
 	from purchase_management as pm 
-	, client_information as ci 
-	, item as i 
-	, item_middle_client as imc 
-	, warehouse as w 
-	where ci.clientno = pm.clientno
-	and i.itemno = pm.itemno
-	and imc.imcno = pm.imcno
-	and w.warehouseno = pm.warehouseno
+		LEFT JOIN client_information as ci
+		on pm.clientno = ci.clientno
+		LEFT JOIN item as i
+		on pm.itemno = i.itemno
+		LEFT JOIN item_middle_client as imc
+		on pm.imcno = imc.imcno
+		LEFT JOIN warehouse as ws
+		on pm.warehouseno = ws.warehouseno
+	where
+		trim(ci.clientname)!=''
 	<if test="purchaseNo !=0">
 				<!-- 번호로 검색 -->
 		and pm.purchaseno = #{purchaseNo}
