@@ -12,7 +12,11 @@ function iudAjax(url){
 
 function modalOpen2(url){
 	$("input[name]").each(function(key,val){
-		val.value="";
+		if(val.type==="radio" || val.type==="hidden"){
+			
+		}else{
+			val.value="";
+		}
 	});
 	$("#changeButton").html("<button type='button' class='btn btn-primary' onclick='iudAjax(\""+url+"\")'>저장</button>");
 	$("#myModal").modal("show");
