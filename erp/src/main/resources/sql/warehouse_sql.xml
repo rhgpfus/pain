@@ -32,14 +32,15 @@
 	<update id="UPDATE_WAREHOUSE" parameterType="wm">
 		update 
 		 warehouse
-		 set rankCode = #{rankCode}, rankName = #{rankName}
-		 where rankno = #{rankNo}
+		 set warehouseCode = #{warehouseCode}, warehouseName = #{warehouseName}, division = #{division},
+		 warehouseAddress = #{warehouseAddress}, modifiedUser = #{modifiedUser}, modifiedData = #{modifiedData}
+		 where warehouseno = #{warehouseNo}
 		
 	</update>
 	
 	<update id="DELETE_WAREHOUSE" parameterType="wm">
 		delete from warehouse
-		 where rankno = #{rankNo}
+		 where warehouseno = #{warehouseNo}
 		
 	</update>	
 		

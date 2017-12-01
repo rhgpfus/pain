@@ -1,34 +1,55 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
-<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd"> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 
-<mapper namespace="sale" >
+<mapper namespace="sale">
 
-<select id="SELECT_SM" parameterType="sm" resultType="sm">
-
-
-		select 
-	saleNo,
-	saleDate,
-	clientNo,
-	itemNo,
-	imcNo,
-	managerNo,
-	warehouseNo,
-	projectNo,
-	receiptStatus,
-	createuser,
-	createdate,
-	modifieduser,
-	modifieddata
+	<select id="SELECT_SM" parameterType="sm" resultType="sm">
+		select
+		saleNo,
+		saleDate,
+		clientNo,
+		itemNo,
+		imcNo,
+		managerNo,
+		warehouseNo,
+		projectNo,
+		receiptStatus,
+		createuser,
+		createdate,
+		modifieduser,
+		modifieddata
 		from sale_management where 1=1
-<if test="saleNo!=null and saleNo!=''">
+		<if test="saleNo!=null and saleNo!=''">
 			<!-- 거래처명검색 -->
-and itemNo = #{itemNo}
-</if>
+			and itemNo = #{itemNo}
+		</if>
 
-</select>
+	</select>
 
+	<insert id="INSERT_SM" parameterType="sm">
+		insert
+		into
+		sale_management(saleDate,clientNo,itemNo,imcNo,managerNo,warehouseNo,projectNo,receiptStatus,
+		createuser,createdate,modifiedUser,modifiedData)
+		values(#{saleDate},#{clientNo},#{itemNo},#{imcNo},#{managerNo},#{warehouseNo},#{projectNo},#{receiptStatus},
+		#{createUser},CURDATE(),#{modifiedUser},CURDATE())
 
+	</insert>
+
+	<update id="UPDATE_SM" parameterType="sm">
+		update 
+		 sale_management
+		 set saleDate = #{saleDate}, clientNo = #{clientNo}, itemNo = #{itemNo}, imcNo = #{imcNo}, managerNo = #{managerNo}, 
+		 warehouseNo = #{warehouseNo},projectNo = #{projectNo},receiptStatus = #{receiptStatus},modifiedUser = #{modifiedUser}
+		 where saleNo = #{saleNo}
+		
+	</update>
+	
+	<update id="DELETE_SM" parameterType="sm">
+		delete from sale_management
+		 where saleNo = #{saleNo}
+		
+	</update>
 </mapper>
 
 
