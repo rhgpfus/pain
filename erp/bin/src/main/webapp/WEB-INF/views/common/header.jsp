@@ -1,11 +1,9 @@
-<%@page import="com.iot.erp.hrm.dto.HumanResourceManagement"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@ include file="/WEB-INF/views/common/common.jsp"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -28,8 +26,7 @@
 	src="<c:url value="/resources/ui/btsp3.7.7/js/bootstrap-table.js?version=${pVar}"/>"></script>
 <script
 	src="<c:url value="/resources/js/iudAjax.js?version=${pVar}"/>"></script>
-
-<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>	
+	
 
 <!--  css -->
 <link rel="stylesheet"
@@ -44,19 +41,8 @@
 	href="<c:url value='/resources/css/dashboard.css?version=${pVar}'/>" />
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/tableList.css?version=${pVar}"/>" />
-<%
-//유저 정보
-HumanResourceManagement user = new HumanResourceManagement();
- if((HumanResourceManagement) session.getAttribute("hrmuser")!=null){
-	 user = (HumanResourceManagement) session.getAttribute("hrmuser");
- }
 
-%>
 <script>
-
-	
-	// 오늘 일자
-	var thisDate = new Date('<fmt:formatDate pattern = "yyyy-MM-dd" value = "${now}" />');
 	//페이지 이동
 	var pageMove = function(p_page, p_colName, p_param){
 		var page = p_page;
@@ -70,27 +56,22 @@ HumanResourceManagement user = new HumanResourceManagement();
 	}
 	
 	//모달창(325번째줄에 modalOpen()파라메터를 추가하였고 59,60,61,62번째줄 추가)
-	var modalOpen = function(json){
-		var keys = Object.keys(json);
-		for(var i = 0 ; i < keys.length; i++) {
-			console.log(json[keys[i]]);
-			$("input[id="+keys[i]+"]").val(json[keys[i]]);
-		}
+	var modalOpen = function(no, p_colName , p_param){
+		var param = {};
+		param[p_colName] = p_param;
+		$("input[name='iud0']").val(no);
+		$("input[name='iud1']").val(p_colName);
+		$("input[name='iud2']").val(p_param);
 		$("#myModal").modal("show");
+		
+		alert(param[p_colName]);
 	}
-	//sidebar를 숨기는 기능으로 탑메뉴 클릭시 바뀌게 만듬
+	//
 	$(document).ready(
 			function() {
 				var nowUrl = "${nowUrl}";
 				var obj = $("a[href='" + nowUrl + "']").parent().attr("class",
 						"active");
-				if(nowUrl.indexOf("item")!=-1 || nowUrl.indexOf("client")!=-1 || nowUrl.indexOf("purchase")!=-1 || nowUrl.indexOf("sale")!=-1 || nowUrl.indexOf("warehouse")!=-1){
-					$("#sideHuman").attr("style","display:none");
-					$("#sideItem").attr("style","display:");
-				}else{
-					$("#sideHuman").attr("style","display:");
-					$("#sideItem").attr("style","display:none");
-				}
 			});
 	
 	var JSException = function(e){
@@ -341,16 +322,12 @@ HumanResourceManagement user = new HumanResourceManagement();
 			for (var i = 0, max = json.length; i < max; i++) {
 
 				var row = json[i];
-
-// 				for(var key in row){
-// 					console.log(key);
-// 					console.log(row[key]); 
-// 				}
 				var clickStr ="";
 				if(updateUrl!=null && updateUrl=="hrm/update"){
 					clickStr = "onclick='pageMove(\"" + updateUrl +  "\",\"" + colInfos[1] + "\",\"" + row[colInfos[1]] + "\")'";
 				}else if(updateUrl!=null){
-					clickStr = "onclick='modalOpen(" + JSON.stringify(row) + ")'";
+					
+					clickStr = "onclick='modalOpen(\"" + row[colInfos[0]] + "\",\"" +  row[colInfos[1]] + "\",\"" + row[colInfos[2]] +"\")'";
 				}
 				tbodyStr += "<tr " + clickStr + " style='cursor:pointer'>";
 				for (var j = 0, jMax = colInfos.length; j < jMax; j++) {
@@ -360,26 +337,16 @@ HumanResourceManagement user = new HumanResourceManagement();
 						tbodyStr += "<input type='checkbox'>";
 					}else if (colName == "button") {
 						tbodyStr += "<input type='button'>";
-					}else if(colName == "division"){
-						if(row[colName]=='1'){
-							tbodyStr += '창고';
-						}else if(row[colName]=='2'){
-							tbodyStr += '공장';
-						}else if(row[colName]=='3'){
-							tbodyStr += '외주공장';
-						}
-						//row[colName] ---> 값
-						//colInfos[j] ---> 컬럼명
 					}else if(row[colName] && row[colName]!='undefined'){
 						tbodyStr += row[colName];
 					}else{
-						tbodyStr += '';
+						tbodyStr += '-';
 					}
 					tbodyStr += "</td>";
 				}
 				tbodyStr += "</tr>";
 			}
- 
+
 			var tbodyObj = $("#" + this.tableId + " tbody");
 			tbodyObj.html(tbodyStr);
 			if(initEvent){

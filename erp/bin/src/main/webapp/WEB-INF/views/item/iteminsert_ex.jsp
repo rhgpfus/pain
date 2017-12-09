@@ -39,8 +39,8 @@ $(document).ready(function(){
 			'출고단가','입력자','입력일자','수정자','수정일자'],			
 		colTypes:["ro","str","str","str","int","int","str","int","str","int","str"],
 		type:1,
-		insertUrl:"item/insert",
-		listUrl:"item/list",
+		insertUrl:"item/iteminsert",
+		listUrl:"item/itemlist",
 		tdCount:2
 	}
 	var htmlStr = makeTable(tableInfo);

@@ -13,7 +13,6 @@ function iudAjax(url){
 function modalOpen2(url){
 	$("input[name]").each(function(key,val){
 		if(val.type==="radio" || val.type==="hidden"){
-			val.checked = false;
 		}else{
 			val.value="";
 		}

@@ -7,16 +7,27 @@
 
 <script>
 $(document).ready(function(){
+
 	
 	var aul = new AjaxUtilList("bank/list","bankTable","bankNo",null, null, "");
 	aul.send();
 	$('#myModal').on('hidden.bs.modal', function () {
-		$("#changeButton").html("<button type='button' class='btn btn-primary' onclick='iudAjax(\""+"bank/update"+"\", \""+"bank"+"\")'>수정</button>");
-		$("#changeButton").append("<button type='button' class='btn btn-primary' onclick='iudAjax(\""+"bank/delete"+"\", \""+"bank"+"\")'>삭제</button>");
+		$("#changeButton").html("<button type='button' class='btn btn-primary' onclick='iudAjax(\""+"bank/update"+"\")'>수정</button>");
 	});
 })
 
 
+function deleteBank(){
+	
+	
+  if( $(":checkbox[name='chkList']:checked").length==0 ){
+    alert("항목을 하나이상 체크해주세요.");
+  }else if( $(":checkbox[name='chkList']:checked").length!=0 ){
+	var params="bankCode,bankName";
+	var aud = new AjaxUtil("bank/delete",params);
+	aud.send();
+  }
+}
 </script>
 
 <title>은행 리스트</title>
@@ -25,11 +36,13 @@ $(document).ready(function(){
 <div class="container">
 	<h1 class="topName">은행 목록 리스트</h1>
 	<!-- 버튼 --> 
-		<button type="button" class="btn btn-primary" onclick="modalOpen2('bank/insert', 'bank')"> 신규</button>
+		<button type="button" class="btn btn-primary" onclick="modalOpen2('bank/insert')"> 신규</button>
+		<button type="button" class="btn btn-primary" onclick="deleteBank()"> 삭제</button>
 	<table class="tableList" id="bankTable">
 	
 		<thead>
 			<tr class="listTr">	
+				<th class="listTh" data-field="checkbox"></th>	
 				<th  class="listTh" data-field="bankNo">은행 번호</th>
 				<th  class="listTh" data-field="bankCode">은행 코드</th>
 				<th  class="listTh" data-field="bankName">은행 이름</th>
@@ -54,15 +67,15 @@ $(document).ready(function(){
 					<table data-height="460" class="table table-bordered table-hover">
 						<tr>
 							<td class="listTh">은행구분번호</td>
-							<td><input type="text" id="bankNo" name="bankNo" class="postcodify_extra_info" disabled /></td>
+							<td><input type="text" id="bankNo" name="iud0" class="postcodify_extra_info" disabled /></td>
 						</tr>
 						<tr>
 							<td class="listTh">은행 코드</td>
-							<td><input type="text"  id="bankCode" name="bankCode" class="postcodify_extra_info" data-req="은행코드를 입력해주세요" placeholder="은행코드를 입력하세요" /></td>
+							<td><input type="text"  id="bankCode" name="iud1" class="postcodify_extra_info" data-req="은행코드를 입력해주세요" placeholder="은행코드를 입력하세요" /></td>
 						</tr>
 						<tr>
 							<td class="listTh">은행 이름</td>
-							<td><input type="text"  id="bankName" name="bankName"  class="postcodify_extra_info" data-req="은행이름을 입력해주세요" placeholder="은행이름을 입력하세요" /></td>
+							<td><input type="text"  id="bankName" name="iud2"  class="postcodify_extra_info" data-req="은행이름을 입력해주세요" placeholder="은행이름을 입력하세요" /></td>
 						</tr>
 					</table>
 <!-- 					<input type="hidden" id="bankCode"> -->
@@ -71,8 +84,7 @@ $(document).ready(function(){
 				<div class="modal-footer"> 
 					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button> 
 					<div id="changeButton" style="display: inline"> 
-					<button type="button" class="btn btn-primary" onclick="iudAjax('bank/update', 'bank')">수정</button>
-					<button type="button" class="btn btn-primary" onclick="iudAjax('bank/delete', 'bank')">삭제</button>
+					<button type="button" class="btn btn-primary" onclick="iudAjax('bank/update')">수정</button>
 					</div>
 					
 				</div>

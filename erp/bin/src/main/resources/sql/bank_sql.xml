@@ -33,11 +33,5 @@
 		 where bankno = #{bankNo}
 		
 	</update>
-	
-	<delete id="DELETE_HUMANBANK" parameterType="h_bank">
-		delete from human_bank
-		 where bankno = #{bankNo}
-		
-	</delete>
 
 </mapper>

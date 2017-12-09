@@ -14,9 +14,9 @@
 				<form class="form-login">
 					<h1 class="login-header-name">ERPGO</h1>
 					<label class="sr-only">ID</label> 
-					<input type="text" id="humanId" class="form-control" placeholder="ID" value="uws" data-req="아이디를 입력해주세요" autofocus> 
+					<input type="text" id="humanId" class="form-control" placeholder="ID" data-req="아이디를 입력해주세요" autofocus> 
 					<label class="sr-only">Password</label>
-					<input type="password" id="humanPwd" class="form-control" placeholder="Password" value="uws" data-req="비밀번호를 입력해주세요" required>
+					<input type="password" id="humanPwd" class="form-control" placeholder="Password" data-req="비밀번호를 입력해주세요" required>
 					
 					<button id="btn" class="form-login-button" type="button">로그인</button>
 				</form>

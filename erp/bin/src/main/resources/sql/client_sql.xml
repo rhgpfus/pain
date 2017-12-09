@@ -5,6 +5,7 @@
 
 <select id="SELECT_CLIENT" parameterType="ci" resultType="ci">
 
+
 		select 
 	clientno,
 	clientcode,
@@ -27,16 +28,8 @@
 			<!-- 거래처명검색 -->
 and clientname = #{clientname}
 </if>
-</select>
 
-<insert id="INSERT_CLIENT" parameterType="ci">
-		insert into client_information(clientcode,homepage,bank,
-		clientname,representatives,sectors,phonenumber,cellphonenumber,
-		address,managerno,email,createuser,createdate,modifieduser,modifieddata)
-		values(#{clientCode},#{homePage},#{bank},#{clientName},#{representAtives},
-		#{sectors},#{phoneNumber},#{cellphoneNumber},
-		#{address},#{managerNo},#{email},#{createUser},now(),#{modifiedUser},now());
-</insert>
+</select>
 
 
 </mapper>

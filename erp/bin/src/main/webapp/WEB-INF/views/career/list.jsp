@@ -11,8 +11,8 @@ $(document).ready(function(){
 	var aul = new AjaxUtilList("career/list","careerTable","careerNo","", "" , "");
 	aul.send();
 	$('#myModal').on('hidden.bs.modal', function () {
-		$("#changeButton").html("<button type='button' class='btn btn-primary' onclick='iudAjax(\""+"career/update"+"\", \""+"career"+"\")'>수정</button>");
-		$("#changeButton").append("<button type='button' class='btn btn-primary' onclick='iudAjax(\""+"career/delete"+"\", \""+"career"+"\")'>삭제</button>");
+		$("#changeButton").html("<button type='button' class='btn btn-primary' onclick='iudAjax(\""+"career/update"+"\")'>수정</button>");
+		$("#changeButton").append("<button type='button' class='btn btn-primary' onclick='iudAjax(\""+"career/delete"+"\")'>삭제</button>");
 	});
 })
 
@@ -25,7 +25,7 @@ $(document).ready(function(){
 <div class="container">
 	<h1 class="topName">입사구분 리스트</h1>
 	<!-- 버튼 --> 
-	<button type="button" class="btn btn-primary" onclick="modalOpen2('career/insert', 'career')"> 신규</button>
+	<button type="button" class="btn btn-primary" onclick="modalOpen2('career/insert')"> 신규</button>
 	
 	<table class="tableList" id=careerTable>
 		<thead>
@@ -55,15 +55,15 @@ $(document).ready(function(){
 					<table id="table" data-height="460" class="table table-bordered table-hover">
 						<tr>
 							<td class="listTh">입사구분번호</td>
-							<td><input type="text" id="careerNo" name="careerNo" class="postcodify_extra_info" disabled /></td>
+							<td><input type="text" id="careerNo" name="iud0" class="postcodify_extra_info" disabled /></td>
 						</tr>
 						<tr>
 							<td class="listTh">입사구분코드</td>
-							<td><input type="text" id="careerCode" name="careerCode" class="postcodify_extra_info" data-req="입사구분코드를 입력해주세요" placeholder="입사구분코드를 입력하세요"/></td>
+							<td><input type="text" id="careerCode" name="iud1" class="postcodify_extra_info" data-req="입사구분코드를 입력해주세요" placeholder="입사구분코드를 입력하세요"/></td>
 						</tr>
 						<tr>
 							<td class="listTh">입사구분</td>
-							<td><input type="text" id="careerName" name="careerName" class="postcodify_extra_info" data-req="입사구분명을 입력해주세요" placeholder="입사구분명을 입력하세요"/></td>
+							<td><input type="text" id="careerName" name="iud2" class="postcodify_extra_info" data-req="입사구분명을 입력해주세요" placeholder="입사구분명을 입력하세요"/></td>
 						</tr>
 					</table>
 				</div>
@@ -71,8 +71,8 @@ $(document).ready(function(){
 				<div class="modal-footer"> 
 					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 					<div id="changeButton" style="display: inline"> 
-					<button type="button" class="btn btn-primary" onclick="iudAjax('career/update', 'career')">수정</button>
-					<button type="button" class="btn btn-primary" onclick="iudAjax('career/delete', 'career')">삭제</button>
+					<button type="button" class="btn btn-primary" onclick="iudAjax('career/update')">수정</button>
+					<button type="button" class="btn btn-primary" onclick="iudAjax('career/delete')">삭제</button>
 					</div>
 				</div>
 

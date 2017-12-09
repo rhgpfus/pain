@@ -26,30 +26,14 @@
 
 	</select>
 
-	<insert id="INSERT_SM" parameterType="sm">
+	<insert id="INSERT_WAREHOUSE" parameterType="wm">
 		insert
 		into
-		sale_management(saleDate,clientNo,itemNo,imcNo,managerNo,warehouseNo,projectNo,receiptStatus,
-		createuser,createdate,modifiedUser,modifiedData)
-		values(#{saleDate},#{clientNo},#{itemNo},#{imcNo},#{managerNo},#{warehouseNo},#{projectNo},#{receiptStatus},
-		#{createUser},CURDATE(),#{modifiedUser},CURDATE())
+		warehouse(division,warehouseCode,warehouseName,warehouseAddress,createUser,createDate,modifiedUser,modifiedData)
+		values(#{division},#{warehouseCode},#{warehouseName},#{warehouseAddress},#{createUser},CURDATE(),#{modifiedUser},CURDATE())
 
 	</insert>
 
-	<update id="UPDATE_SM" parameterType="sm">
-		update 
-		 sale_management
-		 set saleDate = #{saleDate}, clientNo = #{clientNo}, itemNo = #{itemNo}, imcNo = #{imcNo}, managerNo = #{managerNo}, 
-		 warehouseNo = #{warehouseNo},projectNo = #{projectNo},receiptStatus = #{receiptStatus},modifiedUser = #{modifiedUser}
-		 where saleNo = #{saleNo}
-		
-	</update>
-	
-	<update id="DELETE_SM" parameterType="sm">
-		delete from sale_management
-		 where saleNo = #{saleNo}
-		
-	</update>
 </mapper>
 
 

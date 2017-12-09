@@ -38,7 +38,7 @@ public class PurchaseController {
 		map.put("url","no-move");
 		map.put("action", "close,refresh");
 		if(cnt==1){
-			map.put("msg", "직책이 정상적으로 등록 되었습니다.");
+			map.put("msg", "구매리스트가 정상적으로 등록 되었습니다.");
 		}
 		return map;
 	}

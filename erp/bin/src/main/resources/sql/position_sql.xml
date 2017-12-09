@@ -18,7 +18,6 @@
 		</if>	
 	</select>
 	
-	
 	<insert id="INSERT_POSITION" parameterType="position">
 		insert 
 		into human_position(positionCode,positionName)

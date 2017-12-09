@@ -61,11 +61,11 @@ var userNo = "<%= user.getHumanNo()%>";
 				<div class="modal-body">
 					<table data-height="460" class="table table-bordered table-hover">
 						<tr>
-							<td class="listTh" style="vertical-align: middle">창고번호</td>
+							<td class="listTh">창고번호</td>
 							<td><input type="text" id="warehouseNo" name="warehouseNo" class="form-control" disabled /></td>
 						</tr>
 						<tr>
-							<td class="listTh" style="vertical-align: middle">구분</td>
+							<td class="listTh">구분</td>
 							<td>
 								<div class="radio-inline">
 						  			<label>
@@ -87,23 +87,23 @@ var userNo = "<%= user.getHumanNo()%>";
 							</td>
 						</tr>
 						<tr>
-							<td class="listTh" style="vertical-align: middle">창고코드</td>
+							<td class="listTh">창고코드</td>
 							<td><input type="text"  id="warehouseCode" name="warehouseCode" class="form-control" data-req="창고코드를 입력해주세요"/></td>
 						</tr>
 						<tr>
-							<td class="listTh" style="vertical-align: middle">창고명</td>
+							<td class="listTh">창고명</td>
 							<td><input type="text"  id="warehouseName" name="warehouseName"  class="form-control" data-req="창고명을 입력해주세요"/></td>
 						</tr>
 						<tr>
-							<td class="listTh" style="vertical-align: middle">창고주소</td>
+							<td class="listTh">창고주소</td>
 							<td><input type="text"  id="warehouseAddress" name="warehouseAddress"  class="form-control" data-req="창고주소를 입력해주세요"/></td>
 						</tr>
-					</table>
 						
 						<input type="hidden" id="createUser" name="createUser" value="<%= user.getHumanNo()%>">
 						<input type="hidden" id="createDate" name="createDate">
 						<input type="hidden" id="modifiedUser" name="modifiedUser" value="<%= user.getHumanNo()%>">
 						<input type="hidden" id="modifiedData" name="modifiedData">
+					</table>
 
 				</div>
 				
