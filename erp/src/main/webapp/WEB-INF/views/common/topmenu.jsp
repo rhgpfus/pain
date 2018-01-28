@@ -7,7 +7,7 @@
   <div class="container-fluid">
 
   	<div class="navbar-header">
-      <a class="navbar-brand" href="http://erpgo.co.kr/erp/main/main">E R P</a>
+      <a class="navbar-brand" href="http://erpgo.co.kr/main/main">E R P</a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -15,21 +15,21 @@
          <li class="dropdown" >
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> 인사 관리</a>
           <ul class="dropdown-menu" role="menu">
-            	<li><a href="http://erpgo.co.kr/erp/hrm/list">인사 리스트</a></li>
+            	<li><a href="http://erpgo.co.kr/hrm/list">인사 리스트</a></li>
             <li class="divider"></li>  <!-- 선 출력. -->
-            	<li><a href="http://erpgo.co.kr/erp/hrm/insert">인사 등록</a></li>
+            	<li><a href="http://erpgo.co.kr/hrm/insert">인사 등록</a></li>
             <li class="divider"></li>
-            	<li><a href="http://erpgo.co.kr/erp/career/list">경력 리스트</a></li>
+            	<li><a href="http://erpgo.co.kr/career/list">경력 리스트</a></li>
             <li class="divider"></li>
-            	<li><a href="http://erpgo.co.kr/erp/project/list">프로젝트 리스트</a></li>
+            	<li><a href="http://erpgo.co.kr/project/list">프로젝트 리스트</a></li>
             <li class="divider"></li>
-            	<li><a href="http://erpgo.co.kr/erp/position/list">직책 리스트</a></li>
+            	<li><a href="http://erpgo.co.kr/position/list">직책 리스트</a></li>
             <li class="divider"></li>
-          	   <li><a href="http://erpgo.co.kr/erp/bank/list">은행 리스트</a></li>
+          	   <li><a href="http://erpgo.co.kr/bank/list">은행 리스트</a></li>
             <li class="divider"></li>
-            	<li><a href="http://erpgo.co.kr/erp/rank/list">직급 리스트</a></li>
+            	<li><a href="http://erpgo.co.kr/rank/list">직급 리스트</a></li>
             <li class="divider"></li>
-            	<li><a href="http://erpgo.co.kr/erp/department/list">부서코드 리스트</a></li>
+            	<li><a href="http://erpgo.co.kr/department/list">부서코드 리스트</a></li>
             	
           </ul>
 		</li>
@@ -37,15 +37,15 @@
          <li class="dropdown" >
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">재고 관리</a>
           <ul class="dropdown-menu" role="menu">
-            	<li><a href="http://erpgo.co.kr/erp/item/list">품목 리스트</a></li>
+            	<li><a href="http://erpgo.co.kr/item/list">품목 리스트</a></li>
             <li class="divider"></li>  <!-- 선 출력. -->
-            	<li><a href="http://erpgo.co.kr/erp/client/clist">거래처 등록</a></li>
+            	<li><a href="http://erpgo.co.kr/client/clist">거래처 등록</a></li>
             <li class="divider"></li>
-            	<li><a href="http://erpgo.co.kr/erp/purchase/pmlist">구매 조회</a></li>
+            	<li><a href="http://erpgo.co.kr/purchase/pmlist">구매 조회</a></li>
             <li class="divider"></li>
-            	<li><a href="http://erpgo.co.kr/erp/sale/slist">판매 조회</a></li>
+            	<li><a href="http://erpgo.co.kr/sale/slist">판매 조회</a></li>
             <li class="divider"></li>
-            	<li><a href="http://erpgo.co.kr/erp/warehouse/whlist">창고 조회</a></li>
+            	<li><a href="http://erpgo.co.kr/warehouse/whlist">창고 조회</a></li>
           </ul>
         </li>
       
