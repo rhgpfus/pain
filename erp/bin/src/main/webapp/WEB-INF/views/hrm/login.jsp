@@ -12,7 +12,7 @@
 	<body>
 		<div class="container">
 			<form class="form-login">
-				<h1 class="login-header-name">ERPGO</h1>
+				<h1 class="login-header-name">MANSOLEGO</h1>
 				<label class="sr-only">ID</label> 
 				<input type="text" id="humanId" class="form-control" placeholder="ID" data-req="아이디를 입력해주세요" autofocus> 
 				<label class="sr-only">Password</label>
